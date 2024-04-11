@@ -8,20 +8,27 @@ import { useNavigate } from 'react-router-dom';
 const Header: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleSignIn = () => {
-    navigate('/signin');
-  };
-
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
-  const handleHamburgerMenu = () => {
-    setHamburgerMenuOpen(!hamburgerMenuOpen);
+  const handleOpenHamburgerMenu = () => {
+    setHamburgerMenuOpen(true);
+  };
+
+  const handleCloseHameburgerMenu = () => {
+    setHamburgerMenuOpen(false);
+  };
+
+  const handleSignIn = () => {
+    handleCloseHameburgerMenu();
+    navigate('/signin');
   };
 
   return (
     <>
       <styles.HeaderWrapper>
-        <styles.StyledLink to="/">Tube Slice</styles.StyledLink>
+        <styles.StyledLink to="/" onClick={handleCloseHameburgerMenu}>
+          Tube Slice
+        </styles.StyledLink>
         <styles.RightWrapper>
           <styles.LoginButton onClick={handleSignIn}>
             로그인/회원가입
@@ -29,13 +36,13 @@ const Header: React.FC = () => {
           <styles.OpenButton
             src={HamburgerMenuImage}
             alt="햄버거 메뉴 버튼"
-            onClick={handleHamburgerMenu}
+            onClick={handleOpenHamburgerMenu}
           />
         </styles.RightWrapper>
       </styles.HeaderWrapper>
 
       {hamburgerMenuOpen && (
-        <HamburgerMenu handleHamburgerMenu={handleHamburgerMenu} />
+        <HamburgerMenu handleCloseHameburgerMenu={handleCloseHameburgerMenu} />
       )}
     </>
   );

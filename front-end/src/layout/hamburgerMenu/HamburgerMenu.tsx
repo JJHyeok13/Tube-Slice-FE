@@ -4,8 +4,8 @@ import CloseHambergerMenuButton from '../../assets/header/CloseHamburgerMenu.svg
 import styles from './styles';
 import HamburgerMenuButton from '../../components/hamburgerMenuComponent/hamburgerMenuButton';
 
-const HamburgerMenu: React.FC<{ handleHamburgerMenu: () => void }> = ({
-  handleHamburgerMenu,
+const HamburgerMenu: React.FC<{ handleCloseHameburgerMenu: () => void }> = ({
+  handleCloseHameburgerMenu,
 }) => {
   return (
     <styles.Container>
@@ -17,7 +17,7 @@ const HamburgerMenu: React.FC<{ handleHamburgerMenu: () => void }> = ({
         <styles.CloseButton
           src={CloseHambergerMenuButton}
           alt="햄버거 메뉴 버튼"
-          onClick={handleHamburgerMenu}
+          onClick={handleCloseHameburgerMenu}
         />
       </styles.UpperContainer>
 
@@ -25,22 +25,22 @@ const HamburgerMenu: React.FC<{ handleHamburgerMenu: () => void }> = ({
         <HamburgerMenuButton
           buttonName="변환하기"
           address="/convert"
-          closeHamburgerMenu={handleHamburgerMenu}
+          closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
           buttonName="요약하기"
           address="/summarize"
-          closeHamburgerMenu={handleHamburgerMenu}
+          closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
           buttonName="저장된 스크립트"
           address="/myscript"
-          closeHamburgerMenu={handleHamburgerMenu}
+          closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
           buttonName="마이페이지"
           address="/mypage/myrecord"
-          closeHamburgerMenu={handleHamburgerMenu}
+          closeHamburgerMenu={handleCloseHameburgerMenu}
         />
       </styles.ButtonContainer>
     </styles.Container>
