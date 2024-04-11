@@ -5,13 +5,25 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.css';
+import SignInPage from './pages/signInPage/signInPage';
 import MainPage from './pages/mainPage/mainPage';
+import BasicLayout from './layout/BasicLayout';
+import ConvertPage from './pages/convertPage/convertPage';
+import SummarizePage from './pages/summarizePage/summarizePage';
+import MyScriptPage from './pages/myScriptPage/myScriptPage';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+
+        <Route element={<BasicLayout />}>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/convert" element={<ConvertPage />} />
+          <Route path="/summarize" element={<SummarizePage />} />
+          <Route path="/myscript" element={<MyScriptPage />} />
+        </Route>
       </Route>,
     ),
   );
