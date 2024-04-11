@@ -8,6 +8,11 @@ const styles = {
     display: flex;
     flex-direction: column;
   `,
+  UpperWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+  `,
 };
 
 export default styles;
