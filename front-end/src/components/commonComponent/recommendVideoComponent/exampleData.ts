@@ -1,8 +1,8 @@
-import Example1 from '../../../assets/common/recommendVideoComponent/Example1.svg';
-import Example2 from '../../../assets/common/recommendVideoComponent/Example2.svg';
-import Example3 from '../../../assets/common/recommendVideoComponent/Example3.svg';
-import Example4 from '../../../assets/common/recommendVideoComponent/Example1.svg';
-import Example5 from '../../../assets/common/recommendVideoComponent/Example2.svg';
+import Example1 from '@_assets/common/recommendVideoComponent/Example1.svg';
+import Example2 from '@_assets/common/recommendVideoComponent/Example2.svg';
+import Example3 from '@_assets/common/recommendVideoComponent/Example3.svg';
+import Example4 from '@_assets/common/recommendVideoComponent/Example1.svg';
+import Example5 from '@_assets/common/recommendVideoComponent/Example2.svg';
 
 export const dummyData = [
   {

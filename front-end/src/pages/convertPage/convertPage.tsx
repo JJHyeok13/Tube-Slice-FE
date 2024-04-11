@@ -1,8 +1,9 @@
 import React from 'react';
 
+import InputAddressComponent from '@/components/commonComponent/inputAddressComponent/inputAddressComponent';
+import RecommendVideoComponent from '@/components/commonComponent/recommendVideoComponent/recommendVideoComponent';
+
 import styles from './styles';
-import InputAddressComponent from '../../components/commonComponent/inputAddressComponent/inputAddressComponent';
-import RecommendVideoComponent from '../../components/commonComponent/recommendVideoComponent/recommendVideoComponent';
 
 const ConvertPage: React.FC = () => {
   return (

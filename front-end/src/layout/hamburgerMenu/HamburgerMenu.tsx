@@ -1,8 +1,8 @@
 import React from 'react';
-import CloseHambergerMenuButton from '../../assets/header/CloseHamburgerMenu.svg';
+import CloseHambergerMenuButton from '@/assets/header/CloseHamburgerMenu.svg';
 
 import styles from './styles';
-import HamburgerMenuButton from '../../components/hamburgerMenuComponent/hamburgerMenuButton';
+import HamburgerMenuButton from '@/components/hamburgerMenuComponent/hamburgerMenuButton';
 
 const HamburgerMenu: React.FC<{ handleCloseHameburgerMenu: () => void }> = ({
   handleCloseHameburgerMenu,
