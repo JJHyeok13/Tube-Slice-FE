@@ -11,6 +11,7 @@ import BasicLayout from './layout/BasicLayout';
 import ConvertPage from './pages/convertPage/convertPage';
 import SummarizePage from './pages/summarizePage/summarizePage';
 import MyScriptPage from './pages/myScriptPage/myScriptPage';
+import MyPage from './pages/myPage/myPage';
 
 function App() {
   const router = createBrowserRouter(
@@ -23,6 +24,7 @@ function App() {
           <Route path="/convert" element={<ConvertPage />} />
           <Route path="/summarize" element={<SummarizePage />} />
           <Route path="/myscript" element={<MyScriptPage />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Route>
       </Route>,
     ),
