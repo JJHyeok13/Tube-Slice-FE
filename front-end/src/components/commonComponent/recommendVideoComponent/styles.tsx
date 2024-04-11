@@ -7,7 +7,7 @@ const styles = {
   `,
   VideoWrapper: styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     white-space: nowrap;
     overflow-x: auto;
   `,

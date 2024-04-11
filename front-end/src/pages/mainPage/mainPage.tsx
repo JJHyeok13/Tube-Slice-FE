@@ -1,12 +1,12 @@
 import React from 'react';
 
-import GuideComponent from '@/components/mainPageComponent/GuideComponent';
+import GuideComponent from '@components/mainPageComponent/GuideComponent';
 
 import styles from './styles';
 
-import Example1Image from '@/assets/mainPage/example1.svg';
-import Example2Image from '@/assets/mainPage/example2.svg';
-import Example3Image from '@/assets/mainPage/example3.svg';
+import Example1Image from '@assets/mainPage/example1.svg';
+import Example2Image from '@assets/mainPage/example2.svg';
+import Example3Image from '@assets/mainPage/example3.svg';
 
 const MainPage: React.FC = () => {
   return (

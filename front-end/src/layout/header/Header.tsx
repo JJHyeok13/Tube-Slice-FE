@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
 
-import HamburgerMenuImage from '@/assets/header/HamburgerMenu.svg';
-import HamburgerMenu from '@/layout/hamburgerMenu/HamburgerMenu';
+import HamburgerMenuImage from '@assets/header/HamburgerMenu.svg';
+import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
 

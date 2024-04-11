@@ -5,14 +5,14 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.css';
-import BasicLayout from '@/layout/BasicLayout';
+import BasicLayout from '@layout/BasicLayout';
 
-import SignInPage from '@/pages/signInPage/signInPage';
-import MainPage from '@/pages/mainPage/mainPage';
-import ConvertPage from '@/pages/convertPage/convertPage';
-import SummarizePage from '@/pages/summarizePage/summarizePage';
-import MyScriptPage from '@/pages/myScriptPage/myScriptPage';
-import MyPage from '@/pages/myPage/myPage';
+import SignInPage from '@pages/signInPage/signInPage';
+import MainPage from '@pages/mainPage/mainPage';
+import ConvertPage from '@pages/convertPage/convertPage';
+import SummarizePage from '@pages/summarizePage/summarizePage';
+import MyScriptPage from '@pages/myScriptPage/myScriptPage';
+import MyPage from '@pages/myPage/myPage';
 
 function App() {
   const router = createBrowserRouter(

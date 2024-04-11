@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IconImage from '@/assets/signInPage/TubeSliceLogo.svg';
+import IconImage from '@assets/signInPage/TubeSliceLogo.svg';
 
 const MainLeftComponent: React.FC = () => {
   return (

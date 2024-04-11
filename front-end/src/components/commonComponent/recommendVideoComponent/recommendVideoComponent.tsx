@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles';
 
-import ViewCountIcon from '@/assets/common/recommendVideoComponent/ViewCount.svg';
+import ViewCountIcon from '@assets/common/recommendVideoComponent/ViewCount.svg';
 
 import { dummyData } from './exampleData';
 

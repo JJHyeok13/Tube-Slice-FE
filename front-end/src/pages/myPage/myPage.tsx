@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import LeftComponent from '@/components/myPageComponent/LeftComponent/LeftComponent';
-import MyRecordComponent from '@/components/myPageComponent/myRecordComponent/myRecordComponent';
-import ProfileSettingComponent from '@/components/myPageComponent/profileSettingComponent/ProfileSettingComponent';
-import DeleteMemberComponent from '@/components/myPageComponent/deleteMemberComponent/DeleteMemberComponent';
+import LeftComponent from '@components/myPageComponent/LeftComponent/LeftComponent';
+import MyRecordComponent from '@components/myPageComponent/myRecordComponent/myRecordComponent';
+import ProfileSettingComponent from '@components/myPageComponent/profileSettingComponent/ProfileSettingComponent';
+import DeleteMemberComponent from '@components/myPageComponent/deleteMemberComponent/DeleteMemberComponent';
 
 import styles from './styles';
 

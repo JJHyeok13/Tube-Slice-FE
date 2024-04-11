@@ -1,8 +1,8 @@
 import React from 'react';
 
-import KakaoLoginBtnImage from '@/assets/signInPage/KakaoLoginButton.svg';
-import NaverLoginBtnImage from '@/assets/signInPage/NaverLoginButton.svg';
-import GuestLoginBtnImage from '@/assets/signInPage/GuestLoginButton.svg';
+import KakaoLoginBtnImage from '@assets/signInPage/KakaoLoginButton.svg';
+import NaverLoginBtnImage from '@assets/signInPage/NaverLoginButton.svg';
+import GuestLoginBtnImage from '@assets/signInPage/GuestLoginButton.svg';
 
 import { Link } from 'react-router-dom';
 
