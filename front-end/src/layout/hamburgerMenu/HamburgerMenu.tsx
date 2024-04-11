@@ -22,10 +22,26 @@ const HamburgerMenu: React.FC<{ handleHamburgerMenu: () => void }> = ({
       </styles.UpperContainer>
 
       <styles.ButtonContainer>
-        <HamburgerMenuButton buttonName="변환하기" address="/convert" />
-        <HamburgerMenuButton buttonName="요약하기" address="/summarize" />
-        <HamburgerMenuButton buttonName="저장된 스크립트" address="/myscript" />
-        <HamburgerMenuButton buttonName="마이페이지" address="/mypage" />
+        <HamburgerMenuButton
+          buttonName="변환하기"
+          address="/convert"
+          closeHamburgerMenu={handleHamburgerMenu}
+        />
+        <HamburgerMenuButton
+          buttonName="요약하기"
+          address="/summarize"
+          closeHamburgerMenu={handleHamburgerMenu}
+        />
+        <HamburgerMenuButton
+          buttonName="저장된 스크립트"
+          address="/myscript"
+          closeHamburgerMenu={handleHamburgerMenu}
+        />
+        <HamburgerMenuButton
+          buttonName="마이페이지"
+          address="/mypage"
+          closeHamburgerMenu={handleHamburgerMenu}
+        />
       </styles.ButtonContainer>
     </styles.Container>
   );
