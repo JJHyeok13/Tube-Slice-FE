@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const styles = {
   Container: styled.div`
@@ -11,9 +11,18 @@ const styles = {
     background-color: #efefef;
     border-radius: 15px;
   `,
-  List: styled(Link)`
+  List: styled(NavLink)`
     color: #969696;
     cursor: pointer;
+    padding-left: 32px;
+
+    &:hover {
+      color: #0075ff;
+    }
+
+    &.active {
+      color: #0075ff;
+    }
   `,
 };
 

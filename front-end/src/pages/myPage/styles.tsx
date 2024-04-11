@@ -6,7 +6,8 @@ const styles = {
     margin: 0 auto;
     margin-top: 170px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
   `,
 };
 

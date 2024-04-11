@@ -10,4 +10,5 @@ const LeftComponent: React.FC = () => {
     </styles.Container>
   );
 };
+
 export default LeftComponent;
