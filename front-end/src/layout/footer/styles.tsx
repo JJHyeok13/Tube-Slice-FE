@@ -13,6 +13,7 @@ const styles = {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    padding-left: 15px;
   `,
   Content: styled.div`
     padding: 10px;
