@@ -8,6 +8,7 @@ const styles = {
     flex-direction: row;
     justify-content: space-between;
     padding: 24px;
+    margin-bottom: 106px;
   `,
   AddressInput: styled.input`
     width: 85%;

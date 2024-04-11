@@ -3,10 +3,12 @@ import HamburgerMenuImage from '../../assets/header/HamburgerMenu.svg';
 
 import styles from './styles';
 import HamburgerMenu from '../hamburgerMenu/HamburgerMenu';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
@@ -20,7 +22,8 @@ const Header: React.FC = () => {
 
   const handleSignIn = () => {
     handleCloseHameburgerMenu();
-    navigate('/signin');
+    setIsLoggedIn(true);
+    //navigate('/signin');
   };
 
   return (
@@ -30,9 +33,13 @@ const Header: React.FC = () => {
           Tube Slice
         </styles.StyledLink>
         <styles.RightWrapper>
-          <styles.LoginButton onClick={handleSignIn}>
-            로그인/회원가입
-          </styles.LoginButton>
+          {isLoggedIn ? (
+            <div>OO님 안녕하세요</div>
+          ) : (
+            <styles.LoginButton onClick={handleSignIn}>
+              로그인/회원가입
+            </styles.LoginButton>
+          )}
           <styles.OpenButton
             src={HamburgerMenuImage}
             alt="햄버거 메뉴 버튼"

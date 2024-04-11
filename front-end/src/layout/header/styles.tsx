@@ -13,8 +13,10 @@ const styles = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 45px;
+    padding-top: 45px;
     border-bottom: 1px solid #000000;
+    background-color: #ffffff;
+    z-index: 1;
   `,
   StyledLink: styled(Link)`
     font-family: 'SF_HambakSnow';
