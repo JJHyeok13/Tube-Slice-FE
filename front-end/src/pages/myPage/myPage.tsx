@@ -1,9 +1,14 @@
 import React from 'react';
 
 import styles from './styles';
+import LeftComponent from '../../components/myPageComponent/LeftComponent/LeftComponent';
 
 const MyPage: React.FC = () => {
-  return <styles.Container>마이 페이지입니다.</styles.Container>;
+  return (
+    <styles.Container>
+      <LeftComponent />
+    </styles.Container>
+  );
 };
 
 export default MyPage;

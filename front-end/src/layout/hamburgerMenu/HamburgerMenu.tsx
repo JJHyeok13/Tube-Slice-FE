@@ -39,7 +39,7 @@ const HamburgerMenu: React.FC<{ handleHamburgerMenu: () => void }> = ({
         />
         <HamburgerMenuButton
           buttonName="마이페이지"
-          address="/mypage"
+          address="/mypage/myrecord"
           closeHamburgerMenu={handleHamburgerMenu}
         />
       </styles.ButtonContainer>

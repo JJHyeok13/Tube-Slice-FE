@@ -24,7 +24,7 @@ function App() {
           <Route path="/convert" element={<ConvertPage />} />
           <Route path="/summarize" element={<SummarizePage />} />
           <Route path="/myscript" element={<MyScriptPage />} />
-          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/:type" element={<MyPage />} />
         </Route>
       </Route>,
     ),
