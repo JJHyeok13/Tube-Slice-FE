@@ -14,6 +14,7 @@ const styles = {
     justify-content: space-between;
     align-items: center;
     padding-top: 45px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #000000;
     background-color: #ffffff;
     z-index: 1;
@@ -33,7 +34,7 @@ const styles = {
   LoginButton: styled.div`
     border: 1px solid #000000;
     border-radius: 50px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     cursor: pointer;
   `,
   OpenButton: styled.img`

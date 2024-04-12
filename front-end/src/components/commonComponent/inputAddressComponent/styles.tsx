@@ -26,6 +26,7 @@ const styles = {
     color: #0075ff;
     padding: 8px 22px;
     white-space: nowrap;
+    border-radius: 10px;
     cursor: pointer;
   `,
 };

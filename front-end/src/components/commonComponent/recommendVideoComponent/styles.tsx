@@ -22,6 +22,7 @@ const styles = {
   Thumbnail: styled.img`
     width: 350px;
     height: 210px;
+    border-radius: 10px;
   `,
   VideoInfo: styled.div`
     display: flex;

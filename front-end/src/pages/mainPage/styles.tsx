@@ -13,6 +13,7 @@ const styles = {
     flex-direction: column;
     margin-bottom: 60px;
     font-weight: 600;
+    font-size: 20px;
   `,
   GuideContainer: styled.div`
     display: flex;

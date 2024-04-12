@@ -16,7 +16,7 @@ const styles = {
     box-sizing: border-box;
     border-radius: 47px;
     font-weight: 600;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 12px rgba(79, 79, 79, 0.25);
 
     &:hover {
       background-color: #0075ff;

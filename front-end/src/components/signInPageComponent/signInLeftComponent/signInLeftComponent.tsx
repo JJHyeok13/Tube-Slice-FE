@@ -2,11 +2,13 @@ import React from 'react';
 
 import IconImage from '@assets/signInPage/TubeSliceLogo.svg';
 
+import styles from './styles';
+
 const MainLeftComponent: React.FC = () => {
   return (
-    <div>
+    <styles.Container>
       <img src={IconImage} alt="로고 이미지" />
-    </div>
+    </styles.Container>
   );
 };
 
