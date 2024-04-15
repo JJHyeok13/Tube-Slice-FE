@@ -37,7 +37,7 @@ const Header: React.FC = () => {
         <styles.RightWrapper>
           {isLoggedIn ? (
             <styles.Nickname>
-              <styles.Name>OO</styles.Name>님 안녕하세요
+              <styles.Name>OO</styles.Name>님 반가워요!
             </styles.Nickname>
           ) : (
             <LoginSignUpButtonComponent onClick={handleSignIn} />

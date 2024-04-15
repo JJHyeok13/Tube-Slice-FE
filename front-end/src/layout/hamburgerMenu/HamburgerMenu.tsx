@@ -15,10 +15,9 @@ const HamburgerMenu: React.FC<{
       <styles.UpperContainer>
         <styles.Greeting>
           {isLoggedIn ? (
-            <>
-              <styles.Name>OO</styles.Name>
-              <span>님 반가워요!</span>
-            </>
+            <div>
+              <styles.Name>OO</styles.Name>님 반가워요!
+            </div>
           ) : (
             <LoginSignUpButtonComponent onClick={handleSignIn} />
           )}
