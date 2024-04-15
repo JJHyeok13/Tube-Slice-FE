@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 const styles = {
-  GuideContainer: styled.div`
-    width: 25%;
-  `,
+  GuideContainer: styled.div``,
   GuideImage: styled.img`
     width: 100%;
     margin-bottom: 30px;
@@ -16,6 +14,7 @@ const styles = {
     box-sizing: border-box;
     border-radius: 47px;
     font-weight: 600;
+    font-size: 1em;
     box-shadow: 4px 4px 12px rgba(79, 79, 79, 0.25);
 
     &:hover {

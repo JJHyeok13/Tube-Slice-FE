@@ -5,6 +5,7 @@ import HamburgerMenuImage from '@assets/header/HamburgerMenu.svg';
 import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
+import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButtonComponent/loginSignUpButtonComponent';
 
 const Header: React.FC = () => {
   //const navigate = useNavigate();
@@ -37,9 +38,7 @@ const Header: React.FC = () => {
           {isLoggedIn ? (
             <div>OO님 안녕하세요</div>
           ) : (
-            <styles.LoginButton onClick={handleSignIn}>
-              로그인/회원가입
-            </styles.LoginButton>
+            <LoginSignUpButtonComponent onClick={handleSignIn} />
           )}
           <styles.OpenButton
             src={HamburgerMenuImage}
@@ -50,7 +49,11 @@ const Header: React.FC = () => {
       </styles.HeaderWrapper>
 
       {hamburgerMenuOpen && (
-        <HamburgerMenu handleCloseHameburgerMenu={handleCloseHameburgerMenu} />
+        <HamburgerMenu
+          handleCloseHameburgerMenu={handleCloseHameburgerMenu}
+          isLoggedIn={isLoggedIn}
+          handleSignIn={handleSignIn}
+        />
       )}
     </>
   );

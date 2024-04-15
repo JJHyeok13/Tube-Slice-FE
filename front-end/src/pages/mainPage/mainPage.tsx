@@ -21,14 +21,20 @@ const MainPage: React.FC = () => {
         <GuideComponent
           src={Example1Image}
           address="convert"
-          description="원하는 영상의 스크립트를 만들어봐요!"
+          description="영상의 스크립트를 만들어봐요!"
           hoverdDescription="스크립트 만들러 가기!!!"
         />
         <GuideComponent
           src={Example2Image}
           address="summarize"
-          description="원하는 영상을 세줄로 요약해봐요!"
+          description="영상을 세줄로 요약해봐요!"
           hoverdDescription="세줄 요약 하러 가기!!!"
+        />
+        <GuideComponent
+          address="myscript"
+          src={Example3Image}
+          description="나만의 스크립트를 만들어봐요!"
+          hoverdDescription="저장한 스크립트 보러 가기!!!"
         />
         <GuideComponent
           address="myscript"

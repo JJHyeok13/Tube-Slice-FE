@@ -3,17 +3,27 @@ import CloseHambergerMenuButton from '@assets/header/CloseHamburgerMenu.svg';
 
 import styles from './styles';
 import HamburgerMenuButton from '@components/hamburgerMenuComponent/hamburgerMenuButton';
+import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButtonComponent/loginSignUpButtonComponent';
 
-const HamburgerMenu: React.FC<{ handleCloseHameburgerMenu: () => void }> = ({
-  handleCloseHameburgerMenu,
-}) => {
+const HamburgerMenu: React.FC<{
+  handleCloseHameburgerMenu: () => void;
+  isLoggedIn: boolean;
+  handleSignIn: () => void;
+}> = ({ handleCloseHameburgerMenu, isLoggedIn, handleSignIn }) => {
   return (
     <styles.Container>
       <styles.UpperContainer>
         <styles.Greeting>
-          <styles.Name>OO</styles.Name>
-          <span>님 반가워요!</span>
+          {isLoggedIn ? (
+            <>
+              <styles.Name>OO</styles.Name>
+              <span>님 반가워요!</span>
+            </>
+          ) : (
+            <LoginSignUpButtonComponent onClick={handleSignIn} />
+          )}
         </styles.Greeting>
+
         <styles.CloseButton
           src={CloseHambergerMenuButton}
           alt="햄버거 메뉴 버튼"

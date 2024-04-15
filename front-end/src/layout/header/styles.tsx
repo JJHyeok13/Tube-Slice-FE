@@ -26,17 +26,12 @@ const styles = {
     color: #0075ff;
   `,
   RightWrapper: styled.div`
-    width: 204px;
+    width: 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   `,
-  LoginButton: styled.div`
-    border: 1px solid #000000;
-    border-radius: 50px;
-    padding: 8px 20px;
-    cursor: pointer;
-  `,
+
   OpenButton: styled.img`
     cursor: pointer;
   `,
