@@ -40,7 +40,7 @@ const styles = {
 
   ButtonContainer: styled.div`
     width: 258px;
-    height: 312px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
