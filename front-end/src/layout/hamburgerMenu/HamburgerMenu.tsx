@@ -48,8 +48,8 @@ const HamburgerMenu: React.FC<{
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
-          buttonName="마이페이지"
-          address="/mypage/myrecord"
+          buttonName="설정"
+          address="/setting/myrecord"
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
       </styles.ButtonContainer>

@@ -12,7 +12,7 @@ import MainPage from '@pages/mainPage/mainPage';
 import ConvertPage from '@pages/convertPage/convertPage';
 import SummarizePage from '@pages/summarizePage/summarizePage';
 import MyScriptPage from '@pages/myScriptPage/myScriptPage';
-import MyPage from '@pages/myPage/myPage';
+import SettingPage from '@pages/settingPage/settingPage';
 import BoardPage from '@pages/boardPage/boardPage';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           <Route path="/convert" element={<ConvertPage />} />
           <Route path="/summarize" element={<SummarizePage />} />
           <Route path="/myscript" element={<MyScriptPage />} />
-          <Route path="/mypage/:type" element={<MyPage />} />
+          <Route path="/setting/:type" element={<SettingPage />} />
           <Route path="/board" element={<BoardPage />} />
         </Route>
       </Route>,
