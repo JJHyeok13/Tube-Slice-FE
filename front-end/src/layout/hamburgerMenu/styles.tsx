@@ -22,7 +22,7 @@ const styles = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 40px auto;
+    margin: 64px auto 40px auto;
   `,
 
   Greeting: styled.div`

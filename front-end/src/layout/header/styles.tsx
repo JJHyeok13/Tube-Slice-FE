@@ -26,10 +26,16 @@ const styles = {
     color: #0075ff;
   `,
   RightWrapper: styled.div`
-    width: 150px;
+    width: 160px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  `,
+  Nickname: styled.div`
+    font-weight: 500;
+  `,
+  Name: styled.span`
+    color: #0075ff;
   `,
 
   OpenButton: styled.img`
