@@ -16,6 +16,7 @@ const styles = {
     font-weight: 600;
     font-size: 1em;
     box-shadow: 4px 4px 12px rgba(79, 79, 79, 0.25);
+    cursor: pointer;
 
     &:hover {
       background-color: #0075ff;
