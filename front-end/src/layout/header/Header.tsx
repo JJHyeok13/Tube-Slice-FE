@@ -6,12 +6,14 @@ import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
 import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButtonComponent/loginSignUpButtonComponent';
+import LoginModalComponent from '@components/loginModalComponent/loginModalComponent';
 
 const Header: React.FC = () => {
   //const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
   const handleOpenHamburgerMenu = () => {
@@ -23,8 +25,8 @@ const Header: React.FC = () => {
   };
 
   const handleSignIn = () => {
-    handleCloseHameburgerMenu();
-    setIsLoggedIn(true);
+    setLoginModalOpen(true);
+    setHamburgerMenuOpen(false);
     //navigate('/signin');
   };
 
@@ -49,6 +51,13 @@ const Header: React.FC = () => {
           />
         </styles.RightWrapper>
       </styles.HeaderWrapper>
+
+      {loginModalOpen && (
+        <LoginModalComponent
+          setIsLoggedIn={setIsLoggedIn}
+          setLoginModalOpen={setLoginModalOpen}
+        />
+      )}
 
       {hamburgerMenuOpen && (
         <HamburgerMenu
