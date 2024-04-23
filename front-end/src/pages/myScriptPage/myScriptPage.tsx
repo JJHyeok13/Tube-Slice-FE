@@ -1,9 +1,21 @@
 import React from 'react';
 
 import styles from './styles';
+import SearchBarComponent from '@components/commonComponent/searchBarComponent/searchBarComponent';
+import { dummyData } from './dummyData';
+import ScriptComponent from '@components/myScriptPageComponent/ScriptComponent';
 
 const MyScriptPage: React.FC = () => {
-  return <styles.Container>내 스크립트 페이지입니다.</styles.Container>;
+  const myScriptData = dummyData;
+
+  return (
+    <styles.Container>
+      <styles.UpperWrapper>
+        <SearchBarComponent />
+      </styles.UpperWrapper>
+      <ScriptComponent scriptData={myScriptData} />
+    </styles.Container>
+  );
 };
 
 export default MyScriptPage;
