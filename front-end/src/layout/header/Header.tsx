@@ -6,21 +6,27 @@ import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
 import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
-import LoginModalComponent from '@components/loginModal/loginModal';
+import LoginModalComponent from '@components/loginSignIn/loginSignUpModal/loginSignUpModal';
+import CompleteModal from '@components/loginSignIn/completeModal/completeModal';
+import ProfileSettingModal from '@components/loginSignIn/profileSettingModal/profileSettingModal';
 
 const Header: React.FC = () => {
   //const navigate = useNavigate();
+  const isServiceMember = false;
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [completeModalOpen, setCompleteModalOpen] = useState(false);
+  const [profileSettingModalOpen, setProfileSettingModalOpen] = useState(false);
+
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
   const handleOpenHamburgerMenu = () => {
     setHamburgerMenuOpen(true);
   };
 
-  const handleCloseHameburgerMenu = () => {
+  const handleCloseHamburgerMenu = () => {
     setHamburgerMenuOpen(false);
   };
 
@@ -30,10 +36,25 @@ const Header: React.FC = () => {
     //navigate('/signin');
   };
 
+  const handleFirstUser = () => {
+    if (isServiceMember) {
+      setLoginModalOpen(false);
+      setIsLoggedIn(true);
+    } else {
+      setLoginModalOpen(false);
+      setCompleteModalOpen(true);
+    }
+  };
+
+  const handleFirstProfileSetting = () => {
+    setCompleteModalOpen(false);
+    setProfileSettingModalOpen(true);
+  };
+
   return (
     <>
       <styles.HeaderWrapper>
-        <styles.StyledLink to="/" onClick={handleCloseHameburgerMenu}>
+        <styles.StyledLink to="/" onClick={handleCloseHamburgerMenu}>
           Tube Slice
         </styles.StyledLink>
         <styles.RightWrapper>
@@ -53,15 +74,34 @@ const Header: React.FC = () => {
       </styles.HeaderWrapper>
 
       {loginModalOpen && (
-        <LoginModalComponent
-          setIsLoggedIn={setIsLoggedIn}
-          setLoginModalOpen={setLoginModalOpen}
-        />
+        <styles.ModalBackdrop>
+          <LoginModalComponent
+            setLoginModalOpen={setLoginModalOpen}
+            handleFirstUser={handleFirstUser}
+          />
+        </styles.ModalBackdrop>
+      )}
+
+      {completeModalOpen && (
+        <styles.ModalBackdrop>
+          <CompleteModal
+            setCompleteModalOpen={setCompleteModalOpen}
+            handleFirstProfileSetting={handleFirstProfileSetting}
+          />
+        </styles.ModalBackdrop>
+      )}
+
+      {profileSettingModalOpen && (
+        <styles.ModalBackdrop>
+          <ProfileSettingModal
+            setProfileSettingModalOpen={setProfileSettingModalOpen}
+          />
+        </styles.ModalBackdrop>
       )}
 
       {hamburgerMenuOpen && (
         <HamburgerMenu
-          handleCloseHameburgerMenu={handleCloseHameburgerMenu}
+          handleCloseHameburgerMenu={handleCloseHamburgerMenu}
           isLoggedIn={isLoggedIn}
           handleSignIn={handleSignIn}
         />

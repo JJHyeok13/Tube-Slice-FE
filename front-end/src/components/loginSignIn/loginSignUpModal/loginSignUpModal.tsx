@@ -2,16 +2,21 @@ import React, { useEffect } from 'react';
 
 import styles from './styles';
 
+//import CompleteModal from '@components/loginSignIn/completeModal/completeModal';
+
 import ExitButton from '@assets/loginModal/ExitButton.svg';
 import KakaoLoginButton from '@assets/loginModal/KakaoLoginButton.svg';
 import NaverLoginButton from '@assets/loginModal/NaverLoginButton.svg';
 
-interface Props {
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+interface LoginSignUpModalProps {
   setLoginModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleFirstUser: () => void;
 }
 
-const LoginModal: React.FC<Props> = ({ setIsLoggedIn, setLoginModalOpen }) => {
+const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
+  setLoginModalOpen,
+  handleFirstUser,
+}) => {
   useEffect(() => {
     // 모달이 열리면 뒤쪽의 스크롤을 막음
     document.body.style.overflow = 'hidden';
@@ -22,17 +27,12 @@ const LoginModal: React.FC<Props> = ({ setIsLoggedIn, setLoginModalOpen }) => {
     };
   }, []);
 
-  const handleLogin = () => {
-    setLoginModalOpen(false);
-    setIsLoggedIn(true);
-  };
-
   const handleClose = () => {
     setLoginModalOpen(false);
   };
 
   return (
-    <styles.ModalBackdrop>
+    <>
       <styles.Modal>
         <styles.ExitButton src={ExitButton} alt="닫기" onClick={handleClose} />
 
@@ -42,17 +42,17 @@ const LoginModal: React.FC<Props> = ({ setIsLoggedIn, setLoginModalOpen }) => {
           <styles.SocialLoginButton
             src={KakaoLoginButton}
             alt="카카오 로그인 버튼"
-            onClick={handleLogin}
+            onClick={handleFirstUser}
           />
           <styles.SocialLoginButton
             src={NaverLoginButton}
             alt="네이버 로그인 버튼"
-            onClick={handleLogin}
+            onClick={handleFirstUser}
           />
         </styles.ButtonWrapper>
       </styles.Modal>
-    </styles.ModalBackdrop>
+    </>
   );
 };
 
-export default LoginModal;
+export default LoginSignUpModal;

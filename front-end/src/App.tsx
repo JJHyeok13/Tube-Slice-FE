@@ -7,7 +7,6 @@ import {
 import './App.css';
 import BasicLayout from '@layout/BasicLayout';
 
-import SignInPage from '@pages/signInPage/signInPage';
 import MainPage from '@pages/mainPage/mainPage';
 import ConvertPage from '@pages/convertPage/convertPage';
 import SummarizePage from '@pages/summarizePage/summarizePage';
@@ -20,8 +19,6 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/signin" element={<SignInPage />} />
-
         <Route element={<BasicLayout />}>
           <Route path="/" element={<MainPage />} />
 
