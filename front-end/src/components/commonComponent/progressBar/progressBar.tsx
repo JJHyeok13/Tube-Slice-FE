@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles';
 
-const ProgressBarComponent: React.FC = () => {
+const ProgressBar: React.FC = () => {
   return (
     <>
       <styles.ProgressBar>
@@ -12,4 +12,4 @@ const ProgressBarComponent: React.FC = () => {
   );
 };
 
-export default ProgressBarComponent;
+export default ProgressBar;

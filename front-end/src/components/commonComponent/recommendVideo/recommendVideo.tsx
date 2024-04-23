@@ -6,7 +6,7 @@ import ViewCountIcon from '@assets/common/recommendVideoComponent/ViewCount.svg'
 
 import { dummyData } from './exampleData';
 
-const RecommendVideoComponent: React.FC = () => {
+const RecommendVideo: React.FC = () => {
   const handleClick = (address: string) => {
     window.open(`${address}`, '_blank');
   };
@@ -37,4 +37,4 @@ const RecommendVideoComponent: React.FC = () => {
     </styles.Container>
   );
 };
-export default RecommendVideoComponent;
+export default RecommendVideo;

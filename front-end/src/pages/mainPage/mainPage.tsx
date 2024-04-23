@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GuideComponent from '@components/mainPageComponent/GuideComponent';
+import GuideComponent from '@components/mainPageComponent/Guide/Guide';
 
 import styles from './styles';
 

@@ -5,8 +5,8 @@ import HamburgerMenuImage from '@assets/header/HamburgerMenu.svg';
 import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
-import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButtonComponent/loginSignUpButtonComponent';
-import LoginModalComponent from '@components/loginModalComponent/loginModalComponent';
+import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
+import LoginModalComponent from '@components/loginModal/loginModal';
 
 const Header: React.FC = () => {
   //const navigate = useNavigate();

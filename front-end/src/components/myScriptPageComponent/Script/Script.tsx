@@ -13,7 +13,7 @@ interface ScriptComponentProps {
   scriptData: ScriptData[];
 }
 
-const ScriptComponent: React.FC<ScriptComponentProps> = ({ scriptData }) => {
+const Script: React.FC<ScriptComponentProps> = ({ scriptData }) => {
   const LinktoYoutube = (url: string) => {
     window.open(`${url}`, '_blank');
   };
@@ -34,7 +34,11 @@ const ScriptComponent: React.FC<ScriptComponentProps> = ({ scriptData }) => {
           />
           <styles.ScriptInfo>
             <styles.Title>{data.title}</styles.Title>
-            <styles.Content>{data.content}</styles.Content>
+            <styles.Content>
+              {data.content.length > 200
+                ? data.content.substring(0, 200) + ' ...'
+                : data.content}
+            </styles.Content>
             <styles.KeywordWrapper>
               {data.keyword.map((word, index) => (
                 <styles.Keyword key={index}>{word}</styles.Keyword>
@@ -47,4 +51,4 @@ const ScriptComponent: React.FC<ScriptComponentProps> = ({ scriptData }) => {
   );
 };
 
-export default ScriptComponent;
+export default Script;

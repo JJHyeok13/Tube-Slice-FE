@@ -1,16 +1,19 @@
 import React from 'react';
 
 import styles from './styles';
-import SearchBarComponent from '@components/commonComponent/searchBarComponent/searchBarComponent';
-import { dummyData } from './dummyData';
-import ScriptComponent from '@components/myScriptPageComponent/ScriptComponent';
+import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
+import SearchBarComponent from '@components/commonComponent/searchBar/searchBar';
+import { dummyData, keywords } from './dummyData';
+import ScriptComponent from '@components/myScriptPageComponent/Script/Script';
 
 const MyScriptPage: React.FC = () => {
   const myScriptData = dummyData;
+  const myKeywordData = keywords;
 
   return (
     <styles.Container>
       <styles.UpperWrapper>
+        <KeywordDropdown keywordData={myKeywordData} />
         <SearchBarComponent />
       </styles.UpperWrapper>
       <ScriptComponent scriptData={myScriptData} />

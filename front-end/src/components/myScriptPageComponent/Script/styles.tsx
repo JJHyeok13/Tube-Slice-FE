@@ -29,7 +29,6 @@ const styles = {
     font-weight: 600;
     margin-bottom: 2px;
   `,
-
   Content: styled.div`
     color: #5d5d5d;
     margin-bottom: 14px;

@@ -8,7 +8,7 @@ interface Props {
   handleStart: () => void;
 }
 
-const InputAddressComponent: React.FC<Props> = ({
+const InputAddress: React.FC<Props> = ({
   description,
   buttonName,
   handleStart,
@@ -24,4 +24,4 @@ const InputAddressComponent: React.FC<Props> = ({
   );
 };
 
-export default InputAddressComponent;
+export default InputAddress;

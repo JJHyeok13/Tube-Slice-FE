@@ -2,8 +2,8 @@ import React from 'react';
 import CloseHambergerMenuButton from '@assets/header/CloseHamburgerMenu.svg';
 
 import styles from './styles';
-import HamburgerMenuButton from '@components/hamburgerMenuComponent/hamburgerMenuButton';
-import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButtonComponent/loginSignUpButtonComponent';
+import HamburgerMenuButton from '@components/hamburgerMenu/hamburgerMenuButton';
+import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
 
 const HamburgerMenu: React.FC<{
   handleCloseHameburgerMenu: () => void;

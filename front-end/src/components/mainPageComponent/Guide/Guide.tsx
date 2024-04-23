@@ -10,7 +10,7 @@ interface Props {
   hoverdDescription: string;
 }
 
-const GuideComponent: React.FC<Props> = ({
+const Guide: React.FC<Props> = ({
   src,
   address,
   description,
@@ -37,4 +37,4 @@ const GuideComponent: React.FC<Props> = ({
   );
 };
 
-export default GuideComponent;
+export default Guide;

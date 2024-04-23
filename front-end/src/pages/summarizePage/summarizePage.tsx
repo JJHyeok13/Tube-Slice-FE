@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import InputAddressComponent from '@components/commonComponent/inputAddressComponent/inputAddressComponent';
-import RecommendVideoComponent from '@components/commonComponent/recommendVideoComponent/recommendVideoComponent';
-import ProgressBarComponent from '@components/commonComponent/progressBarComponent/progressBarComponent';
+import InputAddressComponent from '@components/commonComponent/inputAddress/inputAddress';
+import RecommendVideoComponent from '@components/commonComponent/recommendVideo/recommendVideo';
+import ProgressBarComponent from '@components/commonComponent/progressBar/progressBar';
 
 import styles from './styles';
 

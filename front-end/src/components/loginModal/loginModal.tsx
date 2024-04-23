@@ -11,10 +11,7 @@ interface Props {
   setLoginModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LoginModalComponent: React.FC<Props> = ({
-  setIsLoggedIn,
-  setLoginModalOpen,
-}) => {
+const LoginModal: React.FC<Props> = ({ setIsLoggedIn, setLoginModalOpen }) => {
   useEffect(() => {
     // 모달이 열리면 뒤쪽의 스크롤을 막음
     document.body.style.overflow = 'hidden';
@@ -58,4 +55,4 @@ const LoginModalComponent: React.FC<Props> = ({
   );
 };
 
-export default LoginModalComponent;
+export default LoginModal;

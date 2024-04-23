@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './styles';
-import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer';
+import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer/subTitleContainer';
 
 const ConvertResultPage: React.FC = () => {
   return (
