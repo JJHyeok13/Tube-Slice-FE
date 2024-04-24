@@ -4,7 +4,7 @@ import styles from './styles';
 import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
 import SearchBarComponent from '@components/commonComponent/searchBar/searchBar';
 import { dummyData, keywords } from './dummyData';
-import ScriptComponent from '@components/myScriptPageComponent/Script/Script';
+import Script from '@components/myScriptPageComponent/Script/Script';
 
 const MyScriptPage: React.FC = () => {
   const myScriptData = dummyData;
@@ -16,7 +16,7 @@ const MyScriptPage: React.FC = () => {
         <KeywordDropdown keywordData={myKeywordData} />
         <SearchBarComponent />
       </styles.UpperWrapper>
-      <ScriptComponent scriptData={myScriptData} />
+      <Script scriptData={myScriptData} />
     </styles.Container>
   );
 };
