@@ -4,6 +4,7 @@ import GuideComponent from '@components/mainPageComponent/Guide/Guide';
 
 import styles from './styles';
 
+import Guide1Image from '@assets/mainPage/Guide1.svg';
 import Example1Image from '@assets/mainPage/example1.svg';
 import Example2Image from '@assets/mainPage/example2.svg';
 import Example3Image from '@assets/mainPage/example3.svg';
@@ -19,7 +20,7 @@ const MainPage: React.FC = () => {
 
       <styles.GuideContainer>
         <GuideComponent
-          src={Example1Image}
+          src={Guide1Image}
           address="convert"
           description="영상의 스크립트를 만들어봐요!"
           hoverdDescription="스크립트 만들러 가기!!!"

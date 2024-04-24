@@ -39,7 +39,7 @@ const styles = {
     font-size: 32px;
     font-weight: 800;
     color: #0075ff;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
   `,
   Greeting: styled.div`
     display: flex;

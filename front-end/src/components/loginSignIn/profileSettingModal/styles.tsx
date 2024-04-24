@@ -33,6 +33,28 @@ const styles = {
     font-size: 32px;
     font-weight: 800;
     color: #0075ff;
+    margin-bottom: 20px;
+  `,
+  ButtonWrapper: styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `,
+  YesButton: styled.div`
+    cursor: pointer;
+    padding: 6px 16px;
+    color: #ffffff;
+    background-color: #0075ff;
+    border-radius: 10px;
+  `,
+  NoButton: styled.div`
+    cursor: pointer;
+    padding: 6px 16px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 10px;
   `,
 };
 
