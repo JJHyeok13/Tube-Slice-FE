@@ -47,6 +47,11 @@ const HamburgerMenu: React.FC<{
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
+          buttonName="마이 페이지"
+          address="/mypage"
+          closeHamburgerMenu={handleCloseHameburgerMenu}
+        />
+        <HamburgerMenuButton
           buttonName="게시판"
           address="/board"
           closeHamburgerMenu={handleCloseHameburgerMenu}
