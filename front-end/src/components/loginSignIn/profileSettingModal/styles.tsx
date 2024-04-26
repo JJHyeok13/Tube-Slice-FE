@@ -18,7 +18,6 @@ const styles = {
     z-index: 1002;
   `,
   ExitButton: styled.img`
-    margin-left: auto;
     cursor: pointer;
     position: fixed;
     top: 0;
@@ -26,7 +25,7 @@ const styles = {
     padding: 5px;
   `,
   TubeSlice: styled.div`
-    height: 25%;
+    height: 15%;
     display: flex;
     align-items: center;
     font-family: 'SF_HambakSnow';
@@ -35,8 +34,24 @@ const styles = {
     color: #0075ff;
     margin-bottom: 20px;
   `,
+  ProfileImage: styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  `,
+  InputWrapper: styled.div`
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+  `,
+  TextInput: styled.input`
+    padding: 6px;
+    border: 1px solid #0075ff;
+    border-radius: 10px;
+  `,
   ButtonWrapper: styled.div`
-    width: 100%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

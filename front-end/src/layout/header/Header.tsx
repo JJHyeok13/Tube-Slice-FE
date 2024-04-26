@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
 
 import HamburgerMenuImage from '@assets/header/HamburgerMenu.svg';
 import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
@@ -11,7 +10,6 @@ import CompleteModal from '@components/loginSignIn/completeModal/completeModal';
 import ProfileSettingModal from '@components/loginSignIn/profileSettingModal/profileSettingModal';
 
 const Header: React.FC = () => {
-  //const navigate = useNavigate();
   const isServiceMember = false;
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,7 +31,6 @@ const Header: React.FC = () => {
   const handleSignIn = () => {
     setLoginModalOpen(true);
     setHamburgerMenuOpen(false);
-    //navigate('/signin');
   };
 
   const handleFirstUser = () => {
@@ -95,6 +92,7 @@ const Header: React.FC = () => {
         <styles.ModalBackdrop>
           <ProfileSettingModal
             setProfileSettingModalOpen={setProfileSettingModalOpen}
+            setIsLoggedIn={setIsLoggedIn}
           />
         </styles.ModalBackdrop>
       )}

@@ -18,7 +18,6 @@ const styles = {
     z-index: 1002;
   `,
   ExitButton: styled.img`
-    margin-left: auto;
     cursor: pointer;
     position: fixed;
     top: 0;
@@ -32,7 +31,7 @@ const styles = {
     margin-bottom: 64px;
   `,
   TubeSlice: styled.div`
-    height: 25%;
+    height: 15%;
     display: flex;
     align-items: center;
     font-family: 'SF_HambakSnow';
