@@ -3,9 +3,9 @@ import React from 'react';
 import styles from './styles';
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
 import KeywordBox from '@components/myPageComponent/keywordBox/keywordBox';
+import PostList from '@components/myPageComponent/postList/postList';
 
 import { dummyData } from './dummyData';
-import PostList from '@components/myPageComponent/postList/postList';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
 
 const MyPage: React.FC = () => {

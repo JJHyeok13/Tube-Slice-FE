@@ -7,7 +7,7 @@ const styles = {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
+    width: 90%;
     height: 62px;
     display: flex;
     flex-direction: row;

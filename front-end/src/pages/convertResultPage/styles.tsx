@@ -10,8 +10,10 @@ const styles = {
     padding-bottom: 70px;
   `,
   UpperWrapper: styled.div`
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     margin-bottom: 60px;
   `,
 };
