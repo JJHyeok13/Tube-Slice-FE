@@ -2,15 +2,27 @@ import React from 'react';
 
 import styles from './styles';
 
-interface Subtitle {
-  id: number;
+interface Subtitles {
+  subtitleId: number;
   subtitle: string;
   timeline: string;
 }
 
-interface ResultData {
+interface Video {
+  videoId: number;
   url: string;
-  subtitles: Subtitle[];
+}
+
+interface Scripts {
+  scriptId: number;
+  script: string;
+  timeline: string;
+}
+
+interface ResultData {
+  scripts: Scripts[];
+  video: Video;
+  subtitles: Subtitles[];
 }
 
 interface ResultDataProps {
@@ -23,11 +35,12 @@ const SubTitleContainer: React.FC<ResultDataProps> = ({ resultData }) => {
       <h3>스크립트를 요약했어요...👀</h3>
       <styles.SubtitleList>
         {resultData.subtitles.map((data, index) => (
-          <div key={data.id}>
+          <styles.Subtitle key={data.subtitleId}>
             <div>
-              {index + 1} {data.subtitle}
+              <styles.SubtitleNumber>{index + 1}</styles.SubtitleNumber>{' '}
+              {data.subtitle}
             </div>
-          </div>
+          </styles.Subtitle>
         ))}
       </styles.SubtitleList>
     </styles.Container>

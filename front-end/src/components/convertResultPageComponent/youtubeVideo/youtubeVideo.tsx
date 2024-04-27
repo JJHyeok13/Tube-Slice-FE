@@ -2,17 +2,27 @@ import React, { useRef, useState } from 'react';
 
 import YouTube from 'react-youtube';
 
-import styles from './styles';
-
-interface Subtitle {
-  id: number;
+interface Subtitles {
+  subtitleId: number;
   subtitle: string;
   timeline: string;
 }
 
-interface ResultData {
+interface Video {
+  videoId: number;
   url: string;
-  subtitles: Subtitle[];
+}
+
+interface Scripts {
+  scriptId: number;
+  script: string;
+  timeline: string;
+}
+
+interface ResultData {
+  scripts: Scripts[];
+  video: Video;
+  subtitles: Subtitles[];
 }
 
 interface ResultDataProps {
@@ -56,12 +66,12 @@ const YoutubeVideo: React.FC<ResultDataProps> = ({ resultData }) => {
   };
 
   return (
-    <styles.Container>
+    <>
       <YouTube
-        videoId={getVideoId(resultData.url)}
+        videoId={getVideoId(resultData.video.url)}
         opts={{
-          width: '100%',
-          height: '412px',
+          width: '90%',
+          height: '350px',
           playerVars: {
             autoplay: 0,
             rel: 0,
@@ -74,7 +84,7 @@ const YoutubeVideo: React.FC<ResultDataProps> = ({ resultData }) => {
           e.target.stopVideo(0);
         }}
       />
-    </styles.Container>
+    </>
   );
 };
 
