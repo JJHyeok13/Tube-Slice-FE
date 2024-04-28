@@ -30,7 +30,7 @@ function App() {
           <Route path="/myscript" element={<MyScriptPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/setting/:type" element={<SettingPage />} />
-          <Route path="/board" element={<BoardPage />} />
+          <Route path="/board/:type" element={<BoardPage />} />
         </Route>
       </Route>,
     ),

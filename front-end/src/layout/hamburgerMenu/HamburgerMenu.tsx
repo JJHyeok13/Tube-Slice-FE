@@ -53,7 +53,7 @@ const HamburgerMenu: React.FC<{
         />
         <HamburgerMenuButton
           buttonName="게시판"
-          address="/board"
+          address="/board/recent"
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton

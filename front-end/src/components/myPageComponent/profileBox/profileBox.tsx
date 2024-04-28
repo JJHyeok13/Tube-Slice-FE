@@ -4,16 +4,16 @@ import styles from './styles';
 
 import { ProfileProps } from 'types/myPage/myPage';
 
-const ProfileBox: React.FC<ProfileProps> = ({ profile }) => {
+const ProfileBox: React.FC<ProfileProps> = ({ profileData }) => {
   return (
     <styles.Container>
-      <styles.ProfileImage src={profile.profileImage} />
+      <styles.ProfileImage src={profileData.profileImage} />
       <div>
-        <styles.Nickname>{profile.nickname}</styles.Nickname>
-        <styles.Introduction>{profile.introduction}</styles.Introduction>
+        <styles.Nickname>{profileData.nickname}</styles.Nickname>
+        <styles.Introduction>{profileData.introduction}</styles.Introduction>
         <styles.FollowFollowerContainer>
           <div>
-            팔로잉 {profile.following} 팔로워 {profile.follower}
+            팔로잉 {profileData.following} 팔로워 {profileData.follower}
           </div>
         </styles.FollowFollowerContainer>
       </div>

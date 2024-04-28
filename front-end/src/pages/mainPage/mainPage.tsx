@@ -38,7 +38,7 @@ const MainPage: React.FC = () => {
           hoverdDescription="저장한 스크립트 보러 가기!!!"
         />
         <GuideComponent
-          address="board"
+          address="board/recent"
           src={Example1Image}
           description="나의 생각을 공유 해봐요!"
           hoverdDescription="생각 공유하러 가기!!!"
