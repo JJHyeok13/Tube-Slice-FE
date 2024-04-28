@@ -4,32 +4,7 @@ import styles from './styles';
 
 import PlayingIcon from '@assets/convertResultPage/PlayingIcon.svg';
 
-interface Subtitles {
-  subtitleId: number;
-  subtitle: string;
-  timeline: string;
-}
-
-interface Video {
-  videoId: number;
-  url: string;
-}
-
-interface Scripts {
-  scriptId: number;
-  script: string;
-  timeline: string;
-}
-
-interface ResultData {
-  scripts: Scripts[];
-  video: Video;
-  subtitles: Subtitles[];
-}
-
-interface ResultDataProps {
-  resultData: ResultData;
-}
+import { ResultDataProps } from 'types/convertResultPage/convertResultPage';
 
 const ScriptContainer: React.FC<ResultDataProps> = ({ resultData }) => {
   return (

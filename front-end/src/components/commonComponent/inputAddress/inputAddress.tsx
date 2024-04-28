@@ -2,13 +2,9 @@ import React from 'react';
 
 import styles from './styles';
 
-interface Props {
-  description: string;
-  buttonName: string;
-  handleStart: () => void;
-}
+import { InputAddressProps } from 'types/common/inputAddress';
 
-const InputAddress: React.FC<Props> = ({
+const InputAddress: React.FC<InputAddressProps> = ({
   description,
   buttonName,
   handleStart,

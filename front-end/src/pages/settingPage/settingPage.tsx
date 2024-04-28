@@ -13,7 +13,6 @@ const SettingPage: React.FC = () => {
   return (
     <styles.Container>
       <LeftComponent />
-
       {location.pathname === '/setting/myrecord' && <MyRecordComponent />}
       {location.pathname === '/setting/profile' && <ProfileSettingComponent />}
       {location.pathname === '/setting/delete' && <DeleteMemberComponent />}

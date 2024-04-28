@@ -2,18 +2,19 @@ import React from 'react';
 
 import styles from './styles';
 
-import ProfileImage from '@assets/myPage/Profile.svg';
+import { ProfileProps } from 'types/myPage/myPage';
 
-const ProfileBox: React.FC = () => {
+const ProfileBox: React.FC<ProfileProps> = ({ profile }) => {
   return (
     <styles.Container>
-      <styles.ProfileImage src={ProfileImage} />
+      <styles.ProfileImage src={profile.profileImage} />
       <div>
-        <styles.Nickname>닉네임</styles.Nickname>
-        <styles.Introduction>한줄 소개</styles.Introduction>
+        <styles.Nickname>{profile.nickname}</styles.Nickname>
+        <styles.Introduction>{profile.introduction}</styles.Introduction>
         <styles.FollowFollowerContainer>
-          <div>팔로잉 7K</div>
-          <div>팔로워 0</div>
+          <div>
+            팔로잉 {profile.following} 팔로워 {profile.follower}
+          </div>
         </styles.FollowFollowerContainer>
       </div>
     </styles.Container>

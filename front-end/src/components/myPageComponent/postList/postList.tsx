@@ -5,20 +5,7 @@ import styles from './styles';
 import CommentIcon from '@assets/myPage/CommentIcon.svg';
 import LikeIcon from '@assets/myPage/LikeIcon.svg';
 
-interface PostData {
-  id: number;
-  title: string;
-  content: string;
-  keywords: string[];
-  createAt: string;
-  commentCount: number;
-  likeCount: number;
-  url: string;
-}
-
-interface PostListProps {
-  postData: PostData[];
-}
+import { PostListProps } from 'types/myPage/myPage';
 
 const PostList: React.FC<PostListProps> = ({ postData }) => {
   const getThumbnailUrl = (url: string): string => {

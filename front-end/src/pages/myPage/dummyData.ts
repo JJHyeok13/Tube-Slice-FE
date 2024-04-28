@@ -1,3 +1,5 @@
+import ProfileImage from '@assets/myPage/Profile.svg';
+
 export const dummyData = [
   {
     id: 1,
@@ -53,5 +55,29 @@ export const dummyData = [
     commentCount: 10,
     likeCount: 5,
     url: 'https://www.youtube.com/watch?v=TFPtXw67AH4',
+  },
+];
+
+export const profile = {
+  userId: 1,
+  nickname: '눈꽃',
+  profileImage: `${ProfileImage}`,
+  introduction: '안녕하세요',
+  following: 1000,
+  follower: 0,
+};
+
+export const keywords = [
+  {
+    keywordId: 1,
+    name: '아스날',
+  },
+  {
+    keywordId: 2,
+    name: '맨시티',
+  },
+  {
+    keywordId: 3,
+    name: '리버풀',
   },
 ];

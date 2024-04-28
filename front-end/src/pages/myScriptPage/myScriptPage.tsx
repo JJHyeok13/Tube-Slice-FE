@@ -7,16 +7,16 @@ import { dummyData, keywords } from './dummyData';
 import Script from '@components/myScriptPageComponent/Script/Script';
 
 const MyScriptPage: React.FC = () => {
-  const myScriptData = dummyData;
-  const myKeywordData = keywords;
+  const keywordData = keywords;
+  const scriptData = dummyData;
 
   return (
     <styles.Container>
       <styles.UpperWrapper>
-        <KeywordDropdown keywordData={myKeywordData} />
+        <KeywordDropdown keywordData={keywordData} />
         <SearchBarComponent />
       </styles.UpperWrapper>
-      <Script scriptData={myScriptData} />
+      <Script scriptData={scriptData} />
     </styles.Container>
   );
 };

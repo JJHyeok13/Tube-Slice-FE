@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles';
 
-interface KeywordData {
-  id: number;
-  keyword: string;
-}
-
-interface KeywordDataProps {
-  keywordData: KeywordData[];
-}
+import { KeywordDataProps } from 'types/myScriptPage/myScriptPage';
 
 const KeywordDropdown: React.FC<KeywordDataProps> = ({ keywordData }) => {
   const [selectedKeyword, setSelectedKeyword] = useState('키워드');

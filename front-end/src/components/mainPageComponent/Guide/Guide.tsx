@@ -3,14 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './styles';
 
-interface Props {
-  src: string;
-  address: string;
-  description: string;
-  hoverdDescription: string;
-}
+import { GuideComponentProps } from 'types/mainPage/mainPage';
 
-const Guide: React.FC<Props> = ({
+const Guide: React.FC<GuideComponentProps> = ({
   src,
   address,
   description,

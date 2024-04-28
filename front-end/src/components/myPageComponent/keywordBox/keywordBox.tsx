@@ -2,14 +2,18 @@ import React from 'react';
 
 import styles from './styles';
 
-const KeywordBox: React.FC = () => {
+import { KeywordsProps } from 'types/myPage/myPage';
+
+const KeywordBox: React.FC<KeywordsProps> = ({ keywordsData }) => {
   return (
     <styles.Container>
       <styles.Title>키워드 목록</styles.Title>
       <styles.KeywordContainer>
-        <styles.Keyword>아스날</styles.Keyword>
-        <styles.Keyword>맨시티</styles.Keyword>
-        <styles.Keyword>리버풀</styles.Keyword>
+        {keywordsData.map((keyword) => (
+          <styles.Keyword key={keyword.keywordId}>
+            {keyword.name}
+          </styles.Keyword>
+        ))}
       </styles.KeywordContainer>
     </styles.Container>
   );

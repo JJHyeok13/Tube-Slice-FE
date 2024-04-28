@@ -2,32 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import YouTube from 'react-youtube';
 
-interface Subtitles {
-  subtitleId: number;
-  subtitle: string;
-  timeline: string;
-}
-
-interface Video {
-  videoId: number;
-  url: string;
-}
-
-interface Scripts {
-  scriptId: number;
-  script: string;
-  timeline: string;
-}
-
-interface ResultData {
-  scripts: Scripts[];
-  video: Video;
-  subtitles: Subtitles[];
-}
-
-interface ResultDataProps {
-  resultData: ResultData;
-}
+import { ResultDataProps } from 'types/convertResultPage/convertResultPage';
 
 const YoutubeVideo: React.FC<ResultDataProps> = ({ resultData }) => {
   const [currentTime, setCurrentTime] = useState<number>(0);
