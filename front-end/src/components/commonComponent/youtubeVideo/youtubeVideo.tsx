@@ -3,8 +3,11 @@ import React, { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
 import { ResultDataProps } from 'types/convertResultPage/convertResultPage';
+import { SummarizeProps } from 'types/summarizeResultPage/summarizeResultPage';
 
-const YoutubeVideo: React.FC<ResultDataProps> = ({ resultData }) => {
+const YoutubeVideo: React.FC<ResultDataProps | SummarizeProps> = ({
+  resultData,
+}) => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const youtubePlayer = useRef<any>(null);
 

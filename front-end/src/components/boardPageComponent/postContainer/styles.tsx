@@ -36,6 +36,12 @@ const styles = {
     display: flex;
     padding-bottom: 30px;
   `,
+  PostInfo: styled.div`
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  `,
   Writer: styled.div`
     display: flex;
     flex-direction: row;

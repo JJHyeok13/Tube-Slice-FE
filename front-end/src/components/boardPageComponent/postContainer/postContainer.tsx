@@ -2,6 +2,8 @@ import React from 'react';
 
 import { PostDataProps } from 'types/boardPage/boardPage';
 
+import CommentIcon from '@assets/boardPage/CommentIcon.svg';
+
 import styles from './styles';
 
 const PostContainer: React.FC<PostDataProps> = ({ postData }) => {
@@ -13,9 +15,9 @@ const PostContainer: React.FC<PostDataProps> = ({ postData }) => {
           <styles.Text>
             <styles.Title>{post.title}</styles.Title>
             <styles.Content>{post.content}</styles.Content>
-            <div>
-              {post.createdAt} {post.commentCount}
-            </div>
+            <styles.PostInfo>
+              {post.createdAt} <img src={CommentIcon} /> {post.commentCount}
+            </styles.PostInfo>
             <styles.Writer>
               By. {post.writer} <styles.ProfileImage src={post.profileImage} />
             </styles.Writer>

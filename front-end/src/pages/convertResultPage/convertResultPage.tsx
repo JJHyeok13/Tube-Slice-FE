@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles';
 import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer/subTitleContainer';
 import { dummyData } from './dummyData';
-import YoutubeVideo from '@components/convertResultPageComponent/youtubeVideo/youtubeVideo';
+import YoutubeVideo from '@components/commonComponent/youtubeVideo/youtubeVideo';
 import ScriptContainer from '@components/convertResultPageComponent/scriptContainer/scriptContainer';
 
 const ConvertResultPage: React.FC = () => {
