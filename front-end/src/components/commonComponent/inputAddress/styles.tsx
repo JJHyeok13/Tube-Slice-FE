@@ -24,6 +24,7 @@ const styles = {
   Button: styled.div`
     background-color: #ffffff;
     color: #0075ff;
+    font-weight: 600;
     padding: 8px 22px;
     white-space: nowrap;
     border-radius: 10px;

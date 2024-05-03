@@ -4,8 +4,7 @@ const styles = {
   Container: styled.div`
     width: 88%;
     height: 100%;
-    margin: 0 auto;
-    margin-top: 170px;
+    margin: 120px auto 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

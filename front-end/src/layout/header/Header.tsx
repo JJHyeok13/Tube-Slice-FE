@@ -50,25 +50,27 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <styles.HeaderWrapper>
-        <styles.StyledLink to="/" onClick={handleCloseHamburgerMenu}>
-          Tube Slice
-        </styles.StyledLink>
-        <styles.RightWrapper>
-          {isLoggedIn ? (
-            <styles.Nickname>
-              <styles.Name>눈꽃</styles.Name>님 반가워요!
-            </styles.Nickname>
-          ) : (
-            <LoginSignUpButtonComponent onClick={handleSignIn} />
-          )}
-          <styles.OpenButton
-            src={HamburgerMenuImage}
-            alt="햄버거 메뉴 버튼"
-            onClick={handleOpenHamburgerMenu}
-          />
-        </styles.RightWrapper>
-      </styles.HeaderWrapper>
+      <styles.Container>
+        <styles.HeaderWrapper>
+          <styles.StyledLink to="/" onClick={handleCloseHamburgerMenu}>
+            Tube Slice
+          </styles.StyledLink>
+          <styles.RightWrapper>
+            {isLoggedIn ? (
+              <styles.Nickname>
+                <styles.Name>눈꽃</styles.Name>님 반가워요!
+              </styles.Nickname>
+            ) : (
+              <LoginSignUpButtonComponent onClick={handleSignIn} />
+            )}
+            <styles.OpenButton
+              src={HamburgerMenuImage}
+              alt="햄버거 메뉴 버튼"
+              onClick={handleOpenHamburgerMenu}
+            />
+          </styles.RightWrapper>
+        </styles.HeaderWrapper>
+      </styles.Container>
 
       {loginModalOpen && (
         <styles.ModalBackdrop>

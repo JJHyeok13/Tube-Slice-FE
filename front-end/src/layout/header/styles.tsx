@@ -2,34 +2,37 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const styles = {
-  HeaderWrapper: styled.div`
+  Container: styled.div`
     position: fixed;
+    width: 100%;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+    background-color: #ffffff;
+    transition: top 0.3s ease-in-out;
+  `,
+  HeaderWrapper: styled.div`
+    width: 100%;
     height: 62px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 45px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #000000;
-    background-color: #ffffff;
-    z-index: 1;
+    padding: 10px 0px;
   `,
   StyledLink: styled(Link)`
     font-family: 'SF_HambakSnow';
     font-size: 32px;
     font-weight: 800;
     color: #0075ff;
+    margin-left: 30px;
   `,
   RightWrapper: styled.div`
     width: 160px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-right: 30px;
   `,
   Nickname: styled.div`
     font-weight: 500;

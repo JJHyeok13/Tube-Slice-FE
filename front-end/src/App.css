@@ -6,3 +6,7 @@
   width: 100vw;
   height: 100vh;
 }
+
+html::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
