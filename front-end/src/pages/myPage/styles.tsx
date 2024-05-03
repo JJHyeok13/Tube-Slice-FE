@@ -11,8 +11,7 @@ const styles = {
     padding-bottom: 70px;
   `,
   LeftContainer: styled.div`
-    position: fixed;
-    width: 180px;
+    width: 15%;
     display: flex;
     flex-direction: column;
   `,
@@ -21,7 +20,6 @@ const styles = {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-left: 15%;
   `,
 };
 

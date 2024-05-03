@@ -10,9 +10,9 @@ const styles = {
     box-sizing: border-box;
   `,
   ProfileImage: styled.img`
-    width: 120px;
-    height: 120px;
-    border-radius: 120px;
+    width: 90%;
+    height: auto;
+    border-radius: 100%;
     margin-bottom: 30px;
   `,
   Nickname: styled.div`

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import YoutubeVideo from '@components/commonComponent/youtubeVideo/youtubeVideo';
+import SummarizeContainer from '@components/summarizeResultPageComponent/summarizeContainer/summarizeContainer';
+import SummarizeAgainButton from '@components/summarizeResultPageComponent/summarizeAgainButton/summarizeAgainButton';
 
 import styles from './styles';
 
 import { dummyData } from './dummyData';
-import SummarizeContainer from '@components/summarizeResultPageComponent/summarizeContainer/summarizeContainer';
-import SummarizeAgainButton from '@components/summarizeResultPageComponent/summarizeAgainButton/summarizeAgainButton';
 
 const SummarizeResultPage: React.FC = () => {
   const resultData = dummyData;
