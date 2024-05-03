@@ -21,8 +21,8 @@ const PostList: React.FC<PostListProps> = ({ postData }) => {
             <styles.Title>{post.title}</styles.Title>
             <styles.Content>{post.content}</styles.Content>
             <styles.KeywordWrapper>
-              {post.keywords.map((keyword) => (
-                <styles.Keyword>{keyword}</styles.Keyword>
+              {post.keywords.map((keyword, index) => (
+                <styles.Keyword key={index}>{keyword}</styles.Keyword>
               ))}
             </styles.KeywordWrapper>
             <styles.DateCommentLike>

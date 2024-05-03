@@ -14,12 +14,14 @@ const styles = {
     width: 15%;
     display: flex;
     flex-direction: column;
+    position: fixed;
   `,
   RightContainer: styled.div`
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-left: 20%;
   `,
 };
 

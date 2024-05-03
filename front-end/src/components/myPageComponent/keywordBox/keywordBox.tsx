@@ -10,9 +10,7 @@ const KeywordBox: React.FC<KeywordsProps> = ({ keywordsData }) => {
       <styles.Title>키워드 목록</styles.Title>
       <styles.KeywordContainer>
         {keywordsData.map((keyword) => (
-          <styles.Keyword key={keyword.keywordId}>
-            {keyword.name}
-          </styles.Keyword>
+          <styles.Keyword key={keyword.id}>{keyword.name}</styles.Keyword>
         ))}
       </styles.KeywordContainer>
     </styles.Container>

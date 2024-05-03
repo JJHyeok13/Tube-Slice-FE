@@ -12,7 +12,7 @@ export interface ProfileProps {
 }
 
 interface Keywords {
-  keywordId: number;
+  id: number;
   name: string;
 }
 

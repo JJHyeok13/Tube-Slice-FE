@@ -13,6 +13,12 @@ const MyPage: React.FC = () => {
   const keywordsData = keywords;
   const postData = dummyData;
 
+  const options = [
+    { label: '제목', value: 'Title' },
+    { label: '내용', value: 'Content' },
+    { label: '제목+내용', value: 'TitleContent' },
+  ];
+
   return (
     <styles.Container>
       <styles.LeftContainer>
@@ -20,7 +26,7 @@ const MyPage: React.FC = () => {
         <KeywordBox keywordsData={keywordsData} />
       </styles.LeftContainer>
       <styles.RightContainer>
-        <SearchBar />
+        <SearchBar options={options} />
         <PostList postData={postData} />
       </styles.RightContainer>
     </styles.Container>

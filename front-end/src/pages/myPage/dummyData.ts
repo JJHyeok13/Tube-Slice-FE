@@ -69,15 +69,15 @@ export const profile = {
 
 export const keywords = [
   {
-    keywordId: 1,
+    id: 1,
     name: '아스날',
   },
   {
-    keywordId: 2,
+    id: 2,
     name: '맨시티',
   },
   {
-    keywordId: 3,
+    id: 3,
     name: '리버풀',
   },
 ];

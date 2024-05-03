@@ -1,31 +1,44 @@
 import styled from 'styled-components';
 
-interface InputBarProps {
-  show: boolean;
-}
-
 const styles = {
   Container: styled.div`
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
   `,
-  Image: styled.img`
-    cursor: pointer;
+  OptionContainer: styled.div`
+    display: flex;
+    flex-direction: row;
   `,
-  InputBar: styled.input<InputBarProps>`
+  SearchBarContainer: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dadada;
+    padding: 0 10px 0 20px;
+    border-radius: 50px;
+    width: 60%;
+  `,
+  InputBar: styled.input`
     background-color: #dadada;
     border: 0;
-    width: ${(props) => (props.show ? '400px' : '0')};
+    width: 400px;
     height: 50px;
     border-radius: 50px;
-    padding: 0 20px;
-    transition: width 0.5s ease;
-    transition-delay: ${(props) => (props.show ? '0.3s' : '0')};
+
+    &:focus {
+      outline: none;
+    }
 
     &::placeholder {
       color: black;
     }
+  `,
+  Image: styled.img`
+    cursor: pointer;
   `,
 };
 
