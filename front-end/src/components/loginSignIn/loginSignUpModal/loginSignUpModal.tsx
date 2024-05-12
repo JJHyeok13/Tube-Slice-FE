@@ -17,6 +17,11 @@ const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
   setLoginModalOpen,
   handleFirstUser,
 }) => {
+  const client_id = import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+
+  const kakaologinURL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}`;
+
   useEffect(() => {
     // 모달이 열리면 뒤쪽의 스크롤을 막음
     document.body.style.overflow = 'hidden';
@@ -39,11 +44,13 @@ const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
         <styles.TubeSlice>Tube Slice</styles.TubeSlice>
         <styles.Description>한줄로 웹페이지 소개</styles.Description>
         <styles.ButtonWrapper>
-          <styles.SocialLoginButton
-            src={KakaoLoginButton}
-            alt="카카오 로그인 버튼"
-            onClick={handleFirstUser}
-          />
+          <a href={kakaologinURL}>
+            <styles.SocialLoginButton
+              src={KakaoLoginButton}
+              alt="카카오 로그인 버튼"
+              onClick={handleFirstUser}
+            />
+          </a>
           <styles.SocialLoginButton
             src={NaverLoginButton}
             alt="네이버 로그인 버튼"

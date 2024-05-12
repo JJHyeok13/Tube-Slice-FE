@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { RiMenuLine } from 'react-icons/ri';
+
 const styles = {
   Container: styled.div`
     position: fixed;
@@ -28,7 +30,7 @@ const styles = {
     margin-left: 30px;
   `,
   RightWrapper: styled.div`
-    width: 160px;
+    width: 130px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,8 +42,7 @@ const styles = {
   Name: styled.span`
     color: #0075ff;
   `,
-
-  OpenButton: styled.img`
+  OpenButton: styled(RiMenuLine)`
     cursor: pointer;
   `,
   ModalBackdrop: styled.div`

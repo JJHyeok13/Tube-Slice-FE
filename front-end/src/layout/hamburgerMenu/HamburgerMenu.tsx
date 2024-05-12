@@ -1,5 +1,4 @@
 import React from 'react';
-import CloseHambergerMenuButton from '@assets/header/CloseHamburgerMenu.svg';
 
 import styles from './styles';
 import HamburgerMenuButton from '@components/hamburgerMenu/hamburgerMenuButton';
@@ -23,11 +22,7 @@ const HamburgerMenu: React.FC<{
           )}
         </styles.Greeting>
 
-        <styles.CloseButton
-          src={CloseHambergerMenuButton}
-          alt="햄버거 메뉴 버튼"
-          onClick={handleCloseHameburgerMenu}
-        />
+        <styles.CloseButton onClick={handleCloseHameburgerMenu} />
       </styles.UpperContainer>
 
       <styles.ButtonContainer>

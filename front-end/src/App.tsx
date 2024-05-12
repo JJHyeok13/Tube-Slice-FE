@@ -8,6 +8,8 @@ import './App.css';
 import BasicLayout from '@layout/BasicLayout';
 
 import MainPage from '@pages/mainPage/mainPage';
+
+import KakaoLoginPage from '@pages/socialLoginPage/kakaoLoginPage';
 import ConvertPage from '@pages/convertPage/convertPage';
 import SummarizePage from '@pages/summarizePage/summarizePage';
 import MyScriptPage from '@pages/myScriptPage/myScriptPage';
@@ -23,6 +25,8 @@ function App() {
       <Route>
         <Route element={<BasicLayout />}>
           <Route path="/" element={<MainPage />} />
+
+          <Route path="/oauth2/kakao" element={<KakaoLoginPage />} />
 
           <Route path="/convert" element={<ConvertPage />} />
           <Route path="/convertresult" element={<ConvertResultPage />} />

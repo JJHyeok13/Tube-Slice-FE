@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import HamburgerMenuImage from '@assets/header/HamburgerMenu.svg';
 import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
@@ -63,11 +62,7 @@ const Header: React.FC = () => {
             ) : (
               <LoginSignUpButtonComponent onClick={handleSignIn} />
             )}
-            <styles.OpenButton
-              src={HamburgerMenuImage}
-              alt="햄버거 메뉴 버튼"
-              onClick={handleOpenHamburgerMenu}
-            />
+            <styles.OpenButton onClick={handleOpenHamburgerMenu} />
           </styles.RightWrapper>
         </styles.HeaderWrapper>
       </styles.Container>

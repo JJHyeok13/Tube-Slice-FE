@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { RiArrowRightCircleFill } from 'react-icons/ri';
+
 const styles = {
   Container: styled.div`
     background-color: #eeeeee;
@@ -22,7 +24,7 @@ const styles = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 64px auto 40px auto;
+    margin: 30px auto 40px auto;
   `,
 
   Greeting: styled.div`
@@ -34,7 +36,9 @@ const styles = {
     color: #0075ff;
   `,
 
-  CloseButton: styled.img`
+  CloseButton: styled(RiArrowRightCircleFill)`
+    width: 27px;
+    height: 27px;
     cursor: pointer;
   `,
 
