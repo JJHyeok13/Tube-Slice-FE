@@ -1,7 +1,5 @@
 import axios from 'axios';
-
 import { LoginResponse } from '@server/responseType/member';
-
 import { PostAxiosInstance } from '@axios/axios.method';
 
 export const getKakaoToken = async (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getKakaoToken, socialLogin } from 'hooks/api/member';
+import { getKakaoToken, socialLogin } from 'hooks/api/user';
 import { HashLoader } from 'react-spinners';
 
 const KakaoLoginPage: React.FC = () => {
@@ -27,10 +27,6 @@ const KakaoLoginPage: React.FC = () => {
         setLoading(false);
       }
     };
-
-    console.log(code);
-    console.log(client_id);
-    console.log(redirect_uri);
     fetchKakaoToken();
   }, []);
 
@@ -51,7 +47,7 @@ const KakaoLoginPage: React.FC = () => {
     fetchJWT();
   });
 
-  return <HashLoader size="120" color="#0075ff" loading={loading} />;
+  return <HashLoader size="120px" color="#0075ff" loading={loading} />;
 };
 
 export default KakaoLoginPage;

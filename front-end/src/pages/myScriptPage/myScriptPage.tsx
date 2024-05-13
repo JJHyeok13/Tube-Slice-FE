@@ -4,7 +4,7 @@ import styles from './styles';
 import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
 import SearchBarComponent from '@components/commonComponent/searchBar/searchBar';
 import { dummyData, keywords } from './dummyData';
-import Script from '@components/myScriptPageComponent/Script/Script';
+import Script from '@components/myScriptPageComponent/script/Script';
 
 const MyScriptPage: React.FC = () => {
   const keywordData = keywords;

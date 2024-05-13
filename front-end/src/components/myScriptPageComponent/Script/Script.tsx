@@ -25,8 +25,8 @@ const Script: React.FC<ScriptComponentProps> = ({ scriptData }) => {
           <styles.ScriptInfo>
             <styles.Title>{data.title}</styles.Title>
             <styles.Content>
-              {data.content.length > 250
-                ? data.content.substring(0, 250) + ' ...'
+              {data.content.length > 400
+                ? data.content.substring(0, 400) + ' ...'
                 : data.content}
             </styles.Content>
             <styles.KeywordWrapper>

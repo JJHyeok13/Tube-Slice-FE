@@ -8,12 +8,19 @@ const styles = {
   MyScript: styled.div`
     display: flex;
     flex-direction: row;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #e3e3e3;
     margin-bottom: 48px;
+
+    &:last-child {
+      border: 0;
+      padding-bottom: 0;
+    }
   `,
   ThumbnailImage: styled.img`
-    width: 290px;
-    height: 180px;
-    margin-right: 20px;
+    width: 444.44px;
+    height: 250px;
+    margin-right: 70px;
     border-radius: 12px;
     cursor: pointer;
   `,
