@@ -22,6 +22,17 @@ const styles = {
       transform: translateY(-6px);
     }
   `,
+  Writer: styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 12px;
+  `,
+  ProfileImage: styled.img`
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  `,
   Text: styled.div`
     display: flex;
     flex-direction: column;
@@ -40,18 +51,15 @@ const styles = {
     font-size: 12px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
   `,
-  Writer: styled.div`
+  LeftInfo: styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
   `,
-  ProfileImage: styled.img`
-    width: 30px;
-    height: 30px;
-    padding-left: 10px;
+  RightInfo: styled.div`
+    display: flex;
   `,
 };
 

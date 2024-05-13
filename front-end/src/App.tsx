@@ -18,6 +18,7 @@ import BoardPage from '@pages/boardPage/boardPage';
 import ConvertResultPage from '@pages/convertResultPage/convertResultPage';
 import MyPage from '@pages/myPage/myPage';
 import SummarizeResultPage from '@pages/summarizeResultPage/summarizeResultPage';
+import BoardDetailPage from '@pages/boardDetailPage/boardDetailPage';
 
 function App() {
   const router = createBrowserRouter(
@@ -39,6 +40,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
 
           <Route path="/board/:type" element={<BoardPage />} />
+          <Route path="/board/content/:id" element={<BoardDetailPage />} />
 
           <Route path="/setting/:type" element={<SettingPage />} />
         </Route>
