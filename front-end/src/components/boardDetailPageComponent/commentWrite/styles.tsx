@@ -27,6 +27,7 @@ const styles = {
     color: white;
     border-radius: 4px;
     padding: 4px 10px;
+    cursor: pointer;
   `,
 };
 

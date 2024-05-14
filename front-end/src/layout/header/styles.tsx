@@ -30,7 +30,7 @@ const styles = {
     margin-left: 30px;
   `,
   RightWrapper: styled.div`
-    width: 130px;
+    width: 250px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,7 +42,16 @@ const styles = {
   Name: styled.span`
     color: #0075ff;
   `,
+  Button: styled.div`
+    background-color: #0075ff;
+    color: white;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+  `,
   OpenButton: styled(RiMenuLine)`
+    margin-left: 16px;
     cursor: pointer;
   `,
   ModalBackdrop: styled.div`

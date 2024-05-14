@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { getKakaoToken, socialLogin } from 'hooks/api/user';
+import { useNavigate } from 'react-router-dom';
+
+import { useRecoilState } from 'recoil';
+import { firstNameState, loggedInState } from 'recoil/recoil';
+
+import styles from './styles';
+
 import { HashLoader } from 'react-spinners';
 
 const KakaoLoginPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [kakaoToken, setKakaoToken] = useState('');
 
@@ -12,6 +21,9 @@ const KakaoLoginPage: React.FC = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get('code');
 
+  const [, setIsLoggedIn] = useRecoilState(loggedInState);
+  const [, setFirstName] = useRecoilState(firstNameState);
+
   useEffect(() => {
     const fetchKakaoToken = async () => {
       try {
@@ -19,12 +31,12 @@ const KakaoLoginPage: React.FC = () => {
         if (code) {
           const res = await getKakaoToken(client_id, redirect_uri, code);
           setKakaoToken(res.access_token);
-          localStorage.setItem('access_token', res.access_token);
+          localStorage.setItem('kakaoToken', res.access_token);
+
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchKakaoToken();
@@ -36,18 +48,27 @@ const KakaoLoginPage: React.FC = () => {
         setLoading(true);
         if (kakaoToken) {
           const res = await socialLogin(kakaoToken, 'kakao');
-          localStorage.setItem('JWT', res.result.access_token);
+          localStorage.setItem('accessToken', res.result.access_token);
+
+          setLoading(false);
+          setIsLoggedIn(true);
+          setFirstName(res.result.name);
+          navigate('/');
         }
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchJWT();
   });
 
-  return <HashLoader size="120px" color="#0075ff" loading={loading} />;
+  return (
+    <>
+      <styles.Container>
+        <HashLoader size="120px" color="#0075ff" loading={loading} />
+      </styles.Container>
+    </>
+  );
 };
 
 export default KakaoLoginPage;

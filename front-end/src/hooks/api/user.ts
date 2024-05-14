@@ -23,9 +23,7 @@ export const socialLogin = async (
   social_type: 'kakao' | 'naver',
 ): Promise<LoginResponse> => {
   const res = await PostAxiosInstance<LoginResponse>(
-    `${
-      import.meta.env.VITE_SERVER_URL
-    }/v1/oauth/login?access_token=${access_token}&social_type=${social_type}`,
+    `/v1/oauth/login?access_token=${access_token}&social_type=${social_type}`,
   );
   return res.data;
 };

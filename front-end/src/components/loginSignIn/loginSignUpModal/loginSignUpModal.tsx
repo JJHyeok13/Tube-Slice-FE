@@ -2,20 +2,16 @@ import React, { useEffect } from 'react';
 
 import styles from './styles';
 
-//import CompleteModal from '@components/loginSignIn/completeModal/completeModal';
-
 import ExitButton from '@assets/loginModal/ExitButton.svg';
 import KakaoLoginButton from '@assets/loginModal/KakaoLoginButton.svg';
 import NaverLoginButton from '@assets/loginModal/NaverLoginButton.svg';
 
 interface LoginSignUpModalProps {
   setLoginModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handleFirstUser: () => void;
 }
 
 const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
   setLoginModalOpen,
-  handleFirstUser,
 }) => {
   const client_id = import.meta.env.VITE_KAKAO_REST_API_KEY;
   const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
@@ -25,7 +21,6 @@ const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
   useEffect(() => {
     // 모달이 열리면 뒤쪽의 스크롤을 막음
     document.body.style.overflow = 'hidden';
-
     // 컴포넌트가 언마운트될 때 스타일 제거하여 스크롤이 다시 활성화되도록 함
     return () => {
       document.body.style.overflow = 'unset';
@@ -48,13 +43,12 @@ const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
             <styles.SocialLoginButton
               src={KakaoLoginButton}
               alt="카카오 로그인 버튼"
-              onClick={handleFirstUser}
             />
           </a>
+
           <styles.SocialLoginButton
             src={NaverLoginButton}
             alt="네이버 로그인 버튼"
-            onClick={handleFirstUser}
           />
         </styles.ButtonWrapper>
       </styles.Modal>

@@ -28,6 +28,7 @@
       "@components/*": ["components/*"],
       "@layout/*": ["layout/*"],
       "@pages/*": ["pages/*"],
+      "@recoil/*": ["recoil/*"],
       "@server/*": ["server/*"],
       "@utils/*": ["utils/*"]
     }

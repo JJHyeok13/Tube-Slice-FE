@@ -1,21 +1,27 @@
 import React from 'react';
 
-import styles from './styles';
+import { useRecoilValue } from 'recoil';
+import { firstNameState, loggedInState } from 'recoil/recoil';
+
 import HamburgerMenuButton from '@components/hamburgerMenu/hamburgerMenuButton';
 import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
 
+import styles from './styles';
+
 const HamburgerMenu: React.FC<{
   handleCloseHameburgerMenu: () => void;
-  isLoggedIn: boolean;
   handleSignIn: () => void;
-}> = ({ handleCloseHameburgerMenu, isLoggedIn, handleSignIn }) => {
+}> = ({ handleCloseHameburgerMenu, handleSignIn }) => {
+  const isLoggedIn = useRecoilValue(loggedInState);
+  const firstName = useRecoilValue(firstNameState);
+
   return (
     <styles.Container>
       <styles.UpperContainer>
         <styles.Greeting>
           {isLoggedIn ? (
             <div>
-              <styles.Name>눈꽃</styles.Name>님 반가워요!
+              <styles.Name>{firstName}</styles.Name>님 반가워요!
             </div>
           ) : (
             <LoginSignUpButtonComponent onClick={handleSignIn} />

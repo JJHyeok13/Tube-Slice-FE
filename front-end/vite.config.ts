@@ -6,4 +6,13 @@ import svgrPlugin from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgrPlugin()],
+  server: {
+    proxy: {
+      '/v1': {
+        target: 'https://www.tubeslice.site:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/v1/, ''),
+      },
+    },
+  },
 });

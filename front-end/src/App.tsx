@@ -4,7 +4,10 @@ import {
   RouterProvider,
   Route,
 } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+
 import './App.css';
+
 import BasicLayout from '@layout/BasicLayout';
 
 import MainPage from '@pages/mainPage/mainPage';
@@ -49,9 +52,9 @@ function App() {
   );
 
   return (
-    <>
+    <RecoilRoot>
       <RouterProvider router={router} />
-    </>
+    </RecoilRoot>
   );
 }
 

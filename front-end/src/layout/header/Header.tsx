@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 
+import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
+import LoginModalComponent from '@components/loginSignIn/loginSignUpModal/loginSignUpModal';
+
 import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
-import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
-import LoginModalComponent from '@components/loginSignIn/loginSignUpModal/loginSignUpModal';
-import CompleteModal from '@components/loginSignIn/completeModal/completeModal';
-import ProfileSettingModal from '@components/loginSignIn/profileSettingModal/profileSettingModal';
+import { useRecoilValue } from 'recoil';
+import { firstNameState, loggedInState } from 'recoil/recoil';
 
 const Header: React.FC = () => {
-  const isServiceMember = false;
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useRecoilValue(loggedInState);
+  const firstName = useRecoilValue(firstNameState);
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [completeModalOpen, setCompleteModalOpen] = useState(false);
-  const [profileSettingModalOpen, setProfileSettingModalOpen] = useState(false);
 
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
@@ -32,19 +30,8 @@ const Header: React.FC = () => {
     setHamburgerMenuOpen(false);
   };
 
-  const handleFirstUser = () => {
-    if (isServiceMember) {
-      setLoginModalOpen(false);
-      setIsLoggedIn(true);
-    } else {
-      setLoginModalOpen(false);
-      setCompleteModalOpen(true);
-    }
-  };
-
-  const handleFirstProfileSetting = () => {
-    setCompleteModalOpen(false);
-    setProfileSettingModalOpen(true);
+  const handleLogout = () => {
+    localStorage.clear();
   };
 
   return (
@@ -56,9 +43,12 @@ const Header: React.FC = () => {
           </styles.StyledLink>
           <styles.RightWrapper>
             {isLoggedIn ? (
-              <styles.Nickname>
-                <styles.Name>눈꽃</styles.Name>님 반가워요!
-              </styles.Nickname>
+              <>
+                <styles.Nickname>
+                  <styles.Name>{firstName}</styles.Name>님 반가워요!
+                </styles.Nickname>
+                <styles.Button onClick={handleLogout}>로그아웃</styles.Button>
+              </>
             ) : (
               <LoginSignUpButtonComponent onClick={handleSignIn} />
             )}
@@ -69,35 +59,13 @@ const Header: React.FC = () => {
 
       {loginModalOpen && (
         <styles.ModalBackdrop>
-          <LoginModalComponent
-            setLoginModalOpen={setLoginModalOpen}
-            handleFirstUser={handleFirstUser}
-          />
-        </styles.ModalBackdrop>
-      )}
-
-      {completeModalOpen && (
-        <styles.ModalBackdrop>
-          <CompleteModal
-            setCompleteModalOpen={setCompleteModalOpen}
-            handleFirstProfileSetting={handleFirstProfileSetting}
-          />
-        </styles.ModalBackdrop>
-      )}
-
-      {profileSettingModalOpen && (
-        <styles.ModalBackdrop>
-          <ProfileSettingModal
-            setProfileSettingModalOpen={setProfileSettingModalOpen}
-            setIsLoggedIn={setIsLoggedIn}
-          />
+          <LoginModalComponent setLoginModalOpen={setLoginModalOpen} />
         </styles.ModalBackdrop>
       )}
 
       {hamburgerMenuOpen && (
         <HamburgerMenu
           handleCloseHameburgerMenu={handleCloseHamburgerMenu}
-          isLoggedIn={isLoggedIn}
           handleSignIn={handleSignIn}
         />
       )}
