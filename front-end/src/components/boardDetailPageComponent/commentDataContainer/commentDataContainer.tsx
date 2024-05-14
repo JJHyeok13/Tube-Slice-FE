@@ -6,7 +6,7 @@ import { CommentDataProps } from 'types/boardDetailPage/boardDetailPage';
 
 import BasicProfile from '@assets/common/BasicProfile.png';
 
-const CommentData: React.FC<CommentDataProps> = ({ commentData }) => {
+const CommentDataContainer: React.FC<CommentDataProps> = ({ commentData }) => {
   return (
     <styles.Container>
       {commentData.map((comment) => (
@@ -35,4 +35,4 @@ const CommentData: React.FC<CommentDataProps> = ({ commentData }) => {
   );
 };
 
-export default CommentData;
+export default CommentDataContainer;

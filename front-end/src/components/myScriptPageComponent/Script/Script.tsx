@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles';
 
-import { ScriptComponentProps } from 'types/myScriptPage/myScriptPage';
+import { ScriptProps } from 'types/myScriptPage/myScriptPage';
 
-const Script: React.FC<ScriptComponentProps> = ({ scriptData }) => {
+const Script: React.FC<ScriptProps> = ({ scriptData }) => {
   const LinktoYoutube = (url: string) => {
     window.open(`${url}`, '_blank');
   };

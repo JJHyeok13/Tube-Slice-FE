@@ -1,8 +1,8 @@
-export interface KeywordDataProps {
+export interface KeywordDropdownProps {
   keywordData: { id: number; keyword: string }[];
 }
 
-export interface ScriptComponentProps {
+export interface ScriptProps {
   scriptData: {
     id: number;
     url: string;

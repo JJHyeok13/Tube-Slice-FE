@@ -1,4 +1,4 @@
-export interface Users {
+export interface FollowListProps {
   followData: {
     userId: number;
     nickname: string;

@@ -1,4 +1,4 @@
-export interface ResultDataProps {
+export interface ConvertResultProps {
   resultData: {
     scripts: { scriptId: number; script: string; timeline: string }[];
     video: { videoId: number; url: string };

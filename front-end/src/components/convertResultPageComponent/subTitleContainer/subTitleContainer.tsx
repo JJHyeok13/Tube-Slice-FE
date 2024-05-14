@@ -2,9 +2,9 @@ import React from 'react';
 
 import styles from './styles';
 
-import { ResultDataProps } from 'types/convertResultPage/convertResultPage';
+import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
 
-const SubTitleContainer: React.FC<ResultDataProps> = ({ resultData }) => {
+const SubTitleContainer: React.FC<ConvertResultProps> = ({ resultData }) => {
   return (
     <styles.Container>
       <h3>스크립트를 요약했어요...👀</h3>

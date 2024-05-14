@@ -4,9 +4,9 @@ import styles from './styles';
 
 import PlayingIcon from '@assets/convertResultPage/PlayingIcon.svg';
 
-import { ResultDataProps } from 'types/convertResultPage/convertResultPage';
+import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
 
-const ScriptContainer: React.FC<ResultDataProps> = ({ resultData }) => {
+const ScriptContainer: React.FC<ConvertResultProps> = ({ resultData }) => {
   return (
     <>
       {resultData.subtitles.map((subtitle, index) => {

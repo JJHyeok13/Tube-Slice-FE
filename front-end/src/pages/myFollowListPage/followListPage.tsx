@@ -10,11 +10,12 @@ import SearchBar from '@components/commonComponent/searchBar/searchBar';
 import FollowList from '@components/followListPageComponent/followList/followList';
 
 import styles from './styles';
+import { Profile, ProfileProps } from 'types/myPage/myPage';
 
 const FollowListPage: React.FC = () => {
   const { follow } = useParams<{ follow: string }>();
 
-  const [profileData, setProfileData] = useState({});
+  const [profileData, setProfileData] = useState<Profile>({});
   const [keywordsData, setKeywordsData] = useState([]);
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import styles from './styles';
 
 import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
 
-const PostData: React.FC<PostDataProps> = ({ postData }) => {
+const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
   return (
     <styles.Container>
       <styles.Title>{postData.title}</styles.Title>
@@ -37,4 +37,4 @@ const PostData: React.FC<PostDataProps> = ({ postData }) => {
   );
 };
 
-export default PostData;
+export default PostDataContainer;

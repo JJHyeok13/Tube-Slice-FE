@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './styles';
 
-import { KeywordDataProps } from 'types/myScriptPage/myScriptPage';
+import { KeywordDropdownProps } from 'types/myScriptPage/myScriptPage';
 
-const KeywordDropdown: React.FC<KeywordDataProps> = ({ keywordData }) => {
+const KeywordDropdown: React.FC<KeywordDropdownProps> = ({ keywordData }) => {
   const [selectedKeyword, setSelectedKeyword] = useState('키워드');
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

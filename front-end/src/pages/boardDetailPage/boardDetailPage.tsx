@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CommentData from '@components/boardDetailPageComponent/commentData/commentData';
+import LikeBox from '@components/boardDetailPageComponent/likeBox/likeBox';
+import PostDataContainer from '@components/boardDetailPageComponent/postDataContainer/postDataContainer';
 import CommentWrite from '@components/boardDetailPageComponent/commentWrite/commentWrite';
-import PostData from '@components/boardDetailPageComponent/postData/postData';
+import CommentData from '@components/boardDetailPageComponent/commentDataContainer/commentDataContainer';
 
 import styles from './styles';
 
 import { postData, commentData } from './dummyData';
-import LikeBox from '@components/boardDetailPageComponent/likeBox/likeBox';
 
 const BoardDetailPage: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const BoardDetailPage: React.FC = () => {
         <LikeBox />
       </styles.LeftComponent>
       <styles.CenterComponent>
-        <PostData postData={postData} />
+        <PostDataContainer postData={postData} />
         <CommentWrite postData={postData} />
         <CommentData commentData={commentData} />
       </styles.CenterComponent>

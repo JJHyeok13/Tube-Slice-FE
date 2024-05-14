@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles';
-import { Users } from 'types/followListPage/followListPage';
+import { FollowListProps } from 'types/followListPage/followListPage';
 import { useNavigate } from 'react-router-dom';
 
-const FollowList: React.FC<Users> = ({ followData }) => {
+const FollowList: React.FC<FollowListProps> = ({ followData }) => {
   const navigate = useNavigate();
 
   const handleClick = (userId: number) => {

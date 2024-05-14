@@ -6,9 +6,7 @@ import ExitButton from '@assets/loginModal/ExitButton.svg';
 import KakaoLoginButton from '@assets/loginModal/KakaoLoginButton.svg';
 import NaverLoginButton from '@assets/loginModal/NaverLoginButton.svg';
 
-interface LoginSignUpModalProps {
-  setLoginModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { LoginSignUpModalProps } from 'types/loginSignUp/loginSignUpModal';
 
 const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
   setLoginModalOpen,
