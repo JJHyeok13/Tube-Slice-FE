@@ -7,11 +7,11 @@ import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
 import { useRecoilValue } from 'recoil';
-import { firstNameState, loggedInState } from 'recoil/recoil';
+import { userInfo, loggedInState } from 'recoil/recoil';
 
 const Header: React.FC = () => {
   const isLoggedIn = useRecoilValue(loggedInState);
-  const firstName = useRecoilValue(firstNameState);
+  const userinfo = useRecoilValue(userInfo);
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
@@ -32,6 +32,7 @@ const Header: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    window.location.replace('/');
   };
 
   return (
@@ -45,14 +46,14 @@ const Header: React.FC = () => {
             {isLoggedIn ? (
               <>
                 <styles.Nickname>
-                  <styles.Name>{firstName}</styles.Name>님 반가워요!
+                  <styles.Name>{userinfo.userName}</styles.Name>님 반가워요!
                 </styles.Nickname>
                 <styles.Button onClick={handleLogout}>로그아웃</styles.Button>
               </>
             ) : (
               <LoginSignUpButtonComponent onClick={handleSignIn} />
             )}
-            <styles.OpenButton onClick={handleOpenHamburgerMenu} />
+            <styles.OpenButton size={24} onClick={handleOpenHamburgerMenu} />
           </styles.RightWrapper>
         </styles.HeaderWrapper>
       </styles.Container>

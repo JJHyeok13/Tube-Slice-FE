@@ -5,8 +5,12 @@ import styles from './styles';
 import ViewCountIcon from '@assets/common/recommendVideoComponent/ViewCount.svg';
 
 import { dummyData } from './exampleData';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '@recoil/recoil';
 
 const RecommendVideo: React.FC = () => {
+  const userinfo = useRecoilValue(userInfo);
+
   const handleClick = (address: string) => {
     window.open(`${address}`, '_blank');
   };
@@ -14,7 +18,8 @@ const RecommendVideo: React.FC = () => {
   return (
     <styles.Container>
       <h2>
-        <styles.Nickname>델로님</styles.Nickname>을 위한 추천영상이에요
+        <styles.Nickname>{userinfo.userName}</styles.Nickname>님을 위한
+        추천영상이에요
       </h2>
       <styles.VideoWrapper>
         {dummyData.map((data, index) => (

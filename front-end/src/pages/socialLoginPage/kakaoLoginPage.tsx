@@ -3,7 +3,7 @@ import { getKakaoToken, socialLogin } from 'hooks/api/user';
 import { useNavigate } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
-import { firstNameState, loggedInState } from 'recoil/recoil';
+import { userInfo, loggedInState } from 'recoil/recoil';
 
 import styles from './styles';
 
@@ -22,7 +22,7 @@ const KakaoLoginPage: React.FC = () => {
   const code = urlParams.get('code');
 
   const [, setIsLoggedIn] = useRecoilState(loggedInState);
-  const [, setFirstName] = useRecoilState(firstNameState);
+  const [, setUserInfo] = useRecoilState(userInfo);
 
   useEffect(() => {
     const fetchKakaoToken = async () => {
@@ -52,7 +52,11 @@ const KakaoLoginPage: React.FC = () => {
 
           setLoading(false);
           setIsLoggedIn(true);
-          setFirstName(res.result.name);
+          setUserInfo((prevUserInfo) => ({
+            ...prevUserInfo,
+            userId: res.result.userId,
+            userName: res.result.name,
+          }));
           navigate('/');
         }
       } catch (error) {

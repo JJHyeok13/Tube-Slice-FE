@@ -1,36 +1,27 @@
-interface Profile {
-  userId: number;
-  nickname: string;
-  profileImage: string;
-  introduction: string;
-  following: number;
-  follower: number;
-}
-
 export interface ProfileProps {
-  profileData: Profile;
-}
-
-interface Keywords {
-  id: number;
-  name: string;
+  profileData: {
+    userId: number;
+    nickname: string;
+    profileUrl: string;
+    introduction: string;
+    followingNum: number;
+    followerNum: number;
+  };
 }
 
 export interface KeywordsProps {
-  keywordsData: Keywords[];
-}
-
-interface PostData {
-  id: number;
-  title: string;
-  content: string;
-  keywords: string[];
-  createAt: string;
-  commentCount: number;
-  likeCount: number;
-  url: string;
+  keywordsData: { keywordId: number; name: string }[];
 }
 
 export interface PostListProps {
-  postData: PostData[];
+  postData: {
+    postId: number;
+    title: string;
+    content: string;
+    videoUrl: string;
+    keywords: { keywordId: number; name: string }[];
+    likeNum: number;
+    commentNum: number;
+    createdAt: string;
+  }[];
 }

@@ -1,11 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import SelectedClockIcon from '@assets/boardPage/SelectedClockIcon.svg';
-import SelectedHeartIcon from '@assets/boardPage/SelectedHeartIcon.svg';
-
-import UnselectedClockIcon from '@assets/boardPage/UnselectedClockIcon.svg';
-import UnselectedHeartIcon from '@assets/boardPage/UnselectedHeartIcon.svg';
+import { AiFillClockCircle } from 'react-icons/ai';
+import { LuHeart } from 'react-icons/lu';
 
 import styles from './styles';
 
@@ -32,21 +29,16 @@ const SortButton: React.FC<SortButtonProps> = ({ sortFunction }) => {
 
   return (
     <styles.Container>
-      <styles.Element isActive={isClockActive} onClick={handleClockClick}>
-        {isClockActive ? (
-          <styles.Icon src={SelectedClockIcon} alt="Clock Icon" />
-        ) : (
-          <styles.Icon src={UnselectedClockIcon} alt="Clock Icon" />
-        )}
+      <styles.Element $isActive={isClockActive} onClick={handleClockClick}>
+        <AiFillClockCircle
+          fill={isClockActive ? '#0075FF' : '#777777'}
+          size={24}
+        />
         <styles.Text>최신순</styles.Text>
       </styles.Element>
 
-      <styles.Element isActive={isHeartActive} onClick={handleHeartClick}>
-        {isHeartActive ? (
-          <styles.Icon src={SelectedHeartIcon} alt="Heart Icon" />
-        ) : (
-          <styles.Icon src={UnselectedHeartIcon} alt="Heart Icon" />
-        )}
+      <styles.Element $isActive={isHeartActive} onClick={handleHeartClick}>
+        <LuHeart color={isHeartActive ? '#0075FF' : '#777777'} size={24} />
         <styles.Text>좋아요순</styles.Text>
       </styles.Element>
     </styles.Container>

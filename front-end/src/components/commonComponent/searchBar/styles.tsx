@@ -12,6 +12,9 @@ const styles = {
     display: flex;
     flex-direction: row;
   `,
+  Option: styled.label`
+    margin-left: 12px;
+  `,
   SearchBarContainer: styled.div`
     display: flex;
     flex-direction: row;
@@ -19,8 +22,9 @@ const styles = {
     align-items: center;
     background-color: #dadada;
     padding: 0 10px 0 20px;
+    margin-left: 16px;
     border-radius: 50px;
-    width: 60%;
+    width: 50%;
   `,
   InputBar: styled.input`
     background-color: #dadada;

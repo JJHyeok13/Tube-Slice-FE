@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import {
-  getMyPageInfo,
-  getMyPageKeyword,
-  getMyPagePost,
-} from 'hooks/api/myPage';
+import { getMyPageInfo, getMyPageKeyword } from 'hooks/api/myPage';
+import { getMyFollower, getMyFollowing } from 'hooks/api/follow';
 
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
 import KeywordBox from '@components/myPageComponent/keywordBox/keywordBox';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
-import PostList from '@components/myPageComponent/postList/postList';
+import FollowList from '@components/followListPageComponent/followList/followList';
 
 import styles from './styles';
 
-const MyPage: React.FC = () => {
+const FollowListPage: React.FC = () => {
+  const { follow } = useParams<{ follow: string }>();
+
   const [profileData, setProfileData] = useState({});
   const [keywordsData, setKeywordsData] = useState([]);
-  const [postData, setPostData] = useState([]);
 
   useEffect(() => {
     getMyPageInfo().then((res) => setProfileData(res));
@@ -26,15 +25,15 @@ const MyPage: React.FC = () => {
     getMyPageKeyword().then((res) => setKeywordsData(res));
   }, [keywordsData]);
 
-  useEffect(() => {
-    getMyPagePost().then((res) => setPostData(res));
-  }, [postData]);
+  const [followData, setFollowData] = useState([]);
 
-  const options = [
-    { label: '제목', value: 'Title' },
-    { label: '내용', value: 'Content' },
-    { label: '제목+내용', value: 'TitleContent' },
-  ];
+  useEffect(() => {
+    if (follow === 'follower') {
+      getMyFollower().then((res) => setFollowData(res));
+    } else if (follow === 'following') {
+      getMyFollowing().then((res) => setFollowData(res));
+    }
+  }, [follow]);
 
   return (
     <styles.Container>
@@ -43,11 +42,11 @@ const MyPage: React.FC = () => {
         <KeywordBox keywordsData={keywordsData} />
       </styles.LeftContainer>
       <styles.RightContainer>
-        <SearchBar options={options} />
-        <PostList postData={postData} />
+        <SearchBar />
+        <FollowList followData={followData} />
       </styles.RightContainer>
     </styles.Container>
   );
 };
 
-export default MyPage;
+export default FollowListPage;

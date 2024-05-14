@@ -13,32 +13,32 @@ import {
 export const getMyFollowing = async () => {
   const res = await GetAxiosInstance<FollowResponse>(`/v1/users/me/following`);
 
-  return res.data;
+  return res.data.result.users;
 };
 
 // 나의 팔로워 목록 가져오기 /v1/users/me/follower
 export const getMyFollower = async () => {
   const res = await GetAxiosInstance<FollowResponse>(`/v1/users/me/follower`);
 
-  return res.data;
+  return res.data.result.users;
 };
 
 // 특정유저의 팔로잉 목록 가져오기 /v1/users/{userId}/following
-export const getOthersFollower = async (userId: string) => {
+export const getOthersFollower = async (userId: number) => {
   const res = await GetAxiosInstance<FollowResponse>(
     `/v1/users/${userId}/following`,
   );
 
-  return res.data;
+  return res.data.result.users;
 };
 
 // 특정유저의 팔로워 목록 가져오기 /v1/users/{userId}/follower
-export const getOthersFollowing = async (userId: string) => {
+export const getOthersFollowing = async (userId: number) => {
   const res = await GetAxiosInstance<FollowResponse>(
     `/v1/users/${userId}/follower`,
   );
 
-  return res.data;
+  return res.data.result.users;
 };
 
 // 팔로우하기 /v1/follows/users/{userId}

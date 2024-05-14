@@ -29,11 +29,12 @@ const styles = {
 
   Greeting: styled.div`
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
   `,
 
   Name: styled.span`
     color: #0075ff;
+    font-weight: 600;
   `,
 
   CloseButton: styled(RiArrowRightCircleFill)`

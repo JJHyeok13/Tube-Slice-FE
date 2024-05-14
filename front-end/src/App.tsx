@@ -22,6 +22,10 @@ import ConvertResultPage from '@pages/convertResultPage/convertResultPage';
 import MyPage from '@pages/myPage/myPage';
 import SummarizeResultPage from '@pages/summarizeResultPage/summarizeResultPage';
 import BoardDetailPage from '@pages/boardDetailPage/boardDetailPage';
+import FollowListPage from '@pages/myFollowListPage/followListPage';
+
+import OthersPage from '@pages/othersPage/myPage';
+import OthersFollowListPage from '@pages/othersFollowListPage/followListPage';
 
 function App() {
   const router = createBrowserRouter(
@@ -41,6 +45,10 @@ function App() {
           <Route path="/myscript" element={<MyScriptPage />} />
 
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/:follow" element={<FollowListPage />} />
+
+          <Route path="/user/:id" element={<OthersPage />} />
+          <Route path="/user/:id/:follow" element={<OthersFollowListPage />} />
 
           <Route path="/board/:type" element={<BoardPage />} />
           <Route path="/board/content/:id" element={<BoardDetailPage />} />

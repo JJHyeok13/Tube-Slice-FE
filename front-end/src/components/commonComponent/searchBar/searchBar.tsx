@@ -37,24 +37,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ options }) => {
 
   return (
     <styles.Container>
-      <styles.OptionContainer>
-        {options && options.length > 0 && (
-          <div>
-            {options.map((option) => (
-              <label key={option.value}>
-                <input
-                  type="radio"
-                  name="searchRadio"
-                  value={option.value}
-                  checked={selectedSearchType === option.value}
-                  onChange={handleChange}
-                />
-                {option.label}
-              </label>
-            ))}
-          </div>
-        )}
-      </styles.OptionContainer>
+      {options && options.length > 0 && (
+        <styles.OptionContainer>
+          {options.map((option) => (
+            <styles.Option key={option.value}>
+              <input
+                type="radio"
+                name="searchRadio"
+                value={option.value}
+                checked={selectedSearchType === option.value}
+                onChange={handleChange}
+              />
+              {option.label}
+            </styles.Option>
+          ))}
+        </styles.OptionContainer>
+      )}
 
       <styles.SearchBarContainer>
         <styles.InputBar

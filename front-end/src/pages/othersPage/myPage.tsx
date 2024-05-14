@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import {
-  getMyPageInfo,
-  getMyPageKeyword,
-  getMyPagePost,
+  getOthersPageInfo,
+  getOthersPageKeyword,
+  getOthersPagePost,
 } from 'hooks/api/myPage';
 
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
@@ -14,20 +15,25 @@ import PostList from '@components/myPageComponent/postList/postList';
 import styles from './styles';
 
 const MyPage: React.FC = () => {
+  const location = useLocation();
+
   const [profileData, setProfileData] = useState({});
   const [keywordsData, setKeywordsData] = useState([]);
   const [postData, setPostData] = useState([]);
 
   useEffect(() => {
-    getMyPageInfo().then((res) => setProfileData(res));
+    const userId = location.pathname.split('/')[2];
+    getOthersPageInfo(userId).then((res) => setProfileData(res));
   }, [profileData]);
 
   useEffect(() => {
-    getMyPageKeyword().then((res) => setKeywordsData(res));
+    const userId = location.pathname.split('/')[2];
+    getOthersPageKeyword(userId).then((res) => setKeywordsData(res));
   }, [keywordsData]);
 
   useEffect(() => {
-    getMyPagePost().then((res) => setPostData(res));
+    const userId = location.pathname.split('/')[2];
+    getOthersPagePost(userId).then((res) => setPostData(res));
   }, [postData]);
 
   const options = [

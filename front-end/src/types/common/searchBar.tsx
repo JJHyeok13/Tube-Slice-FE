@@ -1,9 +1,4 @@
-interface Option {
-  value: string;
-  label: string;
-}
-
 export interface SearchBarProps {
-  options?: Option[];
+  options?: { value: string; label: string }[];
   selectedOption?: string;
 }

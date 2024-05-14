@@ -9,7 +9,14 @@ const styles = {
     width: 100%;
     top: 0;
     z-index: 10;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+    //box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+
+    box-shadow:
+    //0 4px 4px rgba(205, 205, 205, 0.25),
+      0 8px 20px rgba(151, 151, 151, 0.2);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+
     background-color: #ffffff;
     transition: top 0.3s ease-in-out;
   `,
@@ -30,23 +37,25 @@ const styles = {
     margin-left: 30px;
   `,
   RightWrapper: styled.div`
-    width: 250px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: space-between;
     margin-right: 30px;
   `,
   Nickname: styled.div`
-    font-weight: 500;
+    font-weight: 400;
   `,
   Name: styled.span`
+    font-weight: 600;
     color: #0075ff;
   `,
   Button: styled.div`
     background-color: #0075ff;
     color: white;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     border-radius: 4px;
+    margin-left: 16px;
     padding: 4px 10px;
     cursor: pointer;
   `,

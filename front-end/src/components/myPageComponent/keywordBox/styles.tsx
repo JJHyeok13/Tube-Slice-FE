@@ -9,7 +9,9 @@ const styles = {
     padding: 30px 20px;
   `,
   Title: styled.div`
-    font-size: 16px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+    font-size: 18px;
     font-weight: 600;
     width: 100%;
     border-bottom: 1px solid black;
@@ -20,9 +22,10 @@ const styles = {
     margin-top: 12px;
   `,
   Keyword: styled.div`
+    padding-left: 8px;
     margin-bottom: 15px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
   `,
 };
 

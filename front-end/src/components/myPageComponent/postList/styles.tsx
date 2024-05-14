@@ -11,6 +11,13 @@ const styles = {
     display: flex;
     flex-direction: row;
     margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #e3e3e3;
+
+    &:last-child {
+      border: 0;
+      padding-bottom: 0;
+    }
   `,
   ThumbnailImage: styled.img`
     width: 290px;
@@ -20,6 +27,7 @@ const styles = {
     cursor: pointer;
   `,
   PostInfo: styled.div`
+    width: 75%;
     display: flex;
     flex-direction: column;
     padding: 12px 24px;
@@ -42,15 +50,23 @@ const styles = {
     background-color: #ffffff;
     color: #0075ff;
     border: 1px solid #0075ff;
-    padding: 6px 18px;
-    border-radius: 136px;
-    margin-right: 12px;
+    padding: 2px 12px;
+    border-radius: 16px;
+    margin-right: 10px;
   `,
   DateCommentLike: styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+  `,
+  LeftInfo: styled.div`
+    display: flex;
+    align-items: center;
+  `,
+  RightInfo: styled.div`
+    display: flex;
   `,
   DCLContainer: styled.div`
     display: flex;

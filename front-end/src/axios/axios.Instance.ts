@@ -5,23 +5,23 @@ const axiosInstance: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-// axiosInstance.interceptors.request.use(
-//   async (config) => {
-//     const accessToken = localStorage.getItem('accessToken');
+axiosInstance.interceptors.request.use(
+  async (config) => {
+    const accessToken = localStorage.getItem('accessToken');
 
-//     if (!accessToken) {
-//       // 토큰이 없을 경우 로그아웃 처리
-//       throw new Error('토큰 없음');
-//     }
+    if (!accessToken) {
+      // 토큰이 없을 경우 로그아웃 처리
+      throw new Error('토큰 없음');
+    }
 
-//     config.headers['Authorization'] = accessToken;
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
 
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   },
-// );
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
 // // 토큰 관련 에러 처리
 // axiosInstance.interceptors.response.use(
