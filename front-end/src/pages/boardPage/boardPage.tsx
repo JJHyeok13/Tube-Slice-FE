@@ -1,34 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import styles from './styles';
-
-import { dummyData } from './dummyData';
 import SortButton from '@components/boardPageComponent/sortButton/sortButton';
 import PostContainer from '@components/boardPageComponent/postContainer/postContainer';
 
-const BoardPage: React.FC = () => {
-  const [sortingCriterion, setSortingCriterion] = useState<
-    '최신순' | '좋아요순'
-  >('최신순');
-  const [sortedData, setSortedData] = useState(dummyData);
+import styles from './styles';
+import { getPostPopularData, getPostRecentData } from '@server/api/post/post';
+import { useParams } from 'react-router-dom';
 
-  const sortData = (criterion: '최신순' | '좋아요순') => {
-    if (criterion === '최신순') {
-      setSortedData(
-        [...dummyData].sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-        ),
-      );
-    } else if (criterion === '좋아요순') {
-      setSortedData([...dummyData].sort((a, b) => b.heartCount - a.heartCount));
+const BoardPage: React.FC = () => {
+  const { type } = useParams();
+  const [postListData, setPostListData] = useState([]);
+
+  useEffect(() => {
+    if (type === 'recent') {
+      getPostRecentData().then((res) => setPostListData(res));
+    } else if (type === 'popular') {
+      getPostPopularData().then((res) => setPostListData(res));
     }
-    setSortingCriterion(criterion);
-  };
+  }, [type]);
+
   return (
     <styles.Container>
-      <SortButton sortFunction={sortData} />
-      <PostContainer postData={sortedData} />
+      <SortButton />
+      <PostContainer postData={postListData} />
     </styles.Container>
   );
 };

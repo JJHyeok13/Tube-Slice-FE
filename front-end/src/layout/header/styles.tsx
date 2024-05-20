@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { RiMenuLine } from 'react-icons/ri';
+import { IoSettingsOutline } from 'react-icons/io5';
 
 const styles = {
   Container: styled.div`
@@ -57,6 +58,10 @@ const styles = {
     border-radius: 4px;
     margin-left: 16px;
     padding: 4px 10px;
+    cursor: pointer;
+  `,
+  SettingButton: styled(IoSettingsOutline)`
+    margin-left: 16px;
     cursor: pointer;
   `,
   OpenButton: styled(RiMenuLine)`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { ProfileProps } from 'types/myPage/myPage';
 
@@ -8,10 +8,16 @@ import styles from './styles';
 import BasicProfileImage from '@assets/common/BasicProfile.png';
 
 const ProfileBox: React.FC<ProfileProps> = ({ profileData }) => {
+  const location = useLocation();
+
+  const pathSegments = location.pathname.split('/');
+  const myPageIndex = pathSegments.indexOf('mypage');
+  const userId = pathSegments[myPageIndex + 1];
+
   const navigate = useNavigate();
 
   const handleClick = (location: string) => {
-    navigate(`/mypage/${location}`);
+    navigate(`/mypage/${userId}/${location}`);
   };
 
   return (

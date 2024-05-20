@@ -5,8 +5,14 @@ import { PostListProps } from 'types/myPage/myPage';
 
 import { LuHeart } from 'react-icons/lu';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
+import Pagination from '@components/commonComponent/pagination/pagination';
 
-const PostList: React.FC<PostListProps> = ({ postData }) => {
+const PostList: React.FC<PostListProps> = ({
+  postList,
+  page,
+  pageNumbers,
+  handlePageChange,
+}) => {
   const getThumbnailUrl = (url: string): string => {
     let videoId = '';
 
@@ -32,39 +38,46 @@ const PostList: React.FC<PostListProps> = ({ postData }) => {
   };
 
   return (
-    <styles.Container>
-      {postData && postData.length > 0 ? (
-        postData.map((post) => (
-          <styles.Mypost key={post.postId}>
-            <styles.PostInfo>
-              <styles.Title>{post.title}</styles.Title>
-              <styles.Content>{post.content}</styles.Content>
-              <styles.KeywordWrapper>
-                {post.keywords.map((keyword) => (
-                  <styles.Keyword key={keyword.keywordId}>
-                    {keyword.name}
-                  </styles.Keyword>
-                ))}
-              </styles.KeywordWrapper>
-              <styles.DateCommentLike>
-                <styles.LeftInfo>
-                  <LuHeart /> &nbsp; {post.likeNum} &nbsp; &nbsp;
-                  <IoChatbubbleEllipsesOutline /> &nbsp; {post.commentNum}
-                </styles.LeftInfo>
+    <>
+      <styles.Container>
+        {postList.postData && postList.postData.length > 0 ? (
+          postList.postData.map((post) => (
+            <styles.Mypost key={post.postId}>
+              <styles.PostInfo>
+                <styles.Title>{post.title}</styles.Title>
+                <styles.Content>{post.content}</styles.Content>
+                <styles.KeywordWrapper>
+                  {post.keywords.map((keyword) => (
+                    <styles.Keyword key={keyword.keywordId}>
+                      {keyword.name}
+                    </styles.Keyword>
+                  ))}
+                </styles.KeywordWrapper>
+                <styles.DateCommentLike>
+                  <styles.LeftInfo>
+                    <LuHeart /> &nbsp; {post.likeNum} &nbsp; &nbsp;
+                    <IoChatbubbleEllipsesOutline /> &nbsp; {post.commentNum}
+                  </styles.LeftInfo>
 
-                <styles.DCLContainer>{post.createdAt}</styles.DCLContainer>
-              </styles.DateCommentLike>
-            </styles.PostInfo>
-            <styles.ThumbnailImage
-              src={getThumbnailUrl(post.videoUrl)}
-              onClick={() => handleYoutubeLink(post.videoUrl)}
-            />
-          </styles.Mypost>
-        ))
-      ) : (
-        <styles.Mypost>작성한 게시글이 없습니다.</styles.Mypost>
-      )}
-    </styles.Container>
+                  <styles.DCLContainer>{post.createdAt}</styles.DCLContainer>
+                </styles.DateCommentLike>
+              </styles.PostInfo>
+              <styles.ThumbnailImage
+                src={getThumbnailUrl(post.videoUrl)}
+                onClick={() => handleYoutubeLink(post.videoUrl)}
+              />
+            </styles.Mypost>
+          ))
+        ) : (
+          <styles.Mypost>작성한 게시글이 없습니다.</styles.Mypost>
+        )}
+      </styles.Container>
+      <Pagination
+        page={page}
+        pageNumbers={pageNumbers}
+        handlePageChange={handlePageChange}
+      />
+    </>
   );
 };
 

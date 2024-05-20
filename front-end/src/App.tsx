@@ -13,8 +13,8 @@ import BasicLayout from '@layout/BasicLayout';
 import MainPage from '@pages/mainPage/mainPage';
 
 import KakaoLoginPage from '@pages/socialLoginPage/kakaoLoginPage';
-import ConvertPage from '@pages/convertPage/convertPage';
-import SummarizePage from '@pages/summarizePage/summarizePage';
+import NaverLoginPage from '@pages/socialLoginPage/naverLoginPage';
+
 import MyScriptPage from '@pages/myScriptPage/myScriptPage';
 import SettingPage from '@pages/settingPage/settingPage';
 import BoardPage from '@pages/boardPage/boardPage';
@@ -24,9 +24,6 @@ import SummarizeResultPage from '@pages/summarizeResultPage/summarizeResultPage'
 import BoardDetailPage from '@pages/boardDetailPage/boardDetailPage';
 import FollowListPage from '@pages/myFollowListPage/followListPage';
 
-import OthersPage from '@pages/othersPage/myPage';
-import OthersFollowListPage from '@pages/othersFollowListPage/followListPage';
-
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -35,20 +32,16 @@ function App() {
           <Route path="/" element={<MainPage />} />
 
           <Route path="/oauth2/kakao" element={<KakaoLoginPage />} />
+          <Route path="/oauth2/naver" element={<NaverLoginPage />} />
 
-          <Route path="/convert" element={<ConvertPage />} />
           <Route path="/convertresult" element={<ConvertResultPage />} />
 
-          <Route path="/summarize" element={<SummarizePage />} />
           <Route path="summarizeresult" element={<SummarizeResultPage />} />
 
           <Route path="/myscript" element={<MyScriptPage />} />
 
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/mypage/:follow" element={<FollowListPage />} />
-
-          <Route path="/user/:id" element={<OthersPage />} />
-          <Route path="/user/:id/:follow" element={<OthersFollowListPage />} />
+          <Route path="/mypage/:id" element={<MyPage />} />
+          <Route path="/mypage/:id/:follow" element={<FollowListPage />} />
 
           <Route path="/board/:type" element={<BoardPage />} />
           <Route path="/board/content/:id" element={<BoardDetailPage />} />

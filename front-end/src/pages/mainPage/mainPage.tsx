@@ -1,49 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import GuideComponent from '@components/mainPageComponent/Guide/Guide';
+import RecommendVideo from '@components/commonComponent/recommendVideo/recommendVideo';
 
 import styles from './styles';
-
-import Guide1Image from '@assets/mainPage/Guide1.svg';
-import Example1Image from '@assets/mainPage/example1.svg';
-import Example2Image from '@assets/mainPage/example2.svg';
-import Example3Image from '@assets/mainPage/example3.svg';
+import ProgressBar from '@components/mainPageComponent/progressBar/progressBar';
 
 const MainPage: React.FC = () => {
+  const [isProgressing, setIsProgressing] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('convert');
+
+  const handleStart = () => {
+    setIsProgressing(!isProgressing);
+  };
+
+  const handleOptionChange = (optionId: string) => {
+    setSelectedOption(optionId);
+  };
+
+  const options = [
+    {
+      id: 'convert',
+      value: '변환',
+      description: '스크립트를 생성할 영상 링크를 넣어주세요...',
+    },
+    {
+      id: 'summarize',
+      value: '요약',
+      description: '요약할 영상의 링크를 넣어주세요...',
+    },
+  ];
+
+  const selectedDescription =
+    options.find((option) => option.id === selectedOption)?.description || '';
+
   return (
     <styles.Container>
-      <styles.MainText>
-        <div>어서오세요</div>
-        <div>원하시는 영상을 </div>
-        <div>빠르고 정확하게 요약해드려요..🔥</div>
-      </styles.MainText>
+      <styles.OptionContainer>
+        {options.map((option) => (
+          <div key={option.id}>
+            <styles.Option
+              type="radio"
+              id={option.id}
+              name="option"
+              checked={selectedOption === option.id}
+              onChange={() => handleOptionChange(option.id)}
+            />
+            <styles.Label htmlFor={option.id}>
+              <span>{option.value}</span>
+            </styles.Label>
+          </div>
+        ))}
+      </styles.OptionContainer>
 
-      <styles.GuideContainer>
-        <GuideComponent
-          src={Guide1Image}
-          address="convert"
-          description="영상의 스크립트를 만들어봐요!"
-          hoverdDescription="스크립트 만들러 가기!!!"
-        />
-        <GuideComponent
-          src={Example2Image}
-          address="summarize"
-          description="영상을 세줄로 요약해봐요!"
-          hoverdDescription="세줄 요약 하러 가기!!!"
-        />
-        <GuideComponent
-          address="myscript"
-          src={Example3Image}
-          description="나만의 스크립트를 만들어봐요!"
-          hoverdDescription="저장한 스크립트 보러 가기!!!"
-        />
-        <GuideComponent
-          address="board/recent"
-          src={Example1Image}
-          description="나의 생각을 공유 해봐요!"
-          hoverdDescription="생각 공유하러 가기!!!"
-        />
-      </styles.GuideContainer>
+      <h2>{selectedDescription}</h2>
+
+      <styles.InputWrapper>
+        <styles.AddressInput type="url" placeholder="https://www.youtube.com" />
+        <styles.Button onClick={handleStart}>시작하기</styles.Button>
+      </styles.InputWrapper>
+
+      {isProgressing && <ProgressBar />}
+
+      <RecommendVideo />
     </styles.Container>
   );
 };

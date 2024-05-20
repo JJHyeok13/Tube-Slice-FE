@@ -33,33 +33,18 @@ const HamburgerMenu: React.FC<{
 
       <styles.ButtonContainer>
         <HamburgerMenuButton
-          buttonName="변환하기"
-          address="/convert"
-          closeHamburgerMenu={handleCloseHameburgerMenu}
-        />
-        <HamburgerMenuButton
-          buttonName="요약하기"
-          address="/summarize"
-          closeHamburgerMenu={handleCloseHameburgerMenu}
-        />
-        <HamburgerMenuButton
           buttonName="저장된 스크립트"
           address="/myscript"
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
           buttonName="마이 페이지"
-          address="/mypage"
+          address={`/mypage/${userinfo.userId}`}
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
         <HamburgerMenuButton
           buttonName="게시판"
           address="/board/recent"
-          closeHamburgerMenu={handleCloseHameburgerMenu}
-        />
-        <HamburgerMenuButton
-          buttonName="설정"
-          address="/setting/myrecord"
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
       </styles.ButtonContainer>

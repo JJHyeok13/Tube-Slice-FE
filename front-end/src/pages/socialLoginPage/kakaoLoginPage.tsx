@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getKakaoToken, socialLogin } from 'hooks/api/user';
+import { getKakaoToken, socialLogin } from '@server/api/oauth';
 import { useNavigate } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';

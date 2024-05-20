@@ -26,12 +26,15 @@ const styles = {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: 600;
     padding: 12px 12px;
   `,
   ProfileImage: styled.img`
     width: 30px;
     height: 30px;
     margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid #777777;
   `,
   Text: styled.div`
     display: flex;
@@ -45,6 +48,7 @@ const styles = {
   `,
   Content: styled.div`
     display: flex;
+    height: 100px;
     padding-bottom: 30px;
   `,
   PostInfo: styled.div`

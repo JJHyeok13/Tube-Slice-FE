@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import LikeBox from '@components/boardDetailPageComponent/likeBox/likeBox';
 import PostDataContainer from '@components/boardDetailPageComponent/postDataContainer/postDataContainer';
@@ -7,18 +7,47 @@ import CommentData from '@components/boardDetailPageComponent/commentDataContain
 
 import styles from './styles';
 
-import { postData, commentData } from './dummyData';
+import { useParams } from 'react-router-dom';
+import { getPostCommentData, getPostDetailData } from '@server/api/post/post';
+import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
 
 const BoardDetailPage: React.FC = () => {
+  const { id } = useParams();
+
+  const [postDetailData, setPostDetailData] = useState<PostDataProps>();
+  const [postCommentData, setPostCommentData] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (id) {
+      const parsedId = parseInt(id);
+      if (!isNaN(parsedId)) {
+        setIsLoading(true);
+        getPostDetailData(parsedId).then((res) => {
+          setPostDetailData(res);
+          setIsLoading(false);
+        });
+        getPostCommentData(parsedId).then((res) => setPostCommentData(res));
+
+        console.log(postDetailData);
+        console.log(postCommentData);
+      }
+    }
+  }, [id]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <styles.Container>
       <styles.LeftComponent>
         <LikeBox />
       </styles.LeftComponent>
       <styles.CenterComponent>
-        <PostDataContainer postData={postData} />
-        <CommentWrite postData={postData} />
-        <CommentData commentData={commentData} />
+        <PostDataContainer postData={postDetailData} />
+        <CommentWrite postData={postDetailData} />
+        <CommentData commentData={postCommentData} />
       </styles.CenterComponent>
       <styles.RightComponent></styles.RightComponent>
     </styles.Container>

@@ -7,30 +7,37 @@ import { CommentDataProps } from 'types/boardDetailPage/boardDetailPage';
 import BasicProfile from '@assets/common/BasicProfile.png';
 
 const CommentDataContainer: React.FC<CommentDataProps> = ({ commentData }) => {
+  // 댓글이 없는 경우에 사용할 메시지
+  const noCommentMessage = <div>댓글이 없습니다.</div>;
+
   return (
     <styles.Container>
-      {commentData.map((comment) => (
-        <styles.Comment>
-          <styles.UpperWrapper key={comment.commentId}>
-            <styles.WriterInfo>
-              <styles.ProfileImage
-                src={comment.profileUrl ? comment.profileUrl : BasicProfile}
-              />
-              <styles.NicknameTime>
-                <div>{comment.nickname}</div>
-                <div>{comment.createdAt}</div>
-              </styles.NicknameTime>
-            </styles.WriterInfo>
-            {comment.isMine && (
-              <styles.CommentOption>
-                <div>수정</div>
-                <div>삭제</div>
-              </styles.CommentOption>
-            )}
-          </styles.UpperWrapper>
-          <div>{comment.content}</div>
-        </styles.Comment>
-      ))}
+      {/* 댓글이 존재하는 경우 */}
+      {commentData.length > 0
+        ? commentData.map((comment) => (
+            <styles.Comment key={comment.commentId}>
+              <styles.UpperWrapper>
+                <styles.WriterInfo>
+                  <styles.ProfileImage
+                    src={comment.profileUrl ? comment.profileUrl : BasicProfile}
+                  />
+                  <styles.NicknameTime>
+                    <div>{comment.nickname}</div>
+                    <div>{comment.createdAt}</div>
+                  </styles.NicknameTime>
+                </styles.WriterInfo>
+                {comment.isMine && (
+                  <styles.CommentOption>
+                    <div>수정</div>
+                    <div>삭제</div>
+                  </styles.CommentOption>
+                )}
+              </styles.UpperWrapper>
+              <div>{comment.content}</div>
+            </styles.Comment>
+          ))
+        : // 댓글이 없는 경우 메시지 표시
+          noCommentMessage}
     </styles.Container>
   );
 };

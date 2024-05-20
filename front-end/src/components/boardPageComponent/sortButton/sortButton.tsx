@@ -6,25 +6,19 @@ import { LuHeart } from 'react-icons/lu';
 
 import styles from './styles';
 
-interface SortButtonProps {
-  sortFunction: (criterion: '최신순' | '좋아요순') => void;
-}
-
-const SortButton: React.FC<SortButtonProps> = ({ sortFunction }) => {
+const SortButton: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const isClockActive = location.pathname === '/board/recent';
-  const isHeartActive = location.pathname === '/board/like';
+  const isHeartActive = location.pathname === '/board/popular';
 
   const handleClockClick = () => {
-    sortFunction('최신순');
     navigate('/board/recent');
   };
 
   const handleHeartClick = () => {
-    sortFunction('좋아요순');
-    navigate('/board/like');
+    navigate('/board/popular');
   };
 
   return (

@@ -8,8 +8,8 @@ const CommentWrite: React.FC<PostDataProps> = ({ postData }) => {
   return (
     <styles.Container>
       <div>
-        <styles.CommentCount>{postData.commentNum}</styles.CommentCount>개의
-        댓글
+        <styles.CommentCount>{postData.post.commentNum}</styles.CommentCount>
+        개의 댓글
       </div>
       <styles.LowerWrapper>
         <styles.Textarea />

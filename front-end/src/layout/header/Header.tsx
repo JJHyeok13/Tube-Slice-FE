@@ -3,31 +3,33 @@ import React, { useState } from 'react';
 import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
 import LoginModalComponent from '@components/loginSignIn/loginSignUpModal/loginSignUpModal';
 
-import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
+// import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
 
 import styles from './styles';
 import { useRecoilValue } from 'recoil';
 import { userInfo, loggedInState } from 'recoil/recoil';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const isLoggedIn = useRecoilValue(loggedInState);
   const userinfo = useRecoilValue(userInfo);
+  const navigate = useNavigate();
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
-  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
+  //  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
-  const handleOpenHamburgerMenu = () => {
-    setHamburgerMenuOpen(true);
-  };
+  // const handleOpenHamburgerMenu = () => {
+  //   setHamburgerMenuOpen(true);
+  // };
 
-  const handleCloseHamburgerMenu = () => {
-    setHamburgerMenuOpen(false);
-  };
+  // const handleCloseHamburgerMenu = () => {
+  //   setHamburgerMenuOpen(false);
+  // };
 
   const handleSignIn = () => {
     setLoginModalOpen(true);
-    setHamburgerMenuOpen(false);
+    //setHamburgerMenuOpen(false);
   };
 
   const handleLogout = () => {
@@ -35,13 +37,18 @@ const Header: React.FC = () => {
     window.location.replace('/');
   };
 
+  const handleSetting = () => {
+    navigate('/setting/myrecord');
+  };
+
   return (
     <>
       <styles.Container>
         <styles.HeaderWrapper>
-          <styles.StyledLink to="/" onClick={handleCloseHamburgerMenu}>
-            Tube Slice
-          </styles.StyledLink>
+          <styles.StyledLink to="/">Tube Slice</styles.StyledLink>
+          <Link to="/myscript">저장된 스크립트</Link>
+          <Link to="/board/recent">게시판</Link>
+
           <styles.RightWrapper>
             {isLoggedIn ? (
               <>
@@ -53,7 +60,8 @@ const Header: React.FC = () => {
             ) : (
               <LoginSignUpButtonComponent onClick={handleSignIn} />
             )}
-            <styles.OpenButton size={24} onClick={handleOpenHamburgerMenu} />
+
+            <styles.SettingButton size={24} onClick={handleSetting} />
           </styles.RightWrapper>
         </styles.HeaderWrapper>
       </styles.Container>
@@ -64,12 +72,12 @@ const Header: React.FC = () => {
         </styles.ModalBackdrop>
       )}
 
-      {hamburgerMenuOpen && (
+      {/* {hamburgerMenuOpen && (
         <HamburgerMenu
           handleCloseHameburgerMenu={handleCloseHamburgerMenu}
           handleSignIn={handleSignIn}
         />
-      )}
+      )} */}
     </>
   );
 };

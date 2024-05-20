@@ -3,52 +3,59 @@ import styled from 'styled-components';
 const styles = {
   Container: styled.div`
     width: 90%;
-    margin: 120px auto 0;
+    margin: 140px auto 0;
     display: flex;
     flex-direction: column;
     padding-bottom: 70px;
   `,
-  MainText: styled.div`
+  OptionContainer: styled.div`
     display: flex;
-    flex-direction: column;
-    margin-bottom: 60px;
-    font-weight: 600;
+    flex-direction: row;
+  `,
+  Option: styled.input`
+    display: none;
+    &:checked + label {
+      background-color: #0075ff;
+      color: white;
+    }
+  `,
+  Label: styled.label`
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 16px;
+    border-radius: 16px;
+    border: 1px solid #0075ff;
+    color: #0075ff;
+    margin-right: 16px;
+  `,
+  InputWrapper: styled.div`
+    background-color: #efefef;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 24px;
+    margin-bottom: 16px;
+  `,
+  AddressInput: styled.input`
+    width: 85%;
+    border: 0;
+    outline: none;
+    background-color: #efefef;
     font-size: 20px;
+
+    &::placeholder {
+      color: #969696;
+    }
   `,
-  GuideContainer: styled.div`
-    padding-bottom: 70px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-
-    gap: 50px;
-
-    @media screen and (max-width: 1400px) and (min-width: 1281px) {
-      font-size: 14px;
-    }
-
-    @media screen and (max-width: 1280px) and (min-width: 1151px) {
-      font-size: 12px;
-    }
-
-    @media screen and (max-width: 1150px) and (min-width: 1025px) {
-      font-size: 10px;
-    }
-
-    @media screen and (max-width: 1024px) and (min-width: 501px) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      grid-column-gap: 50px;
-      grid-row-gap: 50px;
-      font-size: 14px;
-    }
-
-    @media screen and (max-width: 500px) {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-      grid-column-gap: 100px;
-      grid-row-gap: 50px;
-    }
+  Button: styled.div`
+    background-color: #ffffff;
+    color: #0075ff;
+    font-weight: 600;
+    padding: 8px 22px;
+    white-space: nowrap;
+    border-radius: 10px;
+    cursor: pointer;
   `,
 };
 

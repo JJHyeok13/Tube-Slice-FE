@@ -1,13 +1,20 @@
 import React from 'react';
-import styles from './styles';
-import { FollowListProps } from 'types/followListPage/followListPage';
 import { useNavigate } from 'react-router-dom';
+
+import { FollowListProps } from 'types/followListPage/followListPage';
+
+import BasicProfileImage from '@assets/common/BasicProfile.png';
+
+import styles from './styles';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '@recoil/recoil';
 
 const FollowList: React.FC<FollowListProps> = ({ followData }) => {
   const navigate = useNavigate();
+  const userinfo = useRecoilValue(userInfo);
 
   const handleClick = (userId: number) => {
-    navigate(`/user/${userId}`);
+    navigate(`/mypage/${userId}`);
   };
 
   return (
@@ -15,13 +22,23 @@ const FollowList: React.FC<FollowListProps> = ({ followData }) => {
       {followData && followData.length > 0 ? (
         followData.map((follow) => (
           <styles.Follow key={follow.userId}>
-            <div>
-              <img src={follow.profileUrl} alt={follow.nickname} />
-              <div onClick={() => handleClick(follow.userId)}>
-                {follow.nickname}
+            <styles.ProfileInfo>
+              <styles.ProfileImage
+                src={follow.profileUrl ? follow.profileUrl : BasicProfileImage}
+                alt={follow.nickname}
+              />
+              <div>
+                <styles.Nickname onClick={() => handleClick(follow.userId)}>
+                  {follow.nickname}
+                </styles.Nickname>
+                <styles.Introduction>{follow.introduction}</styles.Introduction>
               </div>
-              <div>{follow.introduction}</div>
-            </div>
+            </styles.ProfileInfo>
+            {userinfo.userId !== follow.userId && follow.isFollowing ? (
+              <styles.UnfollowButton>언팔로우</styles.UnfollowButton>
+            ) : userinfo.userId !== follow.userId && !follow.isFollowing ? (
+              <styles.FollowButton>팔로우</styles.FollowButton>
+            ) : null}
           </styles.Follow>
         ))
       ) : (

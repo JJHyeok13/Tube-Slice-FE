@@ -7,11 +7,11 @@ import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
 const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
   return (
     <styles.Container>
-      <styles.Title>{postData.title}</styles.Title>
+      <styles.Title>{postData.post.title}</styles.Title>
       <div>
         <styles.FirstWrapper>
           <styles.Nickname>
-            <div>{postData.nickname}</div>
+            <div>{postData.post.writer.nickname}</div>
             <div>팔로우 버튼</div>
           </styles.Nickname>
 
@@ -25,14 +25,14 @@ const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
 
         <styles.PostInfo>
           <styles.KeywordWrapper>
-            {postData.keywords.map((keyword, index) => (
-              <div key={index}>{keyword}</div>
+            {postData.post.keywords.map((keyword) => (
+              <div key={keyword.keywordId}>{keyword.name}</div>
             ))}
           </styles.KeywordWrapper>
-          <div>날짜</div>
+          <div>{postData.post.createdAt}</div>
         </styles.PostInfo>
       </div>
-      <div>{postData.content}</div>
+      <div>{postData.post.content}</div>
     </styles.Container>
   );
 };

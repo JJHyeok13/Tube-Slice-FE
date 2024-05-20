@@ -17,10 +17,10 @@ const RecommendVideo: React.FC = () => {
 
   return (
     <styles.Container>
-      <h2>
+      <styles.Header>
         <styles.Nickname>{userinfo.userName}</styles.Nickname>님을 위한
         추천영상이에요
-      </h2>
+      </styles.Header>
       <styles.VideoWrapper>
         {dummyData.map((data, index) => (
           <styles.Recommend key={index}>

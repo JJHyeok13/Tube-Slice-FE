@@ -1,14 +1,28 @@
 export interface PostDataProps {
   postData: {
-    title: string;
-    nickname: string;
-    content: string;
-    videoUrl: string;
-    keywords: string[];
-    commentNum: number;
     isMine: boolean;
     isLike: boolean;
-    isFollowing: boolean;
+    post: {
+      writer: {
+        userId: number;
+        nickname: string;
+        profileUrl: string;
+        isFollowing: boolean;
+      };
+      postId: number;
+      title: string;
+      content: string;
+      videoUrl: string;
+      keywords: [
+        {
+          keywordId: number;
+          name: string;
+        },
+      ];
+      likeNum: number;
+      commentNum: number;
+      createdAt: string;
+    };
   };
 }
 
