@@ -14,8 +14,8 @@ const ScriptContainer: React.FC<ConvertResultProps> = ({ resultData }) => {
         return (
           <div key={subtitle.subtitleId}>
             <styles.SubtitleWrapper>
-              <img src={PlayingIcon} />
-              <h2>{subtitle.subtitle}</h2>
+              <img src={PlayingIcon} /> &nbsp;
+              <h2> {subtitle.subtitle}</h2>
             </styles.SubtitleWrapper>
 
             <styles.ScriptWrapper>{script.script}</styles.ScriptWrapper>

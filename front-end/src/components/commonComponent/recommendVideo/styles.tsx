@@ -4,6 +4,7 @@ const styles = {
   Container: styled.div`
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
   `,
   VideoWrapper: styled.div`
     display: flex;

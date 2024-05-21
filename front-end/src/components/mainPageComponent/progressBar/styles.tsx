@@ -4,7 +4,6 @@ const styles = {
   Container: styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
   `,
   ProgressBar: styled.div`
     background-color: #efefef;

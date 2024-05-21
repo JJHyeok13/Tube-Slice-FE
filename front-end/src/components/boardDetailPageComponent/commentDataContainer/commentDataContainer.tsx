@@ -7,8 +7,7 @@ import { CommentDataProps } from 'types/boardDetailPage/boardDetailPage';
 import BasicProfile from '@assets/common/BasicProfile.png';
 
 const CommentDataContainer: React.FC<CommentDataProps> = ({ commentData }) => {
-  // 댓글이 없는 경우에 사용할 메시지
-  const noCommentMessage = <div>댓글이 없습니다.</div>;
+  const noCommentMessage = <div>해당 게시물의 댓글이 존재하지 않습니다.</div>;
 
   return (
     <styles.Container>
