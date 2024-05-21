@@ -5,21 +5,24 @@ import {
   PostListResponse,
 } from '@server/responseType/post/post';
 
-// 게시글 정보 가져오기 /v1/posts/${postId}
-export const getPostDetailData = async (postId: number) => {
+// 게시글 정보 가져오기 /v1/posts/{postId}
+export const getPostDetailData = async (
+  postId: number,
+): Promise<PostDataResponse> => {
   try {
     const res = await GetAxiosInstance<PostDataResponse>(`/v1/posts/${postId}`);
 
     return res.data.result;
   } catch (error) {
     console.log('게시글 가져오기 에러', error);
-
     throw error;
   }
 };
 
-// 게시글의 댓글 목록 가져오기 /v1/posts/${postId}/comments
-export const getPostCommentData = async (postId: number) => {
+// 게시글의 댓글 가져오기 /v1/posts/{postId}/comments
+export const getPostCommentData = async (
+  postId: number,
+): Promise<PostCommentResponse> => {
   try {
     const res = await GetAxiosInstance<PostCommentResponse>(
       `/v1/posts/${postId}/comments`,
@@ -28,7 +31,20 @@ export const getPostCommentData = async (postId: number) => {
     return res.data.result;
   } catch (error) {
     console.log('게시글의 댓글 가져오기 에러', error);
+    throw error;
+  }
+};
 
+// 검색기반 게시판페이지용 게시글 목록 가져오기 /v1/posts/search?type=”TYPE”&search=”검색어”
+export const getKeywordBasedPost = async (type: string, search: string) => {
+  try {
+    const res = await GetAxiosInstance<PostListResponse>(
+      `/v1/posts/search?type=${type}&search=${search}`,
+    );
+
+    return res.data.result;
+  } catch (error) {
+    console.log('검색기반 게시글 목록 가져오기 에러', error);
     throw error;
   }
 };
@@ -41,7 +57,6 @@ export const getPostRecentData = async () => {
     return res.data.result;
   } catch (error) {
     console.log('게시글 최신순 반환 에러', error);
-
     throw error;
   }
 };
@@ -54,7 +69,6 @@ export const getPostPopularData = async () => {
     return res.data.result;
   } catch (error) {
     console.log('게시글 좋아요순 반환 에러', error);
-
     throw error;
   }
 };

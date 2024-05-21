@@ -1,4 +1,4 @@
-import { DeleteAxiosInstance, PostAxiosInstance } from '@axios/axios.method';
+import { PostAxiosInstance, DeleteAxiosInstance } from '@axios/axios.method';
 
 import {
   FollowResponse,

@@ -23,6 +23,7 @@ import MyPage from '@pages/myPage/myPage';
 import SummarizeResultPage from '@pages/summarizeResultPage/summarizeResultPage';
 import BoardDetailPage from '@pages/boardDetailPage/boardDetailPage';
 import FollowListPage from '@pages/myFollowListPage/followListPage';
+import BoardWritePage from '@pages/boardWritePage/boardWritePage';
 
 function App() {
   const router = createBrowserRouter(
@@ -44,6 +45,7 @@ function App() {
           <Route path="/mypage/:id/:follow" element={<FollowListPage />} />
 
           <Route path="/board/:type" element={<BoardPage />} />
+          <Route path="/write" element={<BoardWritePage />} />
           <Route path="/board/content/:id" element={<BoardDetailPage />} />
 
           <Route path="/setting/:type" element={<SettingPage />} />

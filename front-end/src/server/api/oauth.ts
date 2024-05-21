@@ -25,6 +25,11 @@ export const getNaverToken = async (
 ) => {
   const res = await axios.post(
     `https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=${client_id}&client_secret=${cliend_secret}&code=${code}&state=${state}`,
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+      },
+    },
   );
 
   return res.data;
