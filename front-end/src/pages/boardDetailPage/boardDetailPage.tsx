@@ -9,13 +9,19 @@ import styles from './styles';
 
 import { useParams } from 'react-router-dom';
 import { getPostCommentData, getPostDetailData } from '@server/api/post/post';
-import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
+import {
+  CommentDataProps,
+  PostDataProps,
+} from 'types/boardDetailPage/boardDetailPage';
 
 const BoardDetailPage: React.FC = () => {
   const { id } = useParams();
 
-  const [postDetailData, setPostDetailData] = useState<PostDataProps>();
-  const [postCommentData, setPostCommentData] = useState([]);
+  const [postDetailData, setPostDetailData] =
+    useState<PostDataProps['postData']>();
+  const [postCommentData, setPostCommentData] = useState<
+    CommentDataProps['commentData']
+  >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -24,7 +30,7 @@ const BoardDetailPage: React.FC = () => {
       if (!isNaN(parsedId)) {
         setIsLoading(true);
         getPostDetailData(parsedId).then((res) => {
-          setPostDetailData(res);
+          setPostDetailData(res.post);
           setIsLoading(false);
         });
         getPostCommentData(parsedId).then((res) => setPostCommentData(res));

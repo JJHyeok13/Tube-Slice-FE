@@ -48,14 +48,14 @@ const KakaoLoginPage: React.FC = () => {
         setLoading(true);
         if (kakaoToken) {
           const res = await socialLogin(kakaoToken, 'kakao');
-          localStorage.setItem('accessToken', res.result.access_token);
+          localStorage.setItem('accessToken', res.access_token);
 
           setLoading(false);
           setIsLoggedIn(true);
           setUserInfo((prevUserInfo) => ({
             ...prevUserInfo,
-            userId: res.result.userId,
-            userName: res.result.name,
+            userId: res.userId,
+            userName: res.name,
           }));
           navigate('/');
         }

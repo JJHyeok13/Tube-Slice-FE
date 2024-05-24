@@ -1,6 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 import styles from './styles';
+import CreateTimeline from '../createTimeline/createTimeline';
 
 interface PostDataProps {
   title: string;
@@ -27,7 +28,8 @@ const InputContainer: React.FC<PostDataProps> = ({
   content,
   setContent,
 }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [timelineVisible, setTimelineVisible] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const handleTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -65,6 +67,14 @@ const InputContainer: React.FC<PostDataProps> = ({
     setIsModalVisible(false);
   };
 
+  const showTimelineModal = () => {
+    setTimelineVisible(true);
+  };
+
+  const hideTimelineModal = () => {
+    setTimelineVisible(false);
+  };
+
   return (
     <styles.Container>
       <styles.TitleInput
@@ -73,12 +83,22 @@ const InputContainer: React.FC<PostDataProps> = ({
         value={title}
         onChange={handleTitle}
       />
-      <styles.VideoUrlInput
-        type="url"
-        placeholder="유튜브 영상의 주소를 입력해주세요..."
-        value={videoUrl}
-        onChange={handleVideoUrl}
-      />
+      <styles.VideoInputContainer>
+        <styles.VideoUrlInput
+          type="url"
+          placeholder="유튜브 영상의 주소를 입력해주세요..."
+          value={videoUrl}
+          onChange={handleVideoUrl}
+        />
+        {videoUrl && (
+          <styles.TimelineCreateButton
+            onClick={showTimelineModal}
+            size={24}
+            fill="#0075ff"
+          />
+        )}
+      </styles.VideoInputContainer>
+
       <styles.KeywordContainer>
         <div>
           {keywords.map((keyword, index) => (
@@ -103,7 +123,6 @@ const InputContainer: React.FC<PostDataProps> = ({
           </styles.Modal>
         )}
       </styles.KeywordContainer>
-
       <styles.ContentInput
         placeholder="내용을 입력해주세요..."
         value={content}
@@ -113,6 +132,7 @@ const InputContainer: React.FC<PostDataProps> = ({
         <styles.CancelButton>취소</styles.CancelButton>
         <styles.PostButton>작성</styles.PostButton>
       </styles.ButtonContainer>
+      {timelineVisible && <CreateTimeline onClose={hideTimelineModal} />}
     </styles.Container>
   );
 };

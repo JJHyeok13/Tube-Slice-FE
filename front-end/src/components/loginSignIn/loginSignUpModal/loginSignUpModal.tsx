@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import styles from './styles';
 
-import ExitButton from '@assets/loginModal/ExitButton.svg';
 import KakaoLoginButton from '@assets/loginModal/KakaoLoginButton.svg';
 import NaverLoginButton from '@assets/loginModal/NaverLoginButton.svg';
 
@@ -38,7 +37,7 @@ const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
   return (
     <>
       <styles.Modal>
-        <styles.ExitButton src={ExitButton} alt="닫기" onClick={handleClose} />
+        <styles.ExitButton size={28} onClick={handleClose} />
 
         <styles.TubeSlice>Tube Slice</styles.TubeSlice>
         <styles.Description>한줄로 웹페이지 소개</styles.Description>

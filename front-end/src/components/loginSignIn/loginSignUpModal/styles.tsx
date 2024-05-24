@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { PiXBold } from 'react-icons/pi';
+
 const styles = {
   Modal: styled.div`
     position: fixed;
@@ -17,12 +19,11 @@ const styles = {
     background-color: #ffffff;
     z-index: 1000;
   `,
-  ExitButton: styled.img`
+  ExitButton: styled(PiXBold)`
     cursor: pointer;
     position: fixed;
     top: 0;
     right: 0;
-    padding: 5px;
   `,
   TubeSlice: styled.div`
     height: 15%;

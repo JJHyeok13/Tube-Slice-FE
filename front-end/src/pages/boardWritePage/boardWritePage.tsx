@@ -6,6 +6,7 @@ import styles from './styles';
 const BoardWritePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [videoUrl, setVideoUrl] = useState<string>('');
+  const [timelines, setTimelines] = useState({});
   const [keywordInput, setKeywordInput] = useState<string>('');
   const [keywords, setKeywords] = useState<string[]>([]);
   const [content, setContent] = useState<string>('');

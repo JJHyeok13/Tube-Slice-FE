@@ -20,12 +20,18 @@ const styles = {
     font-weight: 600;
   `,
   Introduction: styled.div``,
-  FollowFollowerContainer: styled.div`
+  FollowContainer: styled.div`
     display: flex;
     flex-direction: row;
     color: #848484;
     font-size: 12px;
     margin-top: 15px;
+  `,
+  FollowData: styled.div`
+    display: flex;
+    font-size: 14px;
+    margin-right: 20px;
+    cursor: pointer;
   `,
 };
 

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { FaCirclePlus } from 'react-icons/fa6';
+
 const styles = {
   Container: styled.div`
     display: flex;
@@ -12,12 +14,22 @@ const styles = {
     border: 0;
     margin-bottom: 20px;
   `,
+  VideoInputContainer: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `,
   VideoUrlInput: styled.input`
+    width: 95%;
     height: 50px;
     font-size: 24px;
     font-weight: 600;
     border: 0;
     margin-bottom: 20px;
+  `,
+  TimelineCreateButton: styled(FaCirclePlus)`
+    margin-bottom: 20px;
+    cursor: pointer;
   `,
   KeywordContainer: styled.div`
     display: flex;

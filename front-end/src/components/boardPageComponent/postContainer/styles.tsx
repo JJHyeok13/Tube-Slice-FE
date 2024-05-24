@@ -14,7 +14,6 @@ const styles = {
     border-radius: 4px;
     background-color: #efefef;
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
-    cursor: pointer;
 
     transition: transform 0.2s ease;
 
@@ -28,18 +27,19 @@ const styles = {
     align-items: center;
     font-weight: 600;
     padding: 12px 12px;
+    cursor: pointer;
   `,
   ProfileImage: styled.img`
     width: 30px;
     height: 30px;
     margin-right: 10px;
     border-radius: 50%;
-    border: 1px solid #777777;
   `,
   Text: styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
+    cursor: pointer;
   `,
   Title: styled.div`
     display: flex;

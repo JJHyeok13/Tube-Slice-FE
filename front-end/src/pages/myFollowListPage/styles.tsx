@@ -22,6 +22,11 @@ const styles = {
     align-items: flex-end;
     margin-left: 20%;
   `,
+  UpperContainer: styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  `,
 };
 
 export default styles;

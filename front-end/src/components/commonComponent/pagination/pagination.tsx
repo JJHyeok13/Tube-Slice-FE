@@ -5,7 +5,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 interface PaginationProps {
   page: number;
   pageNumbers: number[];
-  handlePageChange: React.Dispatch<React.SetStateAction<number>>;
+  handlePageChange: (newPage: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -19,11 +19,11 @@ const Pagination: React.FC<PaginationProps> = ({
       {pageNumbers.map((pageNumber) => (
         <span
           key={pageNumber}
-          onClick={handlePageChange(pageNumber)}
+          onClick={() => handlePageChange(pageNumber)}
           selected={pageNumber === page + 1}
           disabled={pageNumber === page}
         >
-          {pageNumber}
+          {pageNumber + 1}
         </span>
       ))}
       <FaChevronRight />

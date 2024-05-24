@@ -36,7 +36,10 @@ export const getPostCommentData = async (
 };
 
 // 검색기반 게시판페이지용 게시글 목록 가져오기 /v1/posts/search?type=”TYPE”&search=”검색어”
-export const getKeywordBasedPost = async (type: string, search: string) => {
+export const getKeywordBasedPost = async (
+  type: string,
+  search: string,
+): Promise<PostListResponse> => {
   try {
     const res = await GetAxiosInstance<PostListResponse>(
       `/v1/posts/search?type=${type}&search=${search}`,
@@ -50,7 +53,7 @@ export const getKeywordBasedPost = async (type: string, search: string) => {
 };
 
 // 게시판 페이지 최신순 게시글 반환 /v1/posts/recent
-export const getPostRecentData = async () => {
+export const getPostRecentData = async (): Promise<PostListResponse> => {
   try {
     const res = await GetAxiosInstance<PostListResponse>(`/v1/posts/recent`);
 
@@ -62,7 +65,7 @@ export const getPostRecentData = async () => {
 };
 
 // 게시판 페이지 좋아요순 게시글 반환 /v1/posts/popular
-export const getPostPopularData = async () => {
+export const getPostPopularData = async (): Promise<PostListResponse> => {
   try {
     const res = await GetAxiosInstance<PostListResponse>(`/v1/posts/popular`);
 

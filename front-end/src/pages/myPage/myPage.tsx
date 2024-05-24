@@ -12,9 +12,13 @@ import {
   getOthersPageInfo,
   getOthersPageKeyword,
   getOthersPagePost,
-} from '@server/api/user/mypage/myPage';
+} from '@server/api/user/myPage';
 
-import { PostDataProps, ProfileProps } from 'types/myPage/myPage';
+import {
+  ProfileProps,
+  KeywordsProps,
+  PostListProps,
+} from 'types/myPage/myPage';
 
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
 import KeywordBox from '@components/myPageComponent/keywordBox/keywordBox';
@@ -36,17 +40,27 @@ const MyPage: React.FC = () => {
     followerNum: 0,
   });
 
-  const [keywordsData, setKeywordsData] = useState([]);
-  const [postData, setPostData] = useState<PostDataProps[]>({
-    postId: 0,
-    title: '',
-    content: '',
-    videoUrl: '',
-    keywords: [{ keywordId: 0, name: '' }],
-    likeNum: 0,
-    commentNum: 0,
-    createdAt: '',
-  });
+  const [keywordsData, setKeywordsData] = useState<
+    KeywordsProps['keywordsData']
+  >([]);
+
+  const [postList, setPostList] = useState<PostListProps['posts']>([
+    {
+      postId: 0,
+      title: '',
+      content: '',
+      videoUrl: '',
+      keywords: [
+        {
+          keywordId: 0,
+          name: '',
+        },
+      ],
+      likeNum: 0,
+      commentNum: 0,
+      createdAt: '',
+    },
+  ]);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -56,33 +70,41 @@ const MyPage: React.FC = () => {
     setPage(newPage - 1);
   };
 
-  const pageNumbers = [];
+  // const pageNumbers = [];
 
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  // for (let i = 1; i <= totalPages; i++) {
+  //   pageNumbers.push(i);
+  // }
 
   useEffect(() => {
     if (id) {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
         if (id === userinfo.userId.toString()) {
+          console.log('프로필 데이터 받았음');
+          console.log(profileData);
+
           getMyPageInfo().then((res) => setProfileData(res));
         } else {
           getOthersPageInfo(parsedId).then((res) => setProfileData(res));
         }
       }
     }
-  }, [profileData]);
+  }, [profileData.userId]);
 
   useEffect(() => {
     if (id) {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
         if (id === userinfo.userId.toString()) {
-          getMyPageKeyword().then((res) => setKeywordsData(res));
+          console.log('키워드 데이터 받았음');
+          console.log(keywordsData);
+
+          getMyPageKeyword().then((res) => setKeywordsData(res.keywords));
         } else {
-          getOthersPageKeyword(parsedId).then((res) => setKeywordsData(res));
+          getOthersPageKeyword(parsedId).then((res) =>
+            setKeywordsData(res.keywords),
+          );
         }
       }
     }
@@ -93,18 +115,15 @@ const MyPage: React.FC = () => {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
         if (id === userinfo.userId.toString()) {
-          getMyPagePost(page, size).then((res) => {
-            setPostData(res);
-            setTotalPages(res.totalPage);
-          });
+          getMyPagePost(page, size).then((res) => setPostList(res.posts));
         } else {
-          getOthersPagePost(parseInt(id), page, size).then((res) =>
-            setPostData(res),
+          getOthersPagePost(parsedId, page, size).then((res) =>
+            setPostList(res.posts),
           );
         }
       }
     }
-  }, [page]);
+  }, [postList]);
 
   const options = [
     { label: '제목', value: 'Title' },
@@ -121,13 +140,16 @@ const MyPage: React.FC = () => {
       <styles.RightContainer>
         <SearchBar options={options} />
         <PostList
-          postList={{
-            postData: postData,
-            totalPage: totalPages,
-          }}
-          page={page}
-          pageNumbers={pageNumbers}
-          handlePageChange={handlePageChange}
+          posts={postList}
+          listSize={size}
+          totalPage={totalPages}
+          currentPage={page}
+          totalElement={10}
+          isFirst={true}
+          isLast={false}
+          // currentPage={page}
+          // totalPage={totalPages}
+          //handlePageChange={handlePageChange}
         />
       </styles.RightContainer>
     </styles.Container>

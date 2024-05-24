@@ -1,3 +1,4 @@
+// 유저 정보 조회
 export interface MyPageUserResponse {
   userId: number;
   nickname: string;
@@ -8,6 +9,7 @@ export interface MyPageUserResponse {
   isFollowing: boolean;
 }
 
+// 유저 키워드 목록 조회
 export interface MyPageKeywordResponse {
   keywords: {
     keywordId: number;
@@ -15,6 +17,7 @@ export interface MyPageKeywordResponse {
   }[];
 }
 
+// 유저 게시글 목록 조회
 export interface MyPagePostResponse {
   posts: {
     postId: number;
@@ -31,6 +34,7 @@ export interface MyPagePostResponse {
   }[];
   listSize: number;
   totalPage: number;
+  currentPage: number;
   totalElement: number;
   isFirst: boolean;
   isLast: boolean;

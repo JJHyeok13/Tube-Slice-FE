@@ -1,20 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PostDataProps } from 'types/boardPage/boardPage';
 
 import { LuHeart } from 'react-icons/lu';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
-
 import BasicProfileImage from '@assets/common/BasicProfile.png';
 
 import styles from './styles';
-import { useNavigate } from 'react-router-dom';
 
 const PostContainer: React.FC<PostDataProps> = ({ postData }) => {
   const navigate = useNavigate();
 
   const handleClick = (id: number) => {
     navigate(`/board/content/${id}`);
+  };
+
+  const handleProfileClick = (userId: number) => {
+    navigate(`/mypage/${userId}`);
   };
 
   const getThumbnailUrl = (url: string): string => {
@@ -41,7 +44,7 @@ const PostContainer: React.FC<PostDataProps> = ({ postData }) => {
     <styles.Container>
       {postData.map((post) => (
         <styles.Post key={post.postId}>
-          <styles.Writer>
+          <styles.Writer onClick={() => handleProfileClick(post.user.userId)}>
             <styles.ProfileImage
               src={
                 post.user.profileUrl ? post.user.profileUrl : BasicProfileImage
@@ -54,7 +57,11 @@ const PostContainer: React.FC<PostDataProps> = ({ postData }) => {
           )}
           <styles.Text onClick={() => handleClick(post.postId)}>
             <styles.Title>{post.title}</styles.Title>
-            <styles.Content>{post.content}</styles.Content>
+            <styles.Content>
+              {post.content.length > 125
+                ? post.content.substring(0, 125) + '...'
+                : post.content}
+            </styles.Content>
             <styles.PostInfo>
               <styles.LeftInfo>
                 <LuHeart /> &nbsp; {post.likeNum} &nbsp; &nbsp;

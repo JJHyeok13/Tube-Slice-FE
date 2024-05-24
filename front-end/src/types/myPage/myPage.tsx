@@ -25,15 +25,24 @@ export interface PostDataProps {
 }
 
 export interface PostListProps {
-  postList: {
-    postData: PostDataProps[];
-    listSize: number;
-    totalPage: number;
-    totalElement: number;
-    isFirst: boolean;
-    isLast: boolean;
-  };
-  page: number;
-  pageNumbers: number[];
-  handlePageChange: React.Dispatch<React.SetStateAction<number>>;
+  // posts: {
+  //   postId: number;
+  //   title: string;
+  //   content: string;
+  //   videoUrl: string;
+  //   keywords: {
+  //     keywordId: number;
+  //     name: string;
+  //   }[];
+  //   likeNum: number;
+  //   commentNum: number;
+  //   createdAt: string;
+  // }[];
+  posts: PostDataProps[];
+  listSize: number;
+  totalPage: number;
+  currentPage: number;
+  totalElement: number;
+  isFirst: boolean;
+  isLast: boolean;
 }

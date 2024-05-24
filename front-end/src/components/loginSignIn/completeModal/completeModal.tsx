@@ -5,15 +5,13 @@ import { completeModalState } from 'recoil/recoil';
 
 import styles from './styles';
 
-import ExitButton from '@assets/loginModal/ExitButton.svg';
-
 const CompleteModal: React.FC = () => {
   const isCompleteModalOpen = useRecoilValue(completeModalState);
 
   return (
     isCompleteModalOpen && (
       <styles.Modal>
-        <styles.ExitButton src={ExitButton} alt="닫기" />
+        <styles.ExitButton size={28} />
 
         <styles.UpperWrapper>
           <styles.TubeSlice>Tube Slice</styles.TubeSlice>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LoginResponse } from '@server/responseType/member';
+import { LoginApiResponse, LoginResponse } from '@server/responseType/member';
 
 export const getKakaoToken = async (
   client_id: string,
@@ -39,8 +39,8 @@ export const socialLogin = async (
   access_token: string,
   social_type: 'kakao' | 'naver',
 ): Promise<LoginResponse> => {
-  const res = await axios.post<LoginResponse>(
-    `https://www.tubeslice.site:8080/v1/oauth/login?access_token=${access_token}&social_type=${social_type}`,
+  const res = await axios.post<LoginApiResponse>(
+    `https://www.tubeslice.shop:8080/v1/oauth/login?access_token=${access_token}&social_type=${social_type}`,
   );
-  return res.data;
+  return res.data.result;
 };

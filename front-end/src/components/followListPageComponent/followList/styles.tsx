@@ -26,6 +26,7 @@ const styles = {
     align-items: center;
   `,
   Nickname: styled.div`
+    max-width: fit-content;
     font-weight: 600;
     cursor: pointer;
   `,

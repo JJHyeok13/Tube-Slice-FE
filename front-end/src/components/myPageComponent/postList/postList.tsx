@@ -5,29 +5,39 @@ import { PostListProps } from 'types/myPage/myPage';
 
 import { LuHeart } from 'react-icons/lu';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
-import Pagination from '@components/commonComponent/pagination/pagination';
+import { useNavigate } from 'react-router-dom';
+// import Pagination from '@components/commonComponent/pagination/pagination';
 
 const PostList: React.FC<PostListProps> = ({
-  postList,
-  page,
-  pageNumbers,
-  handlePageChange,
+  posts,
+  listSize,
+  totalPage,
+  currentPage,
+  totalElement,
+  isFirst,
+  isLast,
 }) => {
-  const getThumbnailUrl = (url: string): string => {
+  const navigate = useNavigate();
+
+  const handleClick = (postId: number) => {
+    navigate(`/board/content/${postId}`);
+  };
+
+  const getThumbnailUrl = (videoUrl: string): string => {
     let videoId = '';
 
     // 'https://youtu.be/'로 시작하는 경우
-    if (url.includes('https://youtu.be/')) {
+    if (videoUrl.includes('https://youtu.be/')) {
       const startIndex =
-        url.indexOf('https://youtu.be/') + 'https://youtu.be/'.length;
-      videoId = url.slice(startIndex, startIndex + 11);
+        videoUrl.indexOf('https://youtu.be/') + 'https://youtu.be/'.length;
+      videoId = videoUrl.slice(startIndex, startIndex + 11);
     }
     // 'https://www.youtube.com/watch?v='로 시작하는 경우
-    else if (url.includes('https://www.youtube.com/watch?v=')) {
+    else if (videoUrl.includes('https://www.youtube.com/watch?v=')) {
       const startIndex =
-        url.indexOf('https://www.youtube.com/watch?v=') +
+        videoUrl.indexOf('https://www.youtube.com/watch?v=') +
         'https://www.youtube.com/watch?v='.length;
-      videoId = url.slice(startIndex, startIndex + 11);
+      videoId = videoUrl.slice(startIndex, startIndex + 11);
     }
 
     return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
@@ -40,11 +50,13 @@ const PostList: React.FC<PostListProps> = ({
   return (
     <>
       <styles.Container>
-        {postList.postData && postList.postData.length > 0 ? (
-          postList.postData.map((post) => (
+        {posts && posts.length > 0 ? (
+          posts.map((post) => (
             <styles.Mypost key={post.postId}>
               <styles.PostInfo>
-                <styles.Title>{post.title}</styles.Title>
+                <styles.Title onClick={() => handleClick(post.postId)}>
+                  {post.title}
+                </styles.Title>
                 <styles.Content>{post.content}</styles.Content>
                 <styles.KeywordWrapper>
                   {post.keywords.map((keyword) => (
@@ -72,11 +84,11 @@ const PostList: React.FC<PostListProps> = ({
           <styles.Mypost>작성한 게시글이 없습니다.</styles.Mypost>
         )}
       </styles.Container>
-      <Pagination
+      {/* <Pagination
         page={page}
         pageNumbers={pageNumbers}
         handlePageChange={handlePageChange}
-      />
+      /> */}
     </>
   );
 };

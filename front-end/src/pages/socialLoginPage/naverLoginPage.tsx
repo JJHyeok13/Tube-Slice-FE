@@ -54,14 +54,14 @@ const NaverLoginPage: React.FC = () => {
         setLoading(true);
         if (naverToken) {
           const res = await socialLogin(naverToken, 'naver');
-          localStorage.setItem('accessToken', res.result.access_token);
+          localStorage.setItem('accessToken', res.access_token);
 
           setLoading(false);
           setIsLoggedIn(true);
           setUserInfo((prevUserInfo) => ({
             ...prevUserInfo,
-            userId: res.result.userId,
-            userName: res.result.name,
+            userId: res.userId,
+            userName: res.name,
           }));
           navigate('/');
         }

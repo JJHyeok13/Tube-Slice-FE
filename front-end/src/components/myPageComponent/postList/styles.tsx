@@ -37,6 +37,8 @@ const styles = {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 2px;
+    max-width: fit-content;
+    cursor: pointer;
   `,
   Content: styled.div`
     color: #5d5d5d;

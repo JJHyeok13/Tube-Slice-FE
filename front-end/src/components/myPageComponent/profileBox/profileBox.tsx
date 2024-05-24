@@ -38,16 +38,14 @@ const ProfileBox: React.FC<ProfileProps> = ({ profileData }) => {
             ? profileData.introduction
             : '자기소개를 작성해주세요'}
         </styles.Introduction>
-        <styles.FollowFollowerContainer>
-          <div>
-            <div onClick={() => handleClick('following')}>
-              팔로잉 {profileData.followingNum ? profileData.followingNum : 0}
-            </div>
-            <div onClick={() => handleClick('follower')}>
-              팔로워 {profileData.followerNum ? profileData.followerNum : 0}
-            </div>
-          </div>
-        </styles.FollowFollowerContainer>
+        <styles.FollowContainer>
+          <styles.FollowData onClick={() => handleClick('following')}>
+            팔로잉 {profileData.followingNum ? profileData.followingNum : 0}
+          </styles.FollowData>
+          <styles.FollowData onClick={() => handleClick('follower')}>
+            팔로워 {profileData.followerNum ? profileData.followerNum : 0}
+          </styles.FollowData>
+        </styles.FollowContainer>
       </div>
     </styles.Container>
   );
