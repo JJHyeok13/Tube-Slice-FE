@@ -10,8 +10,9 @@ export const getPostDetailData = async (
   postId: number,
 ): Promise<PostDataResponse> => {
   try {
-    const res = await GetAxiosInstance<PostDataResponse>(`/v1/posts/${postId}`);
-
+    const res = await GetAxiosInstance<{ result: PostDataResponse }>(
+      `/v1/posts/${postId}`,
+    );
     return res.data.result;
   } catch (error) {
     console.log('게시글 가져오기 에러', error);

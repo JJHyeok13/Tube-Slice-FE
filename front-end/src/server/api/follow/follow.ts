@@ -6,7 +6,7 @@ import {
 } from '@server/responseType/follow/follow';
 
 // 팔로우하기 /v1/follows/users/{userId}
-export const doFollow = async (userId: string): Promise<FollowResponse> => {
+export const doFollow = async (userId: number): Promise<FollowResponse> => {
   try {
     const res = await PostAxiosInstance<FollowResponse>(
       `/v1/follows/users/${userId}`,
@@ -20,7 +20,7 @@ export const doFollow = async (userId: string): Promise<FollowResponse> => {
 };
 
 // 팔로우 취소하기 /v1/follows/users/{userId}
-export const doUnfollow = async (userId: string): Promise<UnfollowResponse> => {
+export const doUnfollow = async (userId: number): Promise<UnfollowResponse> => {
   try {
     const res = await DeleteAxiosInstance<UnfollowResponse>(
       `/v1/follows/users/${userId}`,

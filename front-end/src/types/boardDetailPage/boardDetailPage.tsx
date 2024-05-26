@@ -13,12 +13,10 @@ export interface PostDataProps {
       title: string;
       content: string;
       videoUrl: string;
-      keywords: [
-        {
-          keywordId: number;
-          name: string;
-        },
-      ];
+      keywords: {
+        keywordId: number;
+        name: string;
+      }[];
       likeNum: number;
       commentNum: number;
       createdAt: string;
@@ -27,7 +25,7 @@ export interface PostDataProps {
 }
 
 export interface CommentDataProps {
-  commentData: {
+  comments: {
     commentId: number;
     userId: number;
     profileUrl: string;

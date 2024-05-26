@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
 import LoginModalComponent from '@components/loginSignIn/loginSignUpModal/loginSignUpModal';
 
-// import HamburgerMenu from '@layout/hamburgerMenu/HamburgerMenu';
-
 import styles from './styles';
 import { useRecoilValue } from 'recoil';
 import { userInfo, loggedInState } from 'recoil/recoil';
@@ -16,20 +14,12 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-
-  //  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
-
-  // const handleOpenHamburgerMenu = () => {
-  //   setHamburgerMenuOpen(true);
-  // };
-
-  // const handleCloseHamburgerMenu = () => {
-  //   setHamburgerMenuOpen(false);
-  // };
-
   const handleSignIn = () => {
     setLoginModalOpen(true);
-    //setHamburgerMenuOpen(false);
+  };
+
+  const handleMypage = () => {
+    navigate(`/mypage/${userinfo.userId}`);
   };
 
   const handleLogout = () => {
@@ -55,6 +45,7 @@ const Header: React.FC = () => {
                 <styles.Nickname>
                   <styles.Name>{userinfo.userName}</styles.Name>님 반가워요!
                 </styles.Nickname>
+                <styles.Button onClick={handleMypage}>마이페이지</styles.Button>
                 <styles.Button onClick={handleLogout}>로그아웃</styles.Button>
               </>
             ) : (

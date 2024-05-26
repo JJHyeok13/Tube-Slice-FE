@@ -6,14 +6,14 @@ import { CommentDataProps } from 'types/boardDetailPage/boardDetailPage';
 
 import BasicProfile from '@assets/common/BasicProfile.png';
 
-const CommentDataContainer: React.FC<CommentDataProps> = ({ commentData }) => {
+const CommentDataContainer: React.FC<CommentDataProps> = ({ comments }) => {
   const noCommentMessage = <div>해당 게시물의 댓글이 존재하지 않습니다.</div>;
 
   return (
     <styles.Container>
       {/* 댓글이 존재하는 경우 */}
-      {commentData.length > 0
-        ? commentData.map((comment) => (
+      {comments.length > 0
+        ? comments.map((comment) => (
             <styles.Comment key={comment.commentId}>
               <styles.UpperWrapper>
                 <styles.WriterInfo>

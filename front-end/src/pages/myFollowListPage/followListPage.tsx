@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '@recoil/recoil';
+
 import { KeywordsProps, ProfileProps } from 'types/myPage/myPage';
+
 import { FollowListProps } from 'types/followListPage/followListPage';
 
 import {
@@ -22,6 +24,7 @@ import {
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
 import KeywordBox from '@components/myPageComponent/keywordBox/keywordBox';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
+
 import FollowList from '@components/followListPageComponent/followList/followList';
 
 import styles from './styles';
@@ -76,7 +79,6 @@ const FollowListPage: React.FC = () => {
           getOthersPageKeyword(parseInt(id)).then((res) =>
             setKeywordsData(res.keywords),
           );
-          console.log(keywordsData);
         }
       }
     }
@@ -113,7 +115,7 @@ const FollowListPage: React.FC = () => {
         }
       }
     }
-  }, [follow]);
+  }, [follow, followData]);
 
   return (
     <styles.Container>

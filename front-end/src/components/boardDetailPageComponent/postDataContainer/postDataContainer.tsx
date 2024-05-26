@@ -1,10 +1,15 @@
 import React from 'react';
 
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '@recoil/recoil';
+
 import styles from './styles';
 
 import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
 
 const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
+  const userinfo = useRecoilValue(userInfo);
+
   return (
     <styles.Container>
       <styles.Title>{postData.post.title}</styles.Title>
@@ -12,7 +17,12 @@ const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
         <styles.FirstWrapper>
           <styles.Nickname>
             <div>{postData.post.writer.nickname}</div>
-            <div>팔로우 버튼</div>
+            {postData.post.writer.userId === userinfo.userId ? null : postData
+                .post.writer.isFollowing ? (
+              <styles.UnfollowButton>팔로잉</styles.UnfollowButton>
+            ) : (
+              <styles.FollowButton>팔로우</styles.FollowButton>
+            )}
           </styles.Nickname>
 
           {postData.isMine && (
@@ -26,7 +36,9 @@ const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
         <styles.PostInfo>
           <styles.KeywordWrapper>
             {postData.post.keywords.map((keyword) => (
-              <div key={keyword.keywordId}>{keyword.name}</div>
+              <styles.Keyword key={keyword.keywordId}>
+                {keyword.name}
+              </styles.Keyword>
             ))}
           </styles.KeywordWrapper>
           <div>{postData.post.createdAt}</div>

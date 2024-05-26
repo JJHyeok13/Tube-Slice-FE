@@ -45,6 +45,7 @@ const styles = {
     color: #ffffff;
     padding: 2px 12px;
     border-radius: 10px;
+    cursor: pointer;
   `,
   UnfollowButton: styled.div`
     display: flex;
@@ -53,6 +54,7 @@ const styles = {
     padding: 2px 12px;
     border: 1px solid #0075ff;
     border-radius: 10px;
+    cursor: pointer;
   `,
 };
 

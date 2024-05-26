@@ -1,11 +1,10 @@
 import React, { useRef, useState } from 'react';
 
 import YouTube from 'react-youtube';
+import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
+import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
 
-import { ResultDataProps } from 'types/convertResultPage/convertResultPage';
-import { SummarizeProps } from 'types/summarizeResultPage/summarizeResultPage';
-
-const YoutubeVideo: React.FC<ResultDataProps | SummarizeProps> = ({
+const YoutubeVideo: React.FC<ConvertResultProps | SummarizeResultProps> = ({
   resultData,
 }) => {
   const [currentTime, setCurrentTime] = useState<number>(0);

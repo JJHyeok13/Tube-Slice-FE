@@ -15,9 +15,26 @@ const styles = {
   `,
   Nickname: styled.div`
     display: flex;
+    align-items: center;
+  `,
+  FollowButton: styled.div`
+    display: flex;
+    background-color: #0075ff;
+    color: #ffffff;
+    padding: 2px 12px;
+    border-radius: 10px;
+  `,
+  UnfollowButton: styled.div`
+    display: flex;
+    background-color: #ffffff;
+    color: #0075ff;
+    padding: 2px 12px;
+    border: 1px solid #0075ff;
+    border-radius: 10px;
   `,
   PostOption: styled.div`
     display: flex;
+    color: #8a8b8e;
   `,
   PostInfo: styled.div`
     display: flex;
@@ -25,6 +42,14 @@ const styles = {
   `,
   KeywordWrapper: styled.div`
     display: flex;
+  `,
+  Keyword: styled.div`
+    background-color: #ffffff;
+    border: 1px solid #0075ff;
+    color: #0075ff;
+    padding: 6px 18px;
+    border-radius: 136px;
+    margin-right: 12px;
   `,
 };
 
