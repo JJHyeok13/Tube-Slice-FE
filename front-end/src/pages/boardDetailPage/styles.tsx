@@ -7,6 +7,7 @@ const styles = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 70px;
   `,
   SpinnerContainer: styled.div`
     width: 100%;

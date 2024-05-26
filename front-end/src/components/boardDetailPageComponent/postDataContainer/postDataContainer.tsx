@@ -6,34 +6,62 @@ import { userInfo } from '@recoil/recoil';
 import styles from './styles';
 
 import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
+import { doFollow, doUnfollow } from '@server/api/follow/follow';
+import { useNavigate } from 'react-router-dom';
 
 const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
   const userinfo = useRecoilValue(userInfo);
 
+  const navigate = useNavigate();
+
+  const handleProfileClick = (userId: number) => {
+    navigate(`/mypage/${userId}`);
+  };
+
+  const handleFollow = (userId: number) => {
+    doFollow(userId);
+  };
+
+  const handleUnFollow = (userId: number) => {
+    doUnfollow(userId);
+  };
+
   return (
     <styles.Container>
       <styles.Title>{postData.post.title}</styles.Title>
-      <div>
+      <styles.PostInfo>
         <styles.FirstWrapper>
-          <styles.Nickname>
-            <div>{postData.post.writer.nickname}</div>
+          <styles.WriterInfo>
+            <styles.Nickname
+              onClick={() => handleProfileClick(postData.post.writer.userId)}
+            >
+              {postData.post.writer.nickname}
+            </styles.Nickname>
             {postData.post.writer.userId === userinfo.userId ? null : postData
                 .post.writer.isFollowing ? (
-              <styles.UnfollowButton>팔로잉</styles.UnfollowButton>
+              <styles.UnfollowButton
+                onClick={() => handleUnFollow(postData.post.writer.userId)}
+              >
+                팔로잉
+              </styles.UnfollowButton>
             ) : (
-              <styles.FollowButton>팔로우</styles.FollowButton>
+              <styles.FollowButton
+                onClick={() => handleFollow(postData.post.writer.userId)}
+              >
+                팔로우
+              </styles.FollowButton>
             )}
-          </styles.Nickname>
+          </styles.WriterInfo>
 
           {postData.isMine && (
-            <styles.PostOption>
-              <div>수정</div>
-              <div>삭제</div>
-            </styles.PostOption>
+            <styles.OptionContainer>
+              <styles.Option>수정</styles.Option>
+              <styles.Option>삭제</styles.Option>
+            </styles.OptionContainer>
           )}
         </styles.FirstWrapper>
 
-        <styles.PostInfo>
+        <styles.SecondWrapper>
           <styles.KeywordWrapper>
             {postData.post.keywords.map((keyword) => (
               <styles.Keyword key={keyword.keywordId}>
@@ -42,9 +70,9 @@ const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
             ))}
           </styles.KeywordWrapper>
           <div>{postData.post.createdAt}</div>
-        </styles.PostInfo>
-      </div>
-      <div>{postData.post.content}</div>
+        </styles.SecondWrapper>
+      </styles.PostInfo>
+      <styles.Content>{postData.post.content}</styles.Content>
     </styles.Container>
   );
 };

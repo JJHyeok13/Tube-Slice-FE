@@ -26,10 +26,12 @@ import SearchBar from '@components/commonComponent/searchBar/searchBar';
 import PostList from '@components/myPageComponent/postList/postList';
 
 import styles from './styles';
+import { HashLoader } from 'react-spinners';
 
 const MyPage: React.FC = () => {
   const userinfo = useRecoilValue(userInfo);
   const { id } = useParams<{ id: string }>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [profileData, setProfileData] = useState<ProfileProps['profileData']>({
     userId: 0,
@@ -80,13 +82,20 @@ const MyPage: React.FC = () => {
     if (id) {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
-        if (id === userinfo.userId.toString()) {
-          console.log('프로필 데이터 받았음');
-          console.log(profileData);
+        setIsLoading(true);
 
-          getMyPageInfo().then((res) => setProfileData(res));
+        if (id === userinfo.userId.toString()) {
+          getMyPageInfo()
+            .then((res) => setProfileData(res))
+            .finally(() => {
+              setIsLoading(false);
+            });
         } else {
-          getOthersPageInfo(parsedId).then((res) => setProfileData(res));
+          getOthersPageInfo(parsedId)
+            .then((res) => setProfileData(res))
+            .finally(() => {
+              setIsLoading(false);
+            });
         }
       }
     }
@@ -96,15 +105,20 @@ const MyPage: React.FC = () => {
     if (id) {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
-        if (id === userinfo.userId.toString()) {
-          console.log('키워드 데이터 받았음');
-          console.log(keywordsData);
+        setIsLoading(true);
 
-          getMyPageKeyword().then((res) => setKeywordsData(res.keywords));
+        if (id === userinfo.userId.toString()) {
+          getMyPageKeyword()
+            .then((res) => setKeywordsData(res.keywords))
+            .finally(() => {
+              setIsLoading(false);
+            });
         } else {
-          getOthersPageKeyword(parsedId).then((res) =>
-            setKeywordsData(res.keywords),
-          );
+          getOthersPageKeyword(parsedId)
+            .then((res) => setKeywordsData(res.keywords))
+            .finally(() => {
+              setIsLoading(false);
+            });
         }
       }
     }
@@ -114,12 +128,20 @@ const MyPage: React.FC = () => {
     if (id) {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
+        setIsLoading(true);
+
         if (id === userinfo.userId.toString()) {
-          getMyPagePost(page, size).then((res) => setPostList(res.posts));
+          getMyPagePost(page, size)
+            .then((res) => setPostList(res.posts))
+            .finally(() => {
+              setIsLoading(false);
+            });
         } else {
-          getOthersPagePost(parsedId, page, size).then((res) =>
-            setPostList(res.posts),
-          );
+          getOthersPagePost(parsedId, page, size)
+            .then((res) => setPostList(res.posts))
+            .finally(() => {
+              setIsLoading(false);
+            });
         }
       }
     }
@@ -130,6 +152,14 @@ const MyPage: React.FC = () => {
     { label: '내용', value: 'Content' },
     { label: '제목+내용', value: 'TitleContent' },
   ];
+
+  // if (isLoading) {
+  //   return (
+  //     <styles.SpinnerContainer>
+  //       <HashLoader size={120} color="#0075ff" loading={isLoading} />
+  //     </styles.SpinnerContainer>
+  //   );
+  // }
 
   return (
     <styles.Container>

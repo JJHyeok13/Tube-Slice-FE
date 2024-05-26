@@ -1,15 +1,28 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
-
 import ViewCountIcon from '@assets/common/recommendVideoComponent/ViewCount.svg';
-
-import { dummyData } from './exampleData';
+import { videoUrls } from './exampleData';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '@recoil/recoil';
+import { fetchVideoInfo } from '@server/api/youtube'; // 경로 수정
+import { getThumbnailUrl } from '@utils/getThumbnail';
 
 const RecommendVideo: React.FC = () => {
   const userinfo = useRecoilValue(userInfo);
+  const [videoInfos, setVideoInfos] = useState<
+    { title: string; viewCount: string }[]
+  >([]);
+
+  useEffect(() => {
+    const fetchVideoInfos = async () => {
+      const newVideoInfos = await Promise.all(videoUrls.map(fetchVideoInfo));
+      setVideoInfos(newVideoInfos);
+    };
+
+    if (videoUrls.length > 0) {
+      fetchVideoInfos();
+    }
+  }, [videoUrls]);
 
   const handleClick = (address: string) => {
     window.open(`${address}`, '_blank');
@@ -22,18 +35,18 @@ const RecommendVideo: React.FC = () => {
         추천영상이에요
       </styles.Header>
       <styles.VideoWrapper>
-        {dummyData.map((data, index) => (
+        {videoInfos.map((videoInfo, index) => (
           <styles.Recommend key={index}>
             <styles.Thumbnail
-              src={data.thumbnail}
-              alt={data.title}
-              onClick={() => handleClick(data.address)}
+              src={getThumbnailUrl(videoUrls[index])}
+              alt={videoInfo.title} // videoInfo.title로 수정
+              onClick={() => handleClick(videoUrls[index])}
             />
             <styles.VideoInfo>
-              <div>{data.title}</div>
+              <div>{videoInfo.title}</div>
               <styles.ViewCountWrapper>
-                <img src={ViewCountIcon} />
-                <div>{data.viewCount}</div>
+                <img src={ViewCountIcon} alt="View Count Icon" />
+                <div>{videoInfo.viewCount}</div>
               </styles.ViewCountWrapper>
             </styles.VideoInfo>
           </styles.Recommend>
@@ -42,4 +55,5 @@ const RecommendVideo: React.FC = () => {
     </styles.Container>
   );
 };
+
 export default RecommendVideo;

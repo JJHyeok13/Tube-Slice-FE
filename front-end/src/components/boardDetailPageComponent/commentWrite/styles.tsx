@@ -4,6 +4,7 @@ const styles = {
   Container: styled.div`
     display: flex;
     flex-direction: column;
+    margin-bottom: 40px;
   `,
   CommentCount: styled.span`
     color: #0075ff;
@@ -21,6 +22,7 @@ const styles = {
     resize: none;
     box-sizing: border-box;
     padding: 10px;
+    margin-bottom: 16px;
   `,
   Button: styled.div`
     background-color: #0075ff;

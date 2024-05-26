@@ -26,12 +26,14 @@ export interface PostDataProps {
 
 export interface CommentDataProps {
   comments: {
+    user: {
+      userId: number;
+      nickname: string;
+      profileUrl: string;
+      isMine: boolean;
+    };
     commentId: number;
-    userId: number;
-    profileUrl: string;
-    nickname: string;
     content: string;
     createdAt: string;
-    isMine: boolean;
   }[];
 }

@@ -1,43 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './styles';
 
 import { CommentDataProps } from 'types/boardDetailPage/boardDetailPage';
 
 import BasicProfile from '@assets/common/BasicProfile.png';
+import { useNavigate } from 'react-router-dom';
+import DeleteModal from '../deleteModal/deleteModal';
 
 const CommentDataContainer: React.FC<CommentDataProps> = ({ comments }) => {
-  const noCommentMessage = <div>해당 게시물의 댓글이 존재하지 않습니다.</div>;
+  const [isDeleteMode, setIsDeleteMode] = useState<boolean>(false);
+  const [selectedCommentId, setSelectedCommentId] = useState<number>(0);
+
+  const navigate = useNavigate();
+
+  const handleNicknameClick = (userId: number) => {
+    navigate(`/mypage/${userId}`);
+  };
+
+  const handleDeleteComment = (commentId: number) => {
+    setSelectedCommentId(commentId);
+    setIsDeleteMode(true);
+  };
 
   return (
-    <styles.Container>
-      {/* 댓글이 존재하는 경우 */}
-      {comments.length > 0
-        ? comments.map((comment) => (
+    <>
+      <styles.Container>
+        {comments.length > 0 ? (
+          comments.map((comment) => (
             <styles.Comment key={comment.commentId}>
               <styles.UpperWrapper>
                 <styles.WriterInfo>
                   <styles.ProfileImage
-                    src={comment.profileUrl ? comment.profileUrl : BasicProfile}
+                    src={
+                      comment.user.profileUrl
+                        ? comment.user.profileUrl
+                        : BasicProfile
+                    }
                   />
                   <styles.NicknameTime>
-                    <div>{comment.nickname}</div>
-                    <div>{comment.createdAt}</div>
+                    <styles.Nickname
+                      onClick={() => handleNicknameClick(comment.user.userId)}
+                    >
+                      {comment.user.nickname}
+                    </styles.Nickname>
+
+                    <styles.CreatedAt>{comment.createdAt}</styles.CreatedAt>
                   </styles.NicknameTime>
                 </styles.WriterInfo>
-                {comment.isMine && (
-                  <styles.CommentOption>
-                    <div>수정</div>
-                    <div>삭제</div>
-                  </styles.CommentOption>
+                {comment.user.isMine && (
+                  <styles.OptionContainer>
+                    <styles.Option>수정</styles.Option>
+                    <styles.Option
+                      onClick={() => handleDeleteComment(comment.commentId)}
+                    >
+                      삭제
+                    </styles.Option>
+                  </styles.OptionContainer>
                 )}
               </styles.UpperWrapper>
               <div>{comment.content}</div>
             </styles.Comment>
           ))
-        : // 댓글이 없는 경우 메시지 표시
-          noCommentMessage}
-    </styles.Container>
+        ) : (
+          <div>해당 게시물의 댓글이 존재하지 않습니다.</div>
+        )}
+      </styles.Container>
+
+      {isDeleteMode && (
+        <DeleteModal
+          commentId={selectedCommentId}
+          setIsDeleteMode={setIsDeleteMode}
+        />
+      )}
+    </>
   );
 };
 

@@ -15,13 +15,38 @@ import {
   CommentDataProps,
   PostDataProps,
 } from 'types/boardDetailPage/boardDetailPage';
-import YoutubeVideo from '@components/commonComponent/youtubeVideo/youtubeVideo';
 
 const BoardDetailPage: React.FC = () => {
   const { id } = useParams();
 
-  const [postDetailData, setPostDetailData] =
-    useState<PostDataProps['postData']>();
+  const [postDetailData, setPostDetailData] = useState<
+    PostDataProps['postData']
+  >({
+    isMine: false,
+    isLike: false,
+    post: {
+      writer: {
+        userId: 0,
+        nickname: '',
+        profileUrl: '',
+        isFollowing: false,
+      },
+      postId: 0,
+      title: '',
+      content: '',
+      videoUrl: '',
+      keywords: [
+        {
+          keywordId: 0,
+          name: '',
+        },
+      ],
+      likeNum: 0,
+      commentNum: 0,
+      createdAt: '',
+    },
+  });
+
   const [postCommentData, setPostCommentData] = useState<
     CommentDataProps['comments']
   >([]);
@@ -52,7 +77,7 @@ const BoardDetailPage: React.FC = () => {
 
         getPostCommentData(parsedId)
           .then((res) => {
-            setPostCommentData(res);
+            setPostCommentData(res.comments);
           })
           .finally(() => {
             setIsLoading(false);
