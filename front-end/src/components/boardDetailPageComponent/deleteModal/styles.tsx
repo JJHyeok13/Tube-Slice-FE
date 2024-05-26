@@ -52,7 +52,7 @@ const styles = {
   DeleteButton: styled.div`
     display: flex;
     padding: 8px 16px;
-    background-color: #946233;
+    background-color: #0075ff;
     color: #ffffff;
     border-radius: 8px;
     margin: 0 4px;
