@@ -6,22 +6,22 @@ import { GoHeart } from 'react-icons/go';
 import { FaCopy } from 'react-icons/fa';
 
 import styles from './styles';
-import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
+import { PostDataProps } from 'types/postDetailPage/postDetailPage';
 import { useLocation } from 'react-router-dom';
 import { handleCopyClipBoard } from '@utils/copyLink';
-import { postLike, postUnlike } from '@server/api/postLike/postLike';
 
-const LikeBox: React.FC<PostDataProps> = ({ postData }) => {
+interface LikeBoxProps extends PostDataProps {
+  handleLike: (numberId: number) => void;
+  handleUnLike: (numberId: number) => void;
+}
+
+const LikeBox: React.FC<LikeBoxProps> = ({
+  postData,
+  handleLike,
+  handleUnLike,
+}) => {
   const baseUrl = 'http://localhost:5173';
   const location = useLocation();
-
-  const handleLike = (postId: number) => {
-    postLike(postId);
-  };
-
-  const handleUnLike = (postId: number) => {
-    postUnlike(postId);
-  };
 
   return (
     <styles.Container>

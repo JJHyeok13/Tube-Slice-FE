@@ -4,16 +4,10 @@ import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '@recoil/recoil';
 
-import { KeywordsProps, ProfileProps } from 'types/myPage/myPage';
-
+import { ProfileProps } from 'types/myPage/myPage';
 import { FollowListProps } from 'types/followListPage/followListPage';
 
-import {
-  getMyPageInfo,
-  getMyPageKeyword,
-  getOthersPageInfo,
-  getOthersPageKeyword,
-} from '@server/api/user/myPage';
+import { getMyPageInfo, getOthersPageInfo } from '@server/api/user/myPage';
 import {
   getMyFollower,
   getMyFollowing,
@@ -22,13 +16,11 @@ import {
 } from '@server/api/user/follow';
 
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
-import KeywordBox from '@components/myPageComponent/keywordBox/keywordBox';
+import NavBar from '@components/followListPageComponent/navBar/navBar';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
-
 import FollowList from '@components/followListPageComponent/followList/followList';
 
 import styles from './styles';
-import NavBar from '@components/followListPageComponent/navBar/navBar';
 
 const FollowListPage: React.FC = () => {
   const userinfo = useRecoilValue(userInfo);
@@ -60,29 +52,6 @@ const FollowListPage: React.FC = () => {
       }
     }
   }, [profileData]);
-
-  // 유저의 키워드 데이터 state
-  const [keywordsData, setKeywordsData] = useState<
-    KeywordsProps['keywordsData']
-  >([]);
-
-  // 현재 주소의 멤버 id 값과 Recoil에 저장된 본인의 id 값을 비교하여
-  // 같다면 나의 키워드 정보 조회 API 호출
-  // 다르다면 타인의 키워드 정보 조회 API 호출
-  useEffect(() => {
-    if (id) {
-      const parsedId = parseInt(id);
-      if (!isNaN(parsedId)) {
-        if (id === userinfo.userId.toString()) {
-          getMyPageKeyword().then((res) => setKeywordsData(res.keywords));
-        } else {
-          getOthersPageKeyword(parseInt(id)).then((res) =>
-            setKeywordsData(res.keywords),
-          );
-        }
-      }
-    }
-  }, [keywordsData]);
 
   // 유저의 팔로우 데이터 state
   const [followData, setFollowData] = useState<FollowListProps['followData']>(
@@ -121,7 +90,6 @@ const FollowListPage: React.FC = () => {
     <styles.Container>
       <styles.LeftContainer>
         <ProfileBox profileData={profileData} />
-        <KeywordBox keywordsData={keywordsData} />
       </styles.LeftContainer>
       <styles.RightContainer>
         <styles.UpperContainer>

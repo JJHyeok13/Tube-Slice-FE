@@ -6,9 +6,11 @@ import { useRecoilValue } from 'recoil';
 import { userInfo } from '@recoil/recoil';
 
 import {
+  getMyKeywordBasedPost,
   getMyPageInfo,
   getMyPageKeyword,
   getMyPagePost,
+  getOthersKeywordBasedPost,
   getOthersPageInfo,
   getOthersPageKeyword,
   getOthersPagePost,
@@ -145,13 +147,38 @@ const MyPage: React.FC = () => {
         }
       }
     }
-  }, [postList]);
+  }, [id]);
 
   const options = [
     { label: '제목', value: 'Title' },
     { label: '내용', value: 'Content' },
     { label: '제목+내용', value: 'TitleContent' },
   ];
+
+  const [keyword, setKeyword] = useState<string>('');
+
+  useEffect(() => {
+    if (id) {
+      const parsedId = parseInt(id);
+      if (!isNaN(parsedId)) {
+        setIsLoading(true);
+
+        if (id === userinfo.userId.toString()) {
+          getMyKeywordBasedPost(keyword, page, size)
+            .then((res) => setPostList(res.posts))
+            .finally(() => {
+              setIsLoading(false);
+            });
+        } else {
+          getOthersKeywordBasedPost(parsedId, keyword, page, size)
+            .then((res) => setPostList(res.posts))
+            .finally(() => {
+              setIsLoading(false);
+            });
+        }
+      }
+    }
+  }, [id, keyword]);
 
   // if (isLoading) {
   //   return (
@@ -165,7 +192,7 @@ const MyPage: React.FC = () => {
     <styles.Container>
       <styles.LeftContainer>
         <ProfileBox profileData={profileData} />
-        <KeywordBox keywordsData={keywordsData} />
+        <KeywordBox keywordsData={keywordsData} setKeyword={setKeyword} />
       </styles.LeftContainer>
       <styles.RightContainer>
         <SearchBar options={options} />

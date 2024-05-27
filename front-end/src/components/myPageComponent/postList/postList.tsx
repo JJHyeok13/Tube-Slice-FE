@@ -20,7 +20,7 @@ const PostList: React.FC<PostListProps> = ({
   const navigate = useNavigate();
 
   const handleClick = (postId: number) => {
-    navigate(`/board/content/${postId}`);
+    navigate(`/post/content/${postId}`);
   };
 
   const getThumbnailUrl = (videoUrl: string): string => {

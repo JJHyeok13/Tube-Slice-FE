@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './styles';
 
-import { CommentDataProps } from 'types/boardDetailPage/boardDetailPage';
+import { CommentDataProps } from 'types/postDetailPage/postDetailPage';
 
 import BasicProfile from '@assets/common/BasicProfile.png';
 import { useNavigate } from 'react-router-dom';

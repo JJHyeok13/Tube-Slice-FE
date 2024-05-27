@@ -17,13 +17,13 @@ import NaverLoginPage from '@pages/socialLoginPage/naverLoginPage';
 
 import MyScriptPage from '@pages/myScriptPage/myScriptPage';
 import SettingPage from '@pages/settingPage/settingPage';
-import BoardPage from '@pages/boardPage/boardPage';
+import PostPage from '@pages/postPage/postPage';
 import ConvertResultPage from '@pages/convertResultPage/convertResultPage';
 import MyPage from '@pages/myPage/myPage';
 import SummarizeResultPage from '@pages/summarizeResultPage/summarizeResultPage';
-import BoardDetailPage from '@pages/boardDetailPage/boardDetailPage';
+import PostDetailPage from '@pages/postDetailPage/postDetailPage';
 import FollowListPage from '@pages/myFollowListPage/followListPage';
-import BoardWritePage from '@pages/boardWritePage/boardWritePage';
+import PostWritePage from '@pages/postWritePage/postWritePage';
 
 function App() {
   const router = createBrowserRouter(
@@ -44,9 +44,9 @@ function App() {
           <Route path="/mypage/:id" element={<MyPage />} />
           <Route path="/mypage/:id/:follow" element={<FollowListPage />} />
 
-          <Route path="/board/:type" element={<BoardPage />} />
-          <Route path="/write" element={<BoardWritePage />} />
-          <Route path="/board/content/:id" element={<BoardDetailPage />} />
+          <Route path="/post/:type" element={<PostPage />} />
+          <Route path="/write" element={<PostWritePage />} />
+          <Route path="/post/content/:id" element={<PostDetailPage />} />
 
           <Route path="/setting/:type" element={<SettingPage />} />
         </Route>

@@ -2,14 +2,24 @@ import React from 'react';
 import styles from './styles';
 import { KeywordsProps } from 'types/myPage/myPage';
 
-const KeywordBox: React.FC<KeywordsProps> = ({ keywordsData }) => {
+interface KeywordBoxProps extends KeywordsProps {
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const KeywordBox: React.FC<KeywordBoxProps> = ({
+  keywordsData,
+  setKeyword,
+}) => {
   return (
     <styles.Container>
       <styles.Title>키워드 목록</styles.Title>
       <styles.KeywordContainer>
         {keywordsData && keywordsData.length > 0 ? (
           keywordsData.map((keyword) => (
-            <styles.Keyword key={keyword.keywordId}>
+            <styles.Keyword
+              key={keyword.keywordId}
+              onClick={() => setKeyword(keyword.name)}
+            >
               {keyword.name}
             </styles.Keyword>
           ))

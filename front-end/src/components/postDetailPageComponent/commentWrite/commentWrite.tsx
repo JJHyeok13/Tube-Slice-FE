@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './styles';
 
-import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
+import { PostDataProps } from 'types/postDetailPage/postDetailPage';
 import { writeComment } from '@server/api/comment/comment';
 import { WriteCommentRequest } from '@server/requestType/comment/comment';
 

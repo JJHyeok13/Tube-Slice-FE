@@ -3,20 +3,23 @@ import { useParams } from 'react-router-dom';
 
 import { HashLoader } from 'react-spinners';
 
-import LikeBox from '@components/boardDetailPageComponent/likeBox/likeBox';
-import PostDataContainer from '@components/boardDetailPageComponent/postDataContainer/postDataContainer';
-import CommentWrite from '@components/boardDetailPageComponent/commentWrite/commentWrite';
-import CommentData from '@components/boardDetailPageComponent/commentDataContainer/commentDataContainer';
+import LikeBox from '@components/postDetailPageComponent/likeBox/likeBox';
+import PostDataContainer from '@components/postDetailPageComponent/postDataContainer/postDataContainer';
+import CommentWrite from '@components/postDetailPageComponent/commentWrite/commentWrite';
+import CommentData from '@components/postDetailPageComponent/commentDataContainer/commentDataContainer';
 
 import styles from './styles';
 
 import { getPostCommentData, getPostDetailData } from '@server/api/post/post';
+
+import { postLike, postUnlike } from '@server/api/postLike/postLike';
+
 import {
   CommentDataProps,
   PostDataProps,
-} from 'types/boardDetailPage/boardDetailPage';
+} from 'types/postDetailPage/postDetailPage';
 
-const BoardDetailPage: React.FC = () => {
+const PostDetailPage: React.FC = () => {
   const { id } = useParams();
 
   const [postDetailData, setPostDetailData] = useState<
@@ -86,6 +89,32 @@ const BoardDetailPage: React.FC = () => {
     }
   }, [id]);
 
+  // 게시글 좋아요
+  const handleLike = (postId: number) => {
+    setPostDetailData((prevState) => ({
+      ...prevState,
+      isLike: true,
+      post: {
+        ...prevState.post,
+        likeNum: prevState.post.likeNum + 1,
+      },
+    }));
+    postLike(postId);
+  };
+  // 게시글 좋아요 취소
+  const handleUnLike = (postId: number) => {
+    setPostDetailData((prevState) => ({
+      ...prevState,
+      isLike: false,
+      post: {
+        ...prevState.post,
+        likeNum: prevState.post.likeNum - 1,
+      },
+    }));
+    postUnlike(postId);
+  };
+
+  // 데이터 로딩중
   if (isLoading) {
     return (
       <styles.SpinnerContainer>
@@ -97,7 +126,11 @@ const BoardDetailPage: React.FC = () => {
   return (
     <styles.Container>
       <styles.LeftComponent>
-        <LikeBox postData={postDetailData} />
+        <LikeBox
+          postData={postDetailData}
+          handleLike={handleLike}
+          handleUnLike={handleUnLike}
+        />
       </styles.LeftComponent>
       <styles.CenterComponent>
         <PostDataContainer postData={postDetailData} />
@@ -109,4 +142,4 @@ const BoardDetailPage: React.FC = () => {
   );
 };
 
-export default BoardDetailPage;
+export default PostDetailPage;

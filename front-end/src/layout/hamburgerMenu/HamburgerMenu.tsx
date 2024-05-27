@@ -44,7 +44,7 @@ const HamburgerMenu: React.FC<{
         />
         <HamburgerMenuButton
           buttonName="게시판"
-          address="/board/recent"
+          address="/post/recent"
           closeHamburgerMenu={handleCloseHameburgerMenu}
         />
       </styles.ButtonContainer>

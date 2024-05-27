@@ -1,4 +1,4 @@
-import ExampleImage from '@assets/boardPage/Example.svg';
+import ExampleImage from '@assets/postPage/Example.svg';
 import ProfileImage from '@assets/loginModal/BasicProfileImage.svg';
 
 export const dummyData = [

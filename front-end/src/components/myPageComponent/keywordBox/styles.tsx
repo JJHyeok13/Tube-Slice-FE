@@ -24,8 +24,10 @@ const styles = {
   Keyword: styled.div`
     padding-left: 8px;
     margin-bottom: 15px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
+    max-width: fit-content;
   `,
 };
 

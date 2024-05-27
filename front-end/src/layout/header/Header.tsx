@@ -37,7 +37,7 @@ const Header: React.FC = () => {
         <styles.HeaderWrapper>
           <styles.StyledLink to="/">Tube Slice</styles.StyledLink>
           <Link to="/myscript">저장된 스크립트</Link>
-          <Link to="/board/recent">게시판</Link>
+          <Link to="/post/recent">게시판</Link>
 
           <styles.RightWrapper>
             {isLoggedIn ? (

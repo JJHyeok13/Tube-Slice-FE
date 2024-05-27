@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PostDataProps } from 'types/boardPage/boardPage';
+import { PostDataProps } from 'types/postPage/postPage';
 
 import { LuHeart } from 'react-icons/lu';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
@@ -13,7 +13,7 @@ const PostContainer: React.FC<PostDataProps> = ({ postData }) => {
   const navigate = useNavigate();
 
   const handleClick = (id: number) => {
-    navigate(`/board/content/${id}`);
+    navigate(`/post/content/${id}`);
   };
 
   const handleProfileClick = (userId: number) => {

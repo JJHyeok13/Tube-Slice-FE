@@ -10,15 +10,15 @@ const SortButton: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isClockActive = location.pathname === '/board/recent';
-  const isHeartActive = location.pathname === '/board/popular';
+  const isClockActive = location.pathname === '/post/recent';
+  const isHeartActive = location.pathname === '/post/popular';
 
   const handleClockClick = () => {
-    navigate('/board/recent');
+    navigate('/post/recent');
   };
 
   const handleHeartClick = () => {
-    navigate('/board/popular');
+    navigate('/post/popular');
   };
 
   return (

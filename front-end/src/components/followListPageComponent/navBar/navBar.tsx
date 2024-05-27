@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styles from './styles';
 
 const NavBar: React.FC = () => {
-  const { id, type } = useParams();
+  const { id, type } = useParams<{ id: string; type: string }>();
   const navigate = useNavigate();
 
   const handleClick = (userId: string, type: string) => {

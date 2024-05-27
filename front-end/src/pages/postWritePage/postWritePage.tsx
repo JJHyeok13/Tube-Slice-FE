@@ -1,9 +1,9 @@
-import InputContainer from '@components/boardWritePageComponent/inputContainer/inputContainer';
+import InputContainer from '@components/postWritePageComponent/inputContainer/inputContainer';
 import React, { useState } from 'react';
 
 import styles from './styles';
 
-const BoardWritePage: React.FC = () => {
+const PostWritePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [videoUrl, setVideoUrl] = useState<string>('');
   const [timelines, setTimelines] = useState({});
@@ -29,4 +29,4 @@ const BoardWritePage: React.FC = () => {
   );
 };
 
-export default BoardWritePage;
+export default PostWritePage;

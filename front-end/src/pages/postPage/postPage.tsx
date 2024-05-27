@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getPostPopularData, getPostRecentData } from '@server/api/post/post';
-import { PostDataProps } from 'types/boardPage/boardPage';
+import { PostDataProps } from 'types/postPage/postPage';
 
-import SortButton from '@components/boardPageComponent/sortButton/sortButton';
-import PostContainer from '@components/boardPageComponent/postContainer/postContainer';
+import SortButton from '@components/postPageComponent/sortButton/sortButton';
+import PostContainer from '@components/postPageComponent/postContainer/postContainer';
 
 import styles from './styles';
 
-const BoardPage: React.FC = () => {
+const PostPage: React.FC = () => {
   const { type } = useParams();
   const [postListData, setPostListData] = useState<PostDataProps['postData']>(
     [],
@@ -31,4 +31,4 @@ const BoardPage: React.FC = () => {
   );
 };
 
-export default BoardPage;
+export default PostPage;

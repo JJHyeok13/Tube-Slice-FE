@@ -5,7 +5,7 @@ import { userInfo } from '@recoil/recoil';
 
 import styles from './styles';
 
-import { PostDataProps } from 'types/boardDetailPage/boardDetailPage';
+import { PostDataProps } from 'types/postDetailPage/postDetailPage';
 import { doFollow, doUnfollow } from '@server/api/follow/follow';
 import { useNavigate } from 'react-router-dom';
 
