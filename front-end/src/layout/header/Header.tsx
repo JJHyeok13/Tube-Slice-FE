@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useRecoilValue } from 'recoil';
+import { userInfo, loggedInState } from 'recoil/recoil';
 
 import LoginSignUpButtonComponent from '@components/commonComponent/loginSignUpButton/loginSignUpButton';
 import LoginModalComponent from '@components/loginSignIn/loginSignUpModal/loginSignUpModal';
+import OptionModal from '@layout/optionModal/optionModal';
 
 import styles from './styles';
-import { useRecoilValue } from 'recoil';
-import { userInfo, loggedInState } from 'recoil/recoil';
-import { Link, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const isLoggedIn = useRecoilValue(loggedInState);
   const userinfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
+  const outside = useRef<any>();
 
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState<boolean>(false);
+  const [optionModalOpen, setOptionModalOpen] = useState<boolean>(false);
+
   const handleSignIn = () => {
     setLoginModalOpen(true);
-  };
-
-  const handleMypage = () => {
-    navigate(`/mypage/${userinfo.userId}`);
   };
 
   const handleLogout = () => {
@@ -31,21 +32,46 @@ const Header: React.FC = () => {
     navigate('/setting/myrecord');
   };
 
-  return (
+  const handleOptionModalOpen = () => {
+    setOptionModalOpen(true);
+  };
+
+  const handleOptionModalClose = () => {
+    setOptionModalOpen(false);
+  };
+
+  const handlerOutsie = (e: any) => {
+    if (!outside.current.contains(e.target)) {
+      //현재 클릭한 곳이 메뉴 컴포넌트 안이 아니면 닫기
+      handleOptionModalClose();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handlerOutsie);
+    return () => {
+      document.removeEventListener('mousedown', handlerOutsie);
+    };
+  });
+
+  https: return (
     <>
       <styles.Container>
         <styles.HeaderWrapper>
           <styles.StyledLink to="/">Tube Slice</styles.StyledLink>
-          <Link to="/myscript">저장된 스크립트</Link>
-          <Link to="/post/recent">게시판</Link>
-
           <styles.RightWrapper>
             {isLoggedIn ? (
               <>
                 <styles.Nickname>
                   <styles.Name>{userinfo.userName}</styles.Name>님 반가워요!
                 </styles.Nickname>
-                <styles.Button onClick={handleMypage}>마이페이지</styles.Button>
+
+                {optionModalOpen ? (
+                  <styles.CloseOptionButton onClick={handleOptionModalClose} />
+                ) : (
+                  <styles.OpenOptionButton onClick={handleOptionModalOpen} />
+                )}
+
                 <styles.Button onClick={handleLogout}>로그아웃</styles.Button>
               </>
             ) : (
@@ -63,12 +89,11 @@ const Header: React.FC = () => {
         </styles.ModalBackdrop>
       )}
 
-      {/* {hamburgerMenuOpen && (
-        <HamburgerMenu
-          handleCloseHameburgerMenu={handleCloseHamburgerMenu}
-          handleSignIn={handleSignIn}
-        />
-      )} */}
+      {optionModalOpen && (
+        <div ref={outside}>
+          <OptionModal handleOptionModalClose={handleOptionModalClose} />
+        </div>
+      )}
     </>
   );
 };

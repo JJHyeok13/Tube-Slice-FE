@@ -8,7 +8,7 @@ const styles = {
     height: 506px;
     background-color: #efefef;
     border-radius: 15px;
-    padding: 15px 0 0 20px;
+    padding: 24px 32px;
   `,
 };
 

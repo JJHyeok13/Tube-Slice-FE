@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { RiMenuLine } from 'react-icons/ri';
 import { IoSettingsOutline } from 'react-icons/io5';
+import { BiSolidDownArrow } from 'react-icons/bi';
+import { MdCancel } from 'react-icons/md';
 
 const styles = {
   Container: styled.div`
@@ -50,6 +51,14 @@ const styles = {
     font-weight: 600;
     color: #0075ff;
   `,
+  OpenOptionButton: styled(BiSolidDownArrow)`
+    margin-left: 16px;
+    cursor: pointer;
+  `,
+  CloseOptionButton: styled(MdCancel)`
+    margin-left: 16px;
+    cursor: pointer;
+  `,
   Button: styled.div`
     background-color: #0075ff;
     color: white;
@@ -61,10 +70,6 @@ const styles = {
     cursor: pointer;
   `,
   SettingButton: styled(IoSettingsOutline)`
-    margin-left: 16px;
-    cursor: pointer;
-  `,
-  OpenButton: styled(RiMenuLine)`
     margin-left: 16px;
     cursor: pointer;
   `,

@@ -6,7 +6,7 @@ const styles = {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 154px;
+    width: 10%;
     height: 312px;
     background-color: #efefef;
     border-radius: 15px;
