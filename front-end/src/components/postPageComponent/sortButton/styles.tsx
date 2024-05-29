@@ -10,7 +10,6 @@ const styles = {
     flex-direction: row;
   `,
   Element: styled.div<ElementProps>`
-    margin-bottom: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;

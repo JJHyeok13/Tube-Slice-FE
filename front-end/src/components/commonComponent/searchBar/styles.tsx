@@ -18,13 +18,12 @@ const styles = {
   SearchBarContainer: styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     background-color: #dadada;
-    padding: 0 10px 0 20px;
+    padding: 0 10px 0 10px;
     margin-left: 16px;
     border-radius: 50px;
-    width: 50%;
+    width: 45%;
   `,
   InputBar: styled.input`
     background-color: #dadada;
@@ -41,9 +40,7 @@ const styles = {
       color: black;
     }
   `,
-  Image: styled.img`
-    cursor: pointer;
-  `,
+  Image: styled.img``,
 };
 
 export default styles;

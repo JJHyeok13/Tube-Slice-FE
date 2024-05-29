@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '@recoil/recoil';
@@ -10,10 +10,12 @@ import {
   getMyPageInfo,
   getMyPageKeyword,
   getMyPagePost,
+  getMySearchBasedPost,
   getOthersKeywordBasedPost,
   getOthersPageInfo,
   getOthersPageKeyword,
   getOthersPagePost,
+  getOthersSearchBasedPost,
 } from '@server/api/user/myPage';
 
 import {
@@ -31,6 +33,8 @@ import styles from './styles';
 import { HashLoader } from 'react-spinners';
 
 const MyPage: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const userinfo = useRecoilValue(userInfo);
   const { id } = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -127,33 +131,32 @@ const MyPage: React.FC = () => {
     }
   }, [id]);
 
-  useEffect(() => {
+  const fetchPostData = async () => {
     if (id) {
-      const parsedId = parseInt(id);
-      if (!isNaN(parsedId)) {
+      const parseId = parseInt(id);
+      if (!isNaN(parseId)) {
         setIsLoading(true);
 
         if (id === userinfo.userId.toString()) {
-          getMyPagePost(page, size)
-            .then((res) => setPostList(res.posts))
-            .finally(() => {
-              setIsLoading(false);
-            });
+          const res = await getMyPagePost(page, size);
+          setPostList(res.posts);
         } else {
-          getOthersPagePost(parsedId, page, size)
-            .then((res) => setPostList(res.posts))
-            .finally(() => {
-              setIsLoading(false);
-            });
+          const res = await getOthersPagePost(parseId, page, size);
+          setPostList(res.posts);
         }
+        setIsLoading(false);
       }
     }
+  };
+
+  useEffect(() => {
+    fetchPostData();
   }, [id]);
 
   const options = [
-    { label: '제목', value: 'Title' },
-    { label: '내용', value: 'Content' },
-    { label: '제목+내용', value: 'TitleContent' },
+    { label: '제목', value: 'TITLE' },
+    { label: '내용', value: 'CONTENT' },
+    { label: '제목+내용', value: 'TITLECONTENT' },
   ];
 
   // 키워드 기반 게시글 목록 가져오기
@@ -180,6 +183,47 @@ const MyPage: React.FC = () => {
     }
   };
 
+  const [selectedSearchType, setSelectedSearchType] = useState('TITLE');
+  const [searchWord, setSearchWord] = useState(
+    new URLSearchParams(location.search).get('search') || '',
+  );
+
+  useEffect(() => {
+    if (searchWord === '') {
+      fetchPostData();
+    } else {
+      if (id) {
+        const parsedId = parseInt(id);
+        if (!isNaN(parsedId)) {
+          if (id === userinfo.userId.toString()) {
+            getMySearchBasedPost(selectedSearchType, searchWord).then((res) =>
+              setPostList(res.posts),
+            );
+          } else {
+            getOthersSearchBasedPost(
+              parsedId,
+              selectedSearchType,
+              searchWord,
+            ).then((res) => setPostList(res.posts));
+          }
+        }
+      }
+    }
+  }, [searchWord]);
+
+  const handleSearch = (searchType: string, keyword: string) => {
+    setSelectedSearchType(searchType);
+    setSearchWord(keyword);
+
+    if (keyword === '') {
+      navigate(location.pathname);
+    } else {
+      const searchParams = new URLSearchParams();
+      searchParams.set('search', keyword);
+      navigate(`${location.pathname}?${searchParams.toString()}`);
+    }
+  };
+
   if (isLoading) {
     return (
       <styles.SpinnerContainer>
@@ -198,7 +242,7 @@ const MyPage: React.FC = () => {
         />
       </styles.LeftContainer>
       <styles.RightContainer>
-        <SearchBar options={options} />
+        <SearchBar options={options} onSearch={handleSearch} />
         <PostList
           posts={postList}
           listSize={size}

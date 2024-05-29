@@ -7,6 +7,12 @@ const styles = {
     display: flex;
     flex-direction: column;
   `,
+  UpperContainer: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  `,
 };
 
 export default styles;

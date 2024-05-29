@@ -69,6 +69,24 @@ export const getMyPageKeyword = async (): Promise<MyPageKeywordResponse> => {
   }
 };
 
+// 검색기반 마이페이지용 나의 게시글 목록 가져오기 /v1/users/me/mypage/search?type=${type}&search=${search}
+export const getMySearchBasedPost = async (
+  type: string,
+  search: string,
+): Promise<MyPagePostResponse> => {
+  try {
+    const res = await GetAxiosInstance<MyPagePostResponse>(
+      `/v1/users/me/mypage/search?type=${type}&search=${search}`,
+    );
+
+    return res.data.result;
+  } catch (error) {
+    console.log(error);
+    console.log('검색 기반 나의 게시글 목록 가져오기 에러', error);
+    throw error;
+  }
+};
+
 // 마이페이지용 특정유저정보 가져오기 /v1/users/{userId}/mypage
 export const getOthersPageInfo = async (
   userId: number,
@@ -133,6 +151,25 @@ export const getOthersPageKeyword = async (
     return res.data.result;
   } catch (error) {
     console.log('타인 키워드 목록 가져오기 에러', error);
+    throw error;
+  }
+};
+
+// 검색기반 마이페이지용 타인의 게시글 목록 가져오기 /v1/users/${userId}/mypage/search?type=${type}&search=${search}
+export const getOthersSearchBasedPost = async (
+  userId: number,
+  type: string,
+  search: string,
+): Promise<MyPagePostResponse> => {
+  try {
+    const res = await GetAxiosInstance<MyPagePostResponse>(
+      `/v1/users/${userId}/mypage/search?type=${type}&search=${search}`,
+    );
+
+    return res.data.result;
+  } catch (error) {
+    console.log(error);
+    console.log('검색 기반 타인의 게시글 목록 가져오기 에러', error);
     throw error;
   }
 };
