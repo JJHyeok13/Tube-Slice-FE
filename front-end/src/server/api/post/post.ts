@@ -1,9 +1,25 @@
-import { GetAxiosInstance } from '@axios/axios.method';
+import { DeleteAxiosInstance, GetAxiosInstance } from '@axios/axios.method';
 import {
+  DeletePostResponse,
   PostCommentResponse,
   PostDataResponse,
   PostListResponse,
 } from '@server/responseType/post/post';
+
+// 게시글 삭제하기 /v1/posts/{postId}
+export const deletePost = async (
+  postId: number,
+): Promise<DeletePostResponse> => {
+  try {
+    const res = await DeleteAxiosInstance<DeletePostResponse>(
+      `/v1/posts/${postId}`,
+    );
+    return res.data.result;
+  } catch (error) {
+    console.log('게시글 삭제하기 에러', error);
+    throw error;
+  }
+};
 
 // 게시글 정보 가져오기 /v1/posts/{postId}
 export const getPostDetailData = async (

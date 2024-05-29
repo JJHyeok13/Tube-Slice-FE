@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from './styles';
 
 import { PostDataProps } from 'types/postDetailPage/postDetailPage';
-import { writeComment } from '@server/api/comment/comment';
-import { WriteCommentRequest } from '@server/requestType/comment/comment';
 
-const CommentWrite: React.FC<PostDataProps> = ({ postData }) => {
-  const [content, setContent] = useState<string>('');
+interface CommentWriteProps extends PostDataProps {
+  commentContent: string;
+  setCommentContent: React.Dispatch<React.SetStateAction<string>>;
+  handleWriteComment: (postId: number) => void;
+}
 
-  const handleWriteComment = async (postId: number) => {
-    try {
-      const requestData: WriteCommentRequest = {
-        content: content,
-      };
-      await writeComment(postId, requestData);
-      setContent('');
-    } catch (error) {
-      console.error('댓글 작성 에러', error);
-    }
-  };
-
+const CommentWrite: React.FC<CommentWriteProps> = ({
+  postData,
+  commentContent,
+  setCommentContent,
+  handleWriteComment,
+}) => {
   return (
     <styles.Container>
       <div>
@@ -29,8 +24,8 @@ const CommentWrite: React.FC<PostDataProps> = ({ postData }) => {
       </div>
       <styles.LowerWrapper>
         <styles.Textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={commentContent}
+          onChange={(e) => setCommentContent(e.target.value)}
         />
         <styles.Button onClick={() => handleWriteComment(postData.post.postId)}>
           댓글 작성

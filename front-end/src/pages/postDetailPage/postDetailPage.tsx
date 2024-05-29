@@ -11,16 +11,20 @@ import CommentData from '@components/postDetailPageComponent/commentDataContaine
 import styles from './styles';
 
 import { getPostCommentData, getPostDetailData } from '@server/api/post/post';
-
 import { postLike, postUnlike } from '@server/api/postLike/postLike';
+import { writeComment } from '@server/api/comment/comment';
 
 import {
   CommentDataProps,
   PostDataProps,
 } from 'types/postDetailPage/postDetailPage';
+import { WriteCommentRequest } from '@server/requestType/comment/comment';
+import YoutubeVideo from '@components/postDetailPageComponent/youtubeVideo/youtubeVideo';
+import TimelineContainer from '@components/postDetailPageComponent/timelineContainer/timelineContainer';
 
 const PostDetailPage: React.FC = () => {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [postDetailData, setPostDetailData] = useState<
     PostDataProps['postData']
@@ -50,11 +54,6 @@ const PostDetailPage: React.FC = () => {
     },
   });
 
-  const [postCommentData, setPostCommentData] = useState<
-    CommentDataProps['comments']
-  >([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
   useEffect(() => {
     if (id) {
       const parsedId = parseInt(id);
@@ -64,23 +63,6 @@ const PostDetailPage: React.FC = () => {
         getPostDetailData(parsedId)
           .then((res) => {
             setPostDetailData(res);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (id) {
-      const parsedId = parseInt(id);
-      if (!isNaN(parsedId)) {
-        setIsLoading(true);
-
-        getPostCommentData(parsedId)
-          .then((res) => {
-            setPostCommentData(res.comments);
           })
           .finally(() => {
             setIsLoading(false);
@@ -101,6 +83,7 @@ const PostDetailPage: React.FC = () => {
     }));
     postLike(postId);
   };
+
   // 게시글 좋아요 취소
   const handleUnLike = (postId: number) => {
     setPostDetailData((prevState) => ({
@@ -114,6 +97,43 @@ const PostDetailPage: React.FC = () => {
     postUnlike(postId);
   };
 
+  const [postCommentData, setPostCommentData] = useState<
+    CommentDataProps['comments']
+  >([]);
+
+  useEffect(() => {
+    if (id) {
+      const parsedId = parseInt(id);
+      if (!isNaN(parsedId)) {
+        setIsLoading(true);
+
+        getPostCommentData(parsedId)
+          .then((res) => {
+            setPostCommentData(res.comments);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
+    }
+  }, [id]);
+
+  // 댓글 input state
+  const [commentContent, setCommentContent] = useState<string>('');
+
+  // 댓글 작성 API
+  const handleWriteComment = async (postId: number) => {
+    try {
+      const requestData: WriteCommentRequest = {
+        content: commentContent,
+      };
+      await writeComment(postId, requestData);
+      setCommentContent('');
+    } catch (error) {
+      console.error('댓글 작성 에러', error);
+    }
+  };
+
   // 데이터 로딩중
   if (isLoading) {
     return (
@@ -124,21 +144,31 @@ const PostDetailPage: React.FC = () => {
   }
 
   return (
-    <styles.Container>
-      <styles.LeftComponent>
-        <LikeBox
-          postData={postDetailData}
-          handleLike={handleLike}
-          handleUnLike={handleUnLike}
-        />
-      </styles.LeftComponent>
-      <styles.CenterComponent>
-        <PostDataContainer postData={postDetailData} />
-        <CommentWrite postData={postDetailData} />
-        <CommentData comments={postCommentData} />
-      </styles.CenterComponent>
-      <styles.RightComponent></styles.RightComponent>
-    </styles.Container>
+    <>
+      <styles.Container>
+        <styles.LeftComponent>
+          <LikeBox
+            postData={postDetailData}
+            handleLike={handleLike}
+            handleUnLike={handleUnLike}
+          />
+        </styles.LeftComponent>
+        <styles.CenterComponent>
+          <PostDataContainer postData={postDetailData} />
+          <CommentWrite
+            postData={postDetailData}
+            commentContent={commentContent}
+            setCommentContent={setCommentContent}
+            handleWriteComment={handleWriteComment}
+          />
+          <CommentData comments={postCommentData} />
+        </styles.CenterComponent>
+        <styles.RightComponent>
+          <YoutubeVideo postData={postDetailData} />
+          <TimelineContainer />
+        </styles.RightComponent>
+      </styles.Container>
+    </>
   );
 };
 

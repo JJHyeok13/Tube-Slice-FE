@@ -15,6 +15,10 @@ const styles = {
     border-radius: 100%;
     margin-bottom: 30px;
   `,
+  NicknameFollowContainer: styled.div`
+    display: flex;
+    justify-content: space-between;
+  `,
   Nickname: styled.div`
     font-size: 16px;
     font-weight: 600;
@@ -31,6 +35,23 @@ const styles = {
     display: flex;
     font-size: 14px;
     margin-right: 20px;
+    cursor: pointer;
+  `,
+  FollowButton: styled.div`
+    display: flex;
+    background-color: #0075ff;
+    color: #ffffff;
+    padding: 2px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+  `,
+  UnfollowButton: styled.div`
+    display: flex;
+    background-color: #ffffff;
+    color: #0075ff;
+    padding: 2px 12px;
+    border: 1px solid #0075ff;
+    border-radius: 10px;
     cursor: pointer;
   `,
 };

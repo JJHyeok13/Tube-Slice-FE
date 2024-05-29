@@ -23,7 +23,7 @@ const styles = {
     width: 60%;
   `,
   RightComponent: styled.div`
-    width: 30%;
+    width: 25%;
   `,
 };
 

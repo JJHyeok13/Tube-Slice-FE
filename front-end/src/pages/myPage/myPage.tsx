@@ -42,6 +42,7 @@ const MyPage: React.FC = () => {
     introduction: '',
     followingNum: 0,
     followerNum: 0,
+    isFollowing: false,
   });
 
   const [keywordsData, setKeywordsData] = useState<
@@ -101,7 +102,7 @@ const MyPage: React.FC = () => {
         }
       }
     }
-  }, [profileData.userId]);
+  }, [id]);
 
   useEffect(() => {
     if (id) {
@@ -124,7 +125,7 @@ const MyPage: React.FC = () => {
         }
       }
     }
-  }, [keywordsData]);
+  }, [id]);
 
   useEffect(() => {
     if (id) {
@@ -155,9 +156,8 @@ const MyPage: React.FC = () => {
     { label: '제목+내용', value: 'TitleContent' },
   ];
 
-  const [keyword, setKeyword] = useState<string>('');
-
-  useEffect(() => {
+  // 키워드 기반 게시글 목록 가져오기
+  const getPostsByKeyword = (keyword: string) => {
     if (id) {
       const parsedId = parseInt(id);
       if (!isNaN(parsedId)) {
@@ -178,21 +178,24 @@ const MyPage: React.FC = () => {
         }
       }
     }
-  }, [id, keyword]);
+  };
 
-  // if (isLoading) {
-  //   return (
-  //     <styles.SpinnerContainer>
-  //       <HashLoader size={120} color="#0075ff" loading={isLoading} />
-  //     </styles.SpinnerContainer>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <styles.SpinnerContainer>
+        <HashLoader size={120} color="#0075ff" loading={isLoading} />
+      </styles.SpinnerContainer>
+    );
+  }
 
   return (
     <styles.Container>
       <styles.LeftContainer>
         <ProfileBox profileData={profileData} />
-        <KeywordBox keywordsData={keywordsData} setKeyword={setKeyword} />
+        <KeywordBox
+          keywordsData={keywordsData}
+          getPostsByKeyword={getPostsByKeyword}
+        />
       </styles.LeftContainer>
       <styles.RightContainer>
         <SearchBar options={options} />

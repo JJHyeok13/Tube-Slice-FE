@@ -9,6 +9,8 @@ import { PostDataProps } from 'types/postDetailPage/postDetailPage';
 import { doFollow, doUnfollow } from '@server/api/follow/follow';
 import { useNavigate } from 'react-router-dom';
 
+import BasicProfile from '@assets/common/BasicProfile.png';
+
 const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
   const userinfo = useRecoilValue(userInfo);
 
@@ -32,6 +34,13 @@ const PostDataContainer: React.FC<PostDataProps> = ({ postData }) => {
       <styles.PostInfo>
         <styles.FirstWrapper>
           <styles.WriterInfo>
+            <styles.ProfileImage
+              src={
+                postData.post.writer.profileUrl
+                  ? postData.post.writer.profileUrl
+                  : BasicProfile
+              }
+            />
             <styles.Nickname
               onClick={() => handleProfileClick(postData.post.writer.userId)}
             >

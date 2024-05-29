@@ -22,6 +22,7 @@ const styles = {
     }
   `,
   Writer: styled.div`
+    max-width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;

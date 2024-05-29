@@ -6,6 +6,7 @@ export interface ProfileProps {
     introduction: string;
     followingNum: number;
     followerNum: number;
+    isFollowing: boolean;
   };
 }
 

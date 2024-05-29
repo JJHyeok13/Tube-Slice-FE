@@ -35,6 +35,7 @@ const FollowListPage: React.FC = () => {
     introduction: '',
     followingNum: 0,
     followerNum: 0,
+    isFollowing: false,
   });
 
   // 현재 주소의 멤버 id 값과 Recoil에 저장된 본인의 id 값을 비교하여
