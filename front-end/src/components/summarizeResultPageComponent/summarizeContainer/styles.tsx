@@ -12,6 +12,7 @@ const styles = {
     flex-direction: column;
     padding: 24px;
     background-color: #efefef;
+    border-radius: 12px;
   `,
 };
 

@@ -24,6 +24,7 @@ import SummarizeResultPage from '@pages/summarizeResultPage/summarizeResultPage'
 import PostDetailPage from '@pages/postDetailPage/postDetailPage';
 import FollowListPage from '@pages/myFollowListPage/followListPage';
 import PostWritePage from '@pages/postWritePage/postWritePage';
+import NotFoundPage from '@pages/notFoundPage/notFoundPage';
 
 function App() {
   const router = createBrowserRouter(
@@ -37,7 +38,10 @@ function App() {
 
           <Route path="/convertresult" element={<ConvertResultPage />} />
 
-          <Route path="summarizeresult" element={<SummarizeResultPage />} />
+          <Route
+            path="/summarizeresult/:youtubeUrl"
+            element={<SummarizeResultPage />}
+          />
 
           <Route path="/myscript" element={<MyScriptPage />} />
 
@@ -50,6 +54,7 @@ function App() {
 
           <Route path="/setting/:type" element={<SettingPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>,
     ),
   );

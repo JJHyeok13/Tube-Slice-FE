@@ -1,6 +1,6 @@
 export interface SummarizeResultProps {
-  resultData: {
-    summarizes: { summarizeId: number; summarize: string }[];
-    video: { videoId: number; url: string };
-  };
+  summarizeResultData: {
+    id: number;
+    message: string;
+  }[];
 }

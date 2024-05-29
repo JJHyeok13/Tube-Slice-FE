@@ -5,9 +5,11 @@ const styles = {
     width: 90%;
     margin: 120px auto 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
     padding-bottom: 70px;
+  `,
+  ResultContainer: styled.div`
+    width: 50%;
   `,
 };
 

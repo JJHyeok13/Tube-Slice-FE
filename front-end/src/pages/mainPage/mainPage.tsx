@@ -1,20 +1,43 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import RecommendVideo from '@components/commonComponent/recommendVideo/recommendVideo';
 
 import styles from './styles';
-import ProgressBar from '@components/mainPageComponent/progressBar/progressBar';
+import { SummarizeVideo } from '@server/api/text/text';
+import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
 
 const MainPage: React.FC = () => {
-  const [isProgressing, setIsProgressing] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('convert');
+  const navigate = useNavigate();
 
-  const handleStart = () => {
-    setIsProgressing(!isProgressing);
-  };
+  const [isProgressing, setIsProgressing] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string>('convert');
+
+  const row = '3';
+  const [youtubeUrl, setYoutubeUrl] = useState<string>('');
+
+  const [summarizeResult, setSummarizeResult] = useState<
+    SummarizeResultProps['summarizeResultData']
+  >([]);
 
   const handleOptionChange = (optionId: string) => {
     setSelectedOption(optionId);
+  };
+
+  const handleSummarize = (youtubeUrl: string) => {
+    setIsProgressing(true);
+    SummarizeVideo(row, youtubeUrl).then((res) =>
+      setSummarizeResult(res.result),
+    );
+  };
+
+  const handleCheckResult = (selectedOption: string, youtubeUrl: string) => {
+    navigate(`/${selectedOption}result?youtubeUrl=${youtubeUrl}`, {
+      state: {
+        summarizeResult,
+      },
+    });
   };
 
   const options = [
@@ -55,11 +78,27 @@ const MainPage: React.FC = () => {
       <h2>{selectedDescription}</h2>
 
       <styles.InputWrapper>
-        <styles.AddressInput type="url" placeholder="https://www.youtube.com" />
-        <styles.Button onClick={handleStart}>시작하기</styles.Button>
+        <styles.AddressInput
+          type="url"
+          placeholder="https://www.youtube.com"
+          value={youtubeUrl}
+          onChange={(e) => setYoutubeUrl(e.target.value)}
+        />
+        {isProgressing ? (
+          <styles.Button style={{ cursor: 'auto' }}>변환중</styles.Button>
+        ) : (
+          <styles.Button onClick={() => handleSummarize(youtubeUrl)}>
+            시작하기
+          </styles.Button>
+        )}
+        {isComplete && (
+          <styles.Button
+            onClick={() => handleCheckResult(selectedOption, youtubeUrl)}
+          >
+            확인하기
+          </styles.Button>
+        )}
       </styles.InputWrapper>
-
-      {isProgressing && <ProgressBar />}
 
       <RecommendVideo />
     </styles.Container>
