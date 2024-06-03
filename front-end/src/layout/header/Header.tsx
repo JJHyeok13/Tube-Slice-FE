@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   const isLoggedIn = useRecoilValue(loggedInState);
   const userinfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
-  const outside = useRef<any>();
+  const outside = useRef<HTMLDivElement>(null);
 
   const [loginModalOpen, setLoginModalOpen] = useState<boolean>(false);
   const [optionModalOpen, setOptionModalOpen] = useState<boolean>(false);
@@ -40,9 +40,8 @@ const Header: React.FC = () => {
     setOptionModalOpen(false);
   };
 
-  const handlerOutsie = (e: any) => {
-    if (!outside.current.contains(e.target)) {
-      //현재 클릭한 곳이 메뉴 컴포넌트 안이 아니면 닫기
+  const handlerOutsie = (e: MouseEvent) => {
+    if (outside.current && !outside.current.contains(e.target as Node)) {
       handleOptionModalClose();
     }
   };

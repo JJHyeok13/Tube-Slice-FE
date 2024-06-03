@@ -156,7 +156,7 @@ const MyPage: React.FC = () => {
   const options = [
     { label: '제목', value: 'TITLE' },
     { label: '내용', value: 'CONTENT' },
-    { label: '제목+내용', value: 'TITLECONTENT' },
+    { label: '제목+내용', value: 'BOTH' },
   ];
 
   // 키워드 기반 게시글 목록 가져오기

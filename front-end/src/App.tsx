@@ -37,16 +37,12 @@ function App() {
           <Route path="/oauth2/naver" element={<NaverLoginPage />} />
 
           <Route path="/convertresult" element={<ConvertResultPage />} />
-
-          <Route
-            path="/summarizeresult/:youtubeUrl"
-            element={<SummarizeResultPage />}
-          />
+          <Route path="/summarizeresult" element={<SummarizeResultPage />} />
 
           <Route path="/myscript" element={<MyScriptPage />} />
 
           <Route path="/mypage/:id" element={<MyPage />} />
-          <Route path="/mypage/:id/:follow" element={<FollowListPage />} />
+          <Route path="/mypage/:id/:type" element={<FollowListPage />} />
 
           <Route path="/post/:type" element={<PostPage />} />
           <Route path="/write" element={<PostWritePage />} />

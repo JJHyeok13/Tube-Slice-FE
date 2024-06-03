@@ -11,7 +11,10 @@ export const SummarizeVideo = async (
       `/v1/text/summary?row=${row}&youtubeUrl=${youtubeUrl}`,
     );
 
-    return res.data.result;
+    console.log(res);
+    console.log(res.data);
+    console.log(res.data.result);
+    return res.data;
   } catch (error) {
     console.log('요약하기 에러', error);
     throw error;

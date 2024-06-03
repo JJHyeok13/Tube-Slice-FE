@@ -9,16 +9,15 @@ export const videoUrls = [
   {
     id: 2,
     title:
-      'Playlist 케이팝 노동요 필요하신분? | 하루종일 틀어두는 매장음악 최신 kpop 광고없는 노동요',
-    videoUrl: 'https://youtu.be/OKLApj6k9gw?si=_zEASBlj5gB1zOks',
-    viewCount: 640000,
+      '코테용 C++ 핵심 정리 무료 강의 - 핵심적인 내용만 간추려서 빠르게 훑어볼 수 있는 3시간 완강가능! [홍정모 연구소]',
+    videoUrl: 'https://youtu.be/UqCZda8DLGc?si=XpfJusgeKFUonAUQ',
+    viewCount: 22000,
   },
   {
     id: 3,
-    title:
-      '240523 엔믹스 NMIXX_4K 직캠 Full verㅣ고려대학교 대동제 (Love me like this, 롤러코스터, Dash)',
-    videoUrl: 'https://youtu.be/X7QP7QwzBMM?si=g9tc0rZCdat_oEVe',
-    viewCount: 73000,
+    title: '포인터가 뭐고 왜 쓰는건가요?',
+    videoUrl: 'https://www.youtube.com/watch?v=u65F4ECaKaY',
+    viewCount: 110000,
   },
   {
     id: 4,

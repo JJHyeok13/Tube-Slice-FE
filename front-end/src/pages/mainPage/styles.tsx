@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface ButtonProps {
+  $isProgressing?: boolean;
+  $isComplete?: boolean;
+}
+
 const styles = {
   Container: styled.div`
     width: 90%;
@@ -48,14 +53,18 @@ const styles = {
       color: #969696;
     }
   `,
-  Button: styled.div`
-    background-color: #ffffff;
-    color: #0075ff;
+  Button: styled.div<ButtonProps>`
+    background-color: ${({ $isComplete }) =>
+      $isComplete ? '#0075ff' : '#ffffff'};
+    color: ${({ $isComplete }) => ($isComplete ? '#ffffff' : '#0075ff')};
+
     font-weight: 600;
     padding: 8px 22px;
     white-space: nowrap;
     border-radius: 10px;
-    cursor: pointer;
+
+    cursor: ${({ $isProgressing }) =>
+      $isProgressing ? 'not-allowed' : 'pointer'};
   `,
 };
 

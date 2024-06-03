@@ -1,45 +1,80 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { SummarizeVideo } from '@server/api/text/text';
+
+import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
+import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
+
 import RecommendVideo from '@components/commonComponent/recommendVideo/recommendVideo';
 
 import styles from './styles';
-import { SummarizeVideo } from '@server/api/text/text';
-import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
 
 const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [isProgressing, setIsProgressing] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>('convert');
+  // 진행 상황 확인을 위한 state 정의
+  const [isProgressing, setIsProgressing] = useState<boolean>(false);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
 
+  // 변환/요약을 진행하기 위한 옵션 state 정의
+  const [selectedOption, setSelectedOption] = useState<string>('convert');
   const row = '3';
   const [youtubeUrl, setYoutubeUrl] = useState<string>('');
 
-  const [summarizeResult, setSummarizeResult] = useState<
-    SummarizeResultProps['summarizeResultData']
+  // 변환하기 결과 state 정의
+  const [convertResult, setConvertResult] = useState<
+    ConvertResultProps['result']
   >([]);
 
+  // 요약하기 결과 state 정의
+  const [summarizeResult, setSummarizeResult] = useState<
+    SummarizeResultProps['result']
+  >([]);
+
+  // 변환/요약 옵션 선택 함수
   const handleOptionChange = (optionId: string) => {
     setSelectedOption(optionId);
   };
 
+  // 요약하기 실행 API 호출 함수
   const handleSummarize = (youtubeUrl: string) => {
+    if (youtubeUrl.trim() === '') {
+      alert('유튜브 주소를 입력해주세요.');
+      return;
+    }
     setIsProgressing(true);
-    SummarizeVideo(row, youtubeUrl).then((res) =>
-      setSummarizeResult(res.result),
-    );
+    SummarizeVideo(row, youtubeUrl)
+      .then((res) => {
+        setSummarizeResult(Array.isArray(res.result) ? res.result : []);
+      })
+      .finally(() => {
+        setIsComplete(true);
+        setIsProgressing(false);
+      });
   };
 
+  // 선택된 옵션과 결과에 따른 결과 페이지 이동 함수
   const handleCheckResult = (selectedOption: string, youtubeUrl: string) => {
-    navigate(`/${selectedOption}result?youtubeUrl=${youtubeUrl}`, {
-      state: {
-        summarizeResult,
-      },
-    });
+    // 변환하기 결과 페이지 이동
+    if (selectedOption === 'convert') {
+      navigate(`/convertresult?youtubeUrl=${youtubeUrl}`, {
+        state: {
+          convertResult,
+        },
+      });
+    }
+    // 요약하기 결과 페이지 이동
+    else if (selectedOption === 'summarize') {
+      navigate(`/summarizeresult?youtubeUrl=${youtubeUrl}`, {
+        state: {
+          summarizeResult,
+        },
+      });
+    }
   };
 
+  // 변환/요약하기 옵션
   const options = [
     {
       id: 'convert',
@@ -60,7 +95,7 @@ const MainPage: React.FC = () => {
     <styles.Container>
       <styles.OptionContainer>
         {options.map((option) => (
-          <div key={option.id}>
+          <React.Fragment key={option.id}>
             <styles.Option
               type="radio"
               id={option.id}
@@ -68,10 +103,8 @@ const MainPage: React.FC = () => {
               checked={selectedOption === option.id}
               onChange={() => handleOptionChange(option.id)}
             />
-            <styles.Label htmlFor={option.id}>
-              <span>{option.value}</span>
-            </styles.Label>
-          </div>
+            <styles.Label htmlFor={option.id}>{option.value}</styles.Label>
+          </React.Fragment>
         ))}
       </styles.OptionContainer>
 
@@ -84,15 +117,22 @@ const MainPage: React.FC = () => {
           value={youtubeUrl}
           onChange={(e) => setYoutubeUrl(e.target.value)}
         />
-        {isProgressing ? (
-          <styles.Button style={{ cursor: 'auto' }}>변환중</styles.Button>
-        ) : (
-          <styles.Button onClick={() => handleSummarize(youtubeUrl)}>
+
+        {isProgressing && !isComplete && (
+          <styles.Button $isProgressing={isProgressing}>변환중</styles.Button>
+        )}
+        {!isProgressing && !isComplete && (
+          <styles.Button
+            $isComplete={isComplete}
+            onClick={() => handleSummarize(youtubeUrl)}
+          >
             시작하기
           </styles.Button>
         )}
         {isComplete && (
           <styles.Button
+            $isProgressing={isProgressing}
+            $isComplete={isComplete}
             onClick={() => handleCheckResult(selectedOption, youtubeUrl)}
           >
             확인하기

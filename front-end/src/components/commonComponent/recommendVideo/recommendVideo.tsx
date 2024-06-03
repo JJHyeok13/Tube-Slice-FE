@@ -38,10 +38,15 @@ const RecommendVideo: React.FC = () => {
 
   return (
     <styles.Container>
-      <styles.Header>
-        <styles.Nickname>{userinfo.userName}</styles.Nickname>님을 위한
-        추천영상이에요
-      </styles.Header>
+      {userinfo.userName ? (
+        <styles.Header>
+          <styles.Nickname>{userinfo.userName}</styles.Nickname>님을 위한
+          추천영상이에요
+        </styles.Header>
+      ) : (
+        <styles.Header>이런 영상은 어떠신가요?</styles.Header>
+      )}
+
       <styles.VideoWrapper>
         {videoInfos.map((videoInfo) => (
           <styles.Recommend key={videoInfo.id}>

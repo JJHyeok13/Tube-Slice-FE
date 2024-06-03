@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ options, onSearch }) => {
     options.length > 0 ? options[0].value : '',
   );
   const [searchWord, setSearchWord] = useState('');
-  const debouncedSearchWord = useDebounce(searchWord, 1000);
+  const debouncedSearchWord = useDebounce(searchWord, 500);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSearchType(event.target.value);

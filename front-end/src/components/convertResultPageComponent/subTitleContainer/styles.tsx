@@ -27,7 +27,7 @@ const styles = {
     text-overflow: ellipsis;
   `,
   Subtitle: styled.div`
-    padding-bottom: 28px;
+    padding-bottom: 16px;
   `,
 };
 

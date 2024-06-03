@@ -15,7 +15,6 @@ const styles = {
     height: calc(100% - 70px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin-bottom: 60px;
     border-right: 1px solid black;
     overflow-y: scroll;

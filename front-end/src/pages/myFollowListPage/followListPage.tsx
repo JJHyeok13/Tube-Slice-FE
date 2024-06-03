@@ -25,7 +25,7 @@ import styles from './styles';
 const FollowListPage: React.FC = () => {
   const userinfo = useRecoilValue(userInfo);
 
-  const { id, follow } = useParams<{ id: string; follow: string }>();
+  const { id, type } = useParams<{ id: string; type: string }>();
 
   // 유저의 프로필 데이터 state
   const [profileData, setProfileData] = useState<ProfileProps['profileData']>({
@@ -64,20 +64,20 @@ const FollowListPage: React.FC = () => {
   // 다르다면 타인의 팔로우 정보 조회 API 호출
   useEffect(() => {
     if (id === userinfo.userId.toString()) {
-      if (follow === 'follower') {
+      if (type === 'follower') {
         getMyFollower().then((res) => setFollowData(res.users));
-      } else if (follow === 'following') {
+      } else if (type === 'following') {
         getMyFollowing().then((res) => setFollowData(res.users));
       }
     } else {
       if (id) {
         const parsedId = parseInt(id);
         if (!isNaN(parsedId)) {
-          if (follow === 'follower') {
+          if (type === 'follower') {
             getOthersFollower(parseInt(id)).then((res) =>
               setFollowData(res.users),
             );
-          } else if (follow === 'following') {
+          } else if (type === 'following') {
             getOthersFollowing(parseInt(id)).then((res) =>
               setFollowData(res.users),
             );
@@ -85,7 +85,7 @@ const FollowListPage: React.FC = () => {
         }
       }
     }
-  }, [follow, followData]);
+  }, [type, followData]);
 
   return (
     <styles.Container>
@@ -95,7 +95,7 @@ const FollowListPage: React.FC = () => {
       <styles.RightContainer>
         <styles.UpperContainer>
           <NavBar />
-          <SearchBar />
+          {/* <SearchBar /> */}
         </styles.UpperContainer>
         <FollowList followData={followData} />
       </styles.RightContainer>

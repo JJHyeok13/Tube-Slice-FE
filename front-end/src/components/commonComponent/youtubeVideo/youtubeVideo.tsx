@@ -47,8 +47,8 @@ const YoutubeVideo: React.FC<ConvertResultProps | SummarizeResultProps> = ({
       <YouTube
         videoId={getVideoId(resultData.video.url)}
         opts={{
-          width: '90%',
-          height: '350px',
+          width: '80%',
+          height: '300px',
           playerVars: {
             autoplay: 0,
             rel: 0,

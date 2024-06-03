@@ -22,8 +22,8 @@ const styles = {
   ExitButton: styled(PiXBold)`
     cursor: pointer;
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
   `,
   TubeSlice: styled.div`
     height: 15%;

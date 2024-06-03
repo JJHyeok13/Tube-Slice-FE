@@ -13,15 +13,22 @@ const SummarizeResultPage: React.FC = () => {
   const location = useLocation();
 
   const { youtubeUrl } = useParams<{ youtubeUrl: string }>();
-  const summarizeResultData = location.state;
+  const summarizeResultData = location.state?.summarizeResult || [];
 
   if (!youtubeUrl) {
-    navigate('/main');
+    navigate('/');
   }
+
+  const getYoutubeUrlFromQuery = (query: string) => {
+    const params = new URLSearchParams(query);
+    return params.get('youtubeUrl') || '';
+  };
+
+  const extractedYoutubeUrl = getYoutubeUrlFromQuery(location.search);
 
   return (
     <styles.Container>
-      <YoutubeVideo youtubeUrl={youtubeUrl ? youtubeUrl : ''} />
+      <YoutubeVideo youtubeUrl={extractedYoutubeUrl} />
       <styles.ResultContainer>
         <SummarizeContainer summarizeResultData={summarizeResultData} />
         <SummarizeAgainButton />

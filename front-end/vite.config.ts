@@ -13,6 +13,13 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/v1/, ''),
       },
+      '/naver': {
+        target: 'https://nid.naver.com/oauth2.0/token',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/naver/, ''),
+        secure: false,
+        ws: true,
+      },
     },
   },
 });
