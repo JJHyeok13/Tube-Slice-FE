@@ -1,5 +1,24 @@
 import { PostAxiosInstance } from '@axios/axios.method';
-import { SummarizeResponse } from '@server/responseType/text/text';
+import {
+  ConvertResponse,
+  SummarizeResponse,
+} from '@server/responseType/text/text';
+
+// 동영상 변환하기 /v1/text/translation
+export const ConvertVideo = async (
+  youtubeUrl: string,
+): Promise<ConvertResponse> => {
+  try {
+    const res = await PostAxiosInstance<ConvertResponse>(
+      `/v1/text/translation?youtubeUrl=${youtubeUrl}`,
+    );
+
+    return res.data.result;
+  } catch (error) {
+    console.log('변환하기 에러', error);
+    throw error;
+  }
+};
 
 // 동영상 요약하기 /v1/text/summary?row="row"&youtubeUrl="youtubeUrl"
 export const SummarizeVideo = async (
