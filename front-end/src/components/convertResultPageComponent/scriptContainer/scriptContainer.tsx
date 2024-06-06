@@ -46,7 +46,11 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
         <div key={index}>
           <styles.SubtitleWrapper>
             <img src={PlayingIcon} /> &nbsp;{' '}
-            <div>{subtitleData[index].sub}</div>
+            <styles.SubtitleText>
+              {subtitleData[index].sub.endsWith(',')
+                ? subtitleData[index].sub.slice(0, -1)
+                : subtitleData[index].sub}
+            </styles.SubtitleText>
           </styles.SubtitleWrapper>
           <styles.ScriptWrapper>{script}</styles.ScriptWrapper>
         </div>
