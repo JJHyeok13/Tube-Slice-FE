@@ -32,9 +32,11 @@ const styles = {
     border-radius: 12px;
   `,
   Title: styled.div`
+    max-width: fit-content;
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 8px;
+    cursor: pointer;
   `,
   Content: styled.div`
     color: #5d5d5d;

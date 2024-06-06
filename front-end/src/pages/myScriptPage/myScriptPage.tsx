@@ -56,6 +56,10 @@ const MyScriptPage: React.FC = () => {
       });
   }, []);
 
+  const handleScriptClick = (userScriptId: number) => {
+    navigate(`/myscript/${userScriptId}`);
+  };
+
   const options = [
     { label: '제목', value: 'TITLE' },
     { label: '내용', value: 'CONTENT' },
@@ -94,7 +98,7 @@ const MyScriptPage: React.FC = () => {
         <KeywordDropdown keywordData={keywordData} />
         <SearchBar options={options} onSearch={handleSearch} />
       </styles.UpperWrapper>
-      <Script scriptList={scriptList} />
+      <Script scriptList={scriptList} handleScriptClick={handleScriptClick} />
     </styles.Container>
   );
 };

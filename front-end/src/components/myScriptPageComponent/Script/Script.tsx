@@ -4,7 +4,11 @@ import styles from './styles';
 import { ScriptListProps } from 'types/myScriptPage/myScriptPage';
 import { getThumbnailUrl } from '@utils/getThumbnail';
 
-const Script: React.FC<ScriptListProps> = ({ scriptList }) => {
+interface ScriptProps extends ScriptListProps {
+  handleScriptClick: (userScriptId: number) => void;
+}
+
+const Script: React.FC<ScriptProps> = ({ scriptList, handleScriptClick }) => {
   const LinktoYoutube = (url: string) => {
     window.open(`${url}`, '_blank');
   };
@@ -40,7 +44,9 @@ const Script: React.FC<ScriptListProps> = ({ scriptList }) => {
             onClick={() => LinktoYoutube(data.youtubeUrl)}
           />
           <styles.ScriptInfo>
-            <styles.Title>{data.youtubeTitle}</styles.Title>
+            <styles.Title onClick={() => handleScriptClick(data.userScriptId)}>
+              {data.youtubeTitle}
+            </styles.Title>
             <styles.Content>
               {combineScripts(data.scripts).length > 320
                 ? combineScripts(data.scripts).substring(0, 320) + ' ...'

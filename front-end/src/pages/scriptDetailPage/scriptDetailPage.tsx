@@ -1,19 +1,15 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer/subTitleContainer';
 import YoutubeVideo from '@components/convertResultPageComponent/youtubeVideo/youtubeVideo';
 import ScriptContainer from '@components/convertResultPageComponent/scriptContainer/scriptContainer';
 
-import {
-  ConvertResultProps,
-  SubtitlesProps,
-} from 'types/convertResultPage/convertResultPage';
-
 import styles from './styles';
-import { saveScript } from '@server/api/userScript/userScript';
 
 const ScriptDetailPage: React.FC = () => {
+  const { id } = useParams<string>();
+
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const showModal = () => {
@@ -49,30 +45,6 @@ const ScriptDetailPage: React.FC = () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const { youtubeUrl } = useParams<{ youtubeUrl: string }>();
-  const scripts = location.state.convertResult as ConvertResultProps['scripts'];
-  const subtitles = location.state.subtitles as SubtitlesProps['subtitles'];
-
-  // if (!youtubeUrl) {
-  //   navigate('/');
-  // }
-
-  const getYoutubeUrlFromQuery = (query: string) => {
-    const params = new URLSearchParams(query);
-    return params.get('youtubeUrl') || '';
-  };
-
-  const extractedYoutubeUrl = getYoutubeUrlFromQuery(location.search);
-
-  const SaveScript = async () => {
-    await saveScript({ youtubeUrl: youtubeUrl, scriptKeywords: keywords });
-
-    navigate('/myscript');
-  };
 
   return (
     <styles.Container>
@@ -111,6 +83,8 @@ const ScriptDetailPage: React.FC = () => {
             )}
           </styles.KeywordContainer>
           <styles.SaveButton onClick={SaveScript}>저장하기</styles.SaveButton>
+          <styles.SaveButton>수정하기</styles.SaveButton>
+          <styles.SaveButton>강조하기</styles.SaveButton>
         </styles.MenuWrapper>
         <ScriptContainer scripts={scripts} subtitles={subtitles} />
       </styles.RightWrapper>
