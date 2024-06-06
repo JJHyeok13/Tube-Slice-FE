@@ -18,7 +18,7 @@ const YoutubeVideo: React.FC<YoutubeVideoProps> = ({ youtubeUrl }) => {
       videoId={getVideoId(youtubeUrl)}
       opts={{
         width: '600px',
-        height: '450px',
+        height: '350px',
         playerVars: {
           autoplay: 0,
           rel: 0,

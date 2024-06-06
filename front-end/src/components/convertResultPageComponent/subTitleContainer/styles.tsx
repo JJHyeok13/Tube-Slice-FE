@@ -5,9 +5,10 @@ const styles = {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   `,
   SubtitleNumber: styled.span`
-    font-size: 20px;
+    font-size: 18px;
     color: #e4e4e4;
     background-color: #272727;
     border-radius: 50%;
@@ -28,6 +29,12 @@ const styles = {
   `,
   Subtitle: styled.div`
     padding-bottom: 16px;
+  `,
+  SeeMoreButton: styled.div`
+    width: fit-content;
+    font-size: 14px;
+    color: #9f9f9f;
+    cursor: pointer;
   `,
 };
 

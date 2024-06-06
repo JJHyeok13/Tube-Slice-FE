@@ -12,7 +12,7 @@ const styles = {
   `,
   LeftWrapper: styled.div`
     width: 50%;
-    height: calc(100% - 70px);
+    height: 75%;
     display: flex;
     flex-direction: column;
     margin-bottom: 60px;
@@ -21,7 +21,7 @@ const styles = {
   `,
   RightWrapper: styled.div`
     width: 45%;
-    height: 70%;
+    height: 75%;
     overflow-y: scroll;
   `,
   MenuWrapper: styled.div`

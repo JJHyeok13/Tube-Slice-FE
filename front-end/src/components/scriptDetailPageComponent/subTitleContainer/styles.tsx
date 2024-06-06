@@ -29,6 +29,12 @@ const styles = {
   Subtitle: styled.div`
     padding-bottom: 16px;
   `,
+  SeeMoreButton: styled.div`
+    width: fit-content;
+    font-size: 14px;
+    color: #9f9f9f;
+    cursor: pointer;
+  `,
 };
 
 export default styles;

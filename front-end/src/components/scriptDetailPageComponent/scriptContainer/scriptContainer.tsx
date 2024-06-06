@@ -17,22 +17,19 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
   scripts,
   subtitles,
 }) => {
-  const scriptsData = scripts.scripts;
-  const subtitleData = subtitles.subtitles;
-
   const Texts = [];
 
-  for (let i = 0; i < subtitleData.length; i++) {
-    const subtitle = subtitleData[i];
+  for (let i = 0; i < subtitles.length; i++) {
+    const subtitle = subtitles[i];
 
     const startTimeline = subtitle.timeline;
     const endTimeline =
-      i + 1 < subtitleData.length ? subtitleData[i + 1].timeline : Infinity;
+      i + 1 < subtitles.length ? subtitles[i + 1].timeline : Infinity;
 
     let mergedText = '';
 
-    for (let j = 0; j < scriptsData.length; j++) {
-      const script = scriptsData[j];
+    for (let j = 0; j < scripts.length; j++) {
+      const script = scripts[j];
       if (script.timeline >= startTimeline && script.timeline < endTimeline) {
         mergedText += script.text + ' ';
       }
@@ -47,9 +44,9 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
           <styles.SubtitleWrapper>
             <img src={PlayingIcon} /> &nbsp;{' '}
             <styles.SubtitleText>
-              {subtitleData[index].sub.endsWith(',')
-                ? subtitleData[index].sub.slice(0, -1)
-                : subtitleData[index].sub}
+              {subtitles[index].sub.endsWith(',')
+                ? subtitles[index].sub.slice(0, -1)
+                : subtitles[index].sub}
             </styles.SubtitleText>
           </styles.SubtitleWrapper>
           <styles.ScriptWrapper>{script}</styles.ScriptWrapper>

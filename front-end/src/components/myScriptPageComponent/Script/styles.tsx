@@ -8,9 +8,9 @@ const styles = {
   MyScript: styled.div`
     display: flex;
     flex-direction: row;
-    padding-bottom: 48px;
+    padding-bottom: 40px;
     border-bottom: 1px solid #e3e3e3;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
 
     &:last-child {
       border: 0;

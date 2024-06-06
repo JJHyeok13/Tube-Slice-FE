@@ -1,43 +1,63 @@
-import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer/subTitleContainer';
-import YoutubeVideo from '@components/convertResultPageComponent/youtubeVideo/youtubeVideo';
-import ScriptContainer from '@components/convertResultPageComponent/scriptContainer/scriptContainer';
+import SubTitleContainer from '@components/scriptDetailPageComponent/subTitleContainer/subTitleContainer';
+import YoutubeVideo from '@components/scriptDetailPageComponent/youtubeVideo/youtubeVideo';
+import ScriptContainer from '@components/scriptDetailPageComponent/scriptContainer/scriptContainer';
 
 import styles from './styles';
+import { getScriptData } from '@server/api/userScript/userScript';
+import { ScriptDetailDataProps } from 'types/scriptDetailPage/scriptDetailPage';
+
+import { HashLoader } from 'react-spinners';
 
 const ScriptDetailPage: React.FC = () => {
   const { id } = useParams<string>();
 
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [scriptDetailData, setScriptDetailData] =
+    useState<ScriptDetailDataProps>({
+      result: {
+        userScriptId: 0,
+        youtubeUrl: '',
+        youtubeTitle: '',
+        subtitles: [
+          {
+            timeline: 0,
+            sub: '',
+          },
+        ],
+        scriptId: 0,
+        scripts: [
+          {
+            timeline: 0,
+            text: '',
+          },
+        ],
+        scriptKeywords: [
+          {
+            keywordId: 0,
+            name: '',
+          },
+        ],
+      },
+    });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const hideModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const [keywordInput, setKeywordInput] = useState<string>('');
-  const [keywords, setKeywords] = useState<string[]>([]);
-
-  const handleKeywordInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setKeywordInput(e.target.value);
-  };
-
-  const handleKeywordKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && keywordInput.trim()) {
-      setKeywords([...keywords, keywordInput.trim()]);
-      setKeywordInput('');
-      e.preventDefault();
+  useEffect(() => {
+    if (id) {
+      const parsedId = parseInt(id);
+      if (!isNaN(parsedId)) {
+        setIsLoading(true);
+        getScriptData(parsedId)
+          .then((res) => {
+            setScriptDetailData(res);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
     }
-  };
-
-  const removeKeyword = (keywordToRemove: string) => {
-    setKeywords(keywords.filter((keyword) => keyword !== keywordToRemove));
-  };
+  }, [id]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -46,47 +66,26 @@ const ScriptDetailPage: React.FC = () => {
     };
   }, []);
 
+  if (isLoading) {
+    return (
+      <styles.SpinnerContainer>
+        <HashLoader size={120} color="#0075ff" loading={isLoading} />
+      </styles.SpinnerContainer>
+    );
+  }
+
   return (
     <styles.Container>
       <styles.LeftWrapper>
-        <YoutubeVideo youtubeUrl={extractedYoutubeUrl} />
-        <SubTitleContainer subtitles={subtitles} />
+        <YoutubeVideo youtubeUrl={scriptDetailData.youtubeUrl} />
+        <SubTitleContainer subtitles={scriptDetailData.subtitles} />
       </styles.LeftWrapper>
 
       <styles.RightWrapper>
-        <styles.MenuWrapper>
-          <styles.KeywordContainer>
-            <div>
-              {keywords.map((keyword, index) => (
-                <styles.Keyword
-                  key={index}
-                  onClick={() => removeKeyword(keyword)}
-                >
-                  {keyword}
-                </styles.Keyword>
-              ))}
-            </div>
-            <styles.KeywordInput
-              type="text"
-              placeholder="키워드를 입력해주세요..."
-              value={keywordInput}
-              onChange={handleKeywordInput}
-              onKeyPress={handleKeywordKeyPress}
-              onFocus={showModal}
-              onBlur={hideModal}
-            />
-            {isModalVisible && (
-              <styles.Modal isVisible={isModalVisible}>
-                <div>엔터를 입력하여 키워드를 등록할 수 있습니다.</div>
-                <div>등록된 키워드를 클릭하면 해당 키워드가 삭제됩니다.</div>
-              </styles.Modal>
-            )}
-          </styles.KeywordContainer>
-          <styles.SaveButton onClick={SaveScript}>저장하기</styles.SaveButton>
-          <styles.SaveButton>수정하기</styles.SaveButton>
-          <styles.SaveButton>강조하기</styles.SaveButton>
-        </styles.MenuWrapper>
-        <ScriptContainer scripts={scripts} subtitles={subtitles} />
+        <ScriptContainer
+          scripts={scriptDetailData.scripts}
+          subtitles={scriptDetailData.subtitles}
+        />
       </styles.RightWrapper>
     </styles.Container>
   );
