@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const styles = {
   Container: styled.div`
     width: 90%;
-    height: 100%;
+    height: 100vh;
     margin: 120px auto 0;
     display: flex;
     flex-direction: row;
@@ -21,7 +21,7 @@ const styles = {
   `,
   RightWrapper: styled.div`
     width: 45%;
-    height: calc(100%);
+    height: 70%;
     overflow-y: scroll;
   `,
 };

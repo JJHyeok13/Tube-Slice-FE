@@ -5,59 +5,39 @@ import CreateTimeline from '../createTimeline/createTimeline';
 
 interface PostDataProps {
   title: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  videoUrl: string;
-  setVideoUrl: React.Dispatch<React.SetStateAction<string>>;
+  handleTitle: (e: ChangeEvent<HTMLInputElement>) => void;
+  youtubeUrl: string;
+  handleYoutubeUrl: (e: ChangeEvent<HTMLInputElement>) => void;
   keywordInput: string;
-  setKeywordInput: React.Dispatch<React.SetStateAction<string>>;
+  handleKeywordInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleKeywordKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
+  removeKeyword: (keywordToRemove: string) => void;
   keywords: string[];
-  setKeywords: React.Dispatch<React.SetStateAction<string[]>>;
   content: string;
-  setContent: React.Dispatch<React.SetStateAction<string>>;
+  handleContent: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  handleStartTime: (hour: number, minute: number, second: number) => void;
+  handleEndTime: (hour: number, minute: number, second: number) => void;
+  handleSubmit: () => void;
 }
 
 const InputContainer: React.FC<PostDataProps> = ({
   title,
-  setTitle,
-  videoUrl,
-  setVideoUrl,
+  handleTitle,
+  youtubeUrl,
+  handleYoutubeUrl,
   keywordInput,
-  setKeywordInput,
+  handleKeywordInput,
+  handleKeywordKeyPress,
+  removeKeyword,
   keywords,
-  setKeywords,
   content,
-  setContent,
+  handleContent,
+  handleStartTime,
+  handleEndTime,
+  handleSubmit,
 }) => {
   const [timelineVisible, setTimelineVisible] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
-  const handleTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const handleVideoUrl = (e: ChangeEvent<HTMLInputElement>) => {
-    setVideoUrl(e.target.value);
-  };
-
-  const handleKeywordInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setKeywordInput(e.target.value);
-  };
-
-  const handleKeywordKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && keywordInput.trim()) {
-      setKeywords([...keywords, keywordInput.trim()]);
-      setKeywordInput('');
-      e.preventDefault();
-    }
-  };
-
-  const removeKeyword = (keywordToRemove: string) => {
-    setKeywords(keywords.filter((keyword) => keyword !== keywordToRemove));
-  };
-
-  const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -87,10 +67,10 @@ const InputContainer: React.FC<PostDataProps> = ({
         <styles.VideoUrlInput
           type="url"
           placeholder="유튜브 영상의 주소를 입력해주세요..."
-          value={videoUrl}
-          onChange={handleVideoUrl}
+          value={youtubeUrl}
+          onChange={handleYoutubeUrl}
         />
-        {videoUrl && (
+        {youtubeUrl && (
           <styles.TimelineCreateButton
             onClick={showTimelineModal}
             size={24}
@@ -130,9 +110,15 @@ const InputContainer: React.FC<PostDataProps> = ({
       />
       <styles.ButtonContainer>
         <styles.CancelButton>취소</styles.CancelButton>
-        <styles.PostButton>작성</styles.PostButton>
+        <styles.PostButton onClick={handleSubmit}>작성</styles.PostButton>
       </styles.ButtonContainer>
-      {timelineVisible && <CreateTimeline onClose={hideTimelineModal} />}
+      {timelineVisible && (
+        <CreateTimeline
+          onClose={hideTimelineModal}
+          handleStartTime={handleStartTime}
+          handleEndTime={handleEndTime}
+        />
+      )}
     </styles.Container>
   );
 };

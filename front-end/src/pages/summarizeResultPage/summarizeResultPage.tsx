@@ -1,19 +1,20 @@
 import React from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import YoutubeVideo from '@components/summarizeResultPageComponent/youtubeVideo/youtubeVideo';
 import SummarizeContainer from '@components/summarizeResultPageComponent/summarizeContainer/summarizeContainer';
 import SummarizeAgainButton from '@components/summarizeResultPageComponent/summarizeAgainButton/summarizeAgainButton';
 
-import styles from './styles';
+import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
 
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import styles from './styles';
 
 const SummarizeResultPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const { youtubeUrl } = useParams<{ youtubeUrl: string }>();
-  const summarizeResultData = location.state?.summarizeResult || [];
+  const summaries = location.state as SummarizeResultProps['summaries'];
 
   if (!youtubeUrl) {
     navigate('/');
@@ -30,7 +31,7 @@ const SummarizeResultPage: React.FC = () => {
     <styles.Container>
       <YoutubeVideo youtubeUrl={extractedYoutubeUrl} />
       <styles.ResultContainer>
-        <SummarizeContainer summarizeResultData={summarizeResultData} />
+        <SummarizeContainer summaries={summaries} />
         <SummarizeAgainButton />
       </styles.ResultContainer>
     </styles.Container>

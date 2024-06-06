@@ -6,23 +6,52 @@ import PlayingIcon from '@assets/convertResultPage/PlayingIcon.svg';
 
 import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
 
-const ScriptContainer: React.FC<ConvertResultProps> = ({ resultData }) => {
-  return (
-    <>
-      {resultData.subtitles.map((subtitle, index) => {
-        const script = resultData.scripts[index];
-        return (
-          <div key={subtitle.subtitleId}>
-            <styles.SubtitleWrapper>
-              <img src={PlayingIcon} /> &nbsp;
-              <h2> {subtitle.subtitle}</h2>
-            </styles.SubtitleWrapper>
+interface ScriptContainerProps extends ConvertResultProps {
+  subtitles: {
+    timeline: number;
+    sub: string;
+  }[];
+}
 
-            <styles.ScriptWrapper>{script.script}</styles.ScriptWrapper>
-          </div>
-        );
-      })}
-    </>
+const ScriptContainer: React.FC<ScriptContainerProps> = ({
+  scripts,
+  subtitles,
+}) => {
+  const scriptsData = scripts.scripts;
+  const subtitleData = subtitles.subtitles;
+
+  const Texts = [];
+
+  for (let i = 0; i < subtitleData.length; i++) {
+    const subtitle = subtitleData[i];
+
+    const startTimeline = subtitle.timeline;
+    const endTimeline =
+      i + 1 < subtitleData.length ? subtitleData[i + 1].timeline : Infinity;
+
+    let mergedText = '';
+
+    for (let j = 0; j < scriptsData.length; j++) {
+      const script = scriptsData[j];
+      if (script.timeline >= startTimeline && script.timeline < endTimeline) {
+        mergedText += script.text + ' ';
+      }
+    }
+    Texts.push(mergedText.trim());
+  }
+
+  return (
+    <styles.Container>
+      {Texts.map((script, index) => (
+        <div key={index}>
+          <styles.SubtitleWrapper>
+            <img src={PlayingIcon} /> &nbsp;{' '}
+            <div>{subtitleData[index].sub}</div>
+          </styles.SubtitleWrapper>
+          <styles.ScriptWrapper>{script}</styles.ScriptWrapper>
+        </div>
+      ))}
+    </styles.Container>
   );
 };
 

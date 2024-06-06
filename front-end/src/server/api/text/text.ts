@@ -13,6 +13,7 @@ export const ConvertVideo = async (
       `/v1/text/translation?youtubeUrl=${youtubeUrl}`,
     );
 
+    console.log(res.data.result);
     return res.data.result;
   } catch (error) {
     console.log('변환하기 에러', error);
@@ -22,7 +23,7 @@ export const ConvertVideo = async (
 
 // 동영상 요약하기 /v1/text/summary?row="row"&youtubeUrl="youtubeUrl"
 export const SummarizeVideo = async (
-  row: string,
+  row: number,
   youtubeUrl: string,
 ): Promise<SummarizeResponse> => {
   try {
@@ -30,10 +31,7 @@ export const SummarizeVideo = async (
       `/v1/text/summary?row=${row}&youtubeUrl=${youtubeUrl}`,
     );
 
-    console.log(res);
-    console.log(res.data);
-    console.log(res.data.result);
-    return res.data;
+    return res.data.result;
   } catch (error) {
     console.log('요약하기 에러', error);
     throw error;

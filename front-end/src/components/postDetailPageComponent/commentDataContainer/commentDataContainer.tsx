@@ -7,6 +7,7 @@ import { CommentDataProps } from 'types/postDetailPage/postDetailPage';
 import BasicProfile from '@assets/common/BasicProfile.png';
 import { useNavigate } from 'react-router-dom';
 import DeleteModal from '../deleteModal/deleteModal';
+import { deleteComment } from '@server/api/comment/comment';
 
 const CommentDataContainer: React.FC<CommentDataProps> = ({ comments }) => {
   const [isDeleteMode, setIsDeleteMode] = useState<boolean>(false);
@@ -18,9 +19,18 @@ const CommentDataContainer: React.FC<CommentDataProps> = ({ comments }) => {
     navigate(`/mypage/${userId}`);
   };
 
-  const handleDeleteComment = (commentId: number) => {
+  const handleModalOpen = (commentId: number) => {
     setSelectedCommentId(commentId);
     setIsDeleteMode(true);
+  };
+
+  const handleCancel = () => {
+    setIsDeleteMode(false);
+  };
+
+  const handleDeleteComment = (commentId: number) => {
+    deleteComment(commentId);
+    setIsDeleteMode(false);
   };
 
   return (
@@ -52,7 +62,7 @@ const CommentDataContainer: React.FC<CommentDataProps> = ({ comments }) => {
                   <styles.OptionContainer>
                     <styles.Option>수정</styles.Option>
                     <styles.Option
-                      onClick={() => handleDeleteComment(comment.commentId)}
+                      onClick={() => handleModalOpen(comment.commentId)}
                     >
                       삭제
                     </styles.Option>
@@ -70,7 +80,8 @@ const CommentDataContainer: React.FC<CommentDataProps> = ({ comments }) => {
       {isDeleteMode && (
         <DeleteModal
           commentId={selectedCommentId}
-          setIsDeleteMode={setIsDeleteMode}
+          handleCancel={handleCancel}
+          handleDeleteComment={handleDeleteComment}
         />
       )}
     </>

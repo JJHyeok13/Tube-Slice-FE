@@ -3,15 +3,15 @@ import React, { useEffect } from 'react';
 import styles from './styles';
 
 interface DeleteModalProps {
-  commentId: number;
+  postId: number;
   handleCancel: () => void;
-  handleDeleteComment: (commentId: number) => void;
+  handleDeletePost: (postId: number) => void;
 }
 
 const DeleteModal: React.FC<DeleteModalProps> = ({
-  commentId,
+  postId,
   handleCancel,
-  handleDeleteComment,
+  handleDeletePost,
 }) => {
   useEffect(() => {
     // 모달이 열리면 뒤쪽의 스크롤을 막음
@@ -31,7 +31,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
         </styles.TitleContainer>
         <styles.ButtonContainer>
           <styles.CancelButton onClick={handleCancel}>취소</styles.CancelButton>
-          <styles.DeleteButton onClick={() => handleDeleteComment(commentId)}>
+          <styles.DeleteButton onClick={() => handleDeletePost(postId)}>
             삭제
           </styles.DeleteButton>
         </styles.ButtonContainer>

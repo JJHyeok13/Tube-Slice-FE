@@ -1,16 +1,14 @@
 // 변환하기
 export interface ConvertResponse {
-  result: {
-    scripts: {
-      timeline: number;
-      text: string;
-    }[];
-  };
+  scripts: {
+    timeline: number;
+    text: string;
+  }[];
 }
 
 // 요약하기
 export interface SummarizeResponse {
-  result: {
+  summaries: {
     id: number;
     message: string;
   }[];

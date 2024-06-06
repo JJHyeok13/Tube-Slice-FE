@@ -1,5 +1,5 @@
 export interface SummarizeResultProps {
-  result: {
+  summaries: {
     id: number;
     message: string;
   }[];

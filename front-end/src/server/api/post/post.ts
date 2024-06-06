@@ -1,10 +1,49 @@
-import { DeleteAxiosInstance, GetAxiosInstance } from '@axios/axios.method';
 import {
+  DeleteAxiosInstance,
+  GetAxiosInstance,
+  PostAxiosInstance,
+} from '@axios/axios.method';
+import { CreatePostRequest } from '@server/requestType/post/post';
+import {
+  CreatePostResponse,
   DeletePostResponse,
   PostCommentResponse,
   PostDataResponse,
   PostListResponse,
+  TimelineResponse,
 } from '@server/responseType/post/post';
+
+// 게시글 생성하기 /v1/posts/new
+export const createPost = async (
+  data: CreatePostRequest,
+): Promise<CreatePostResponse> => {
+  try {
+    const res = await PostAxiosInstance<CreatePostResponse>(
+      `/v1/posts/new`,
+      data,
+    );
+
+    return res.data.result;
+  } catch (error) {
+    console.log('게시글 생성 에러', error);
+    throw error;
+  }
+};
+
+// 게시글 정보 가져오기 /v1/posts/{postId}
+export const getPostDetailData = async (
+  postId: number,
+): Promise<PostDataResponse> => {
+  try {
+    const res = await GetAxiosInstance<{ result: PostDataResponse }>(
+      `/v1/posts/${postId}`,
+    );
+    return res.data.result;
+  } catch (error) {
+    console.log('게시글 가져오기 에러', error);
+    throw error;
+  }
+};
 
 // 게시글 삭제하기 /v1/posts/{postId}
 export const deletePost = async (
@@ -21,17 +60,18 @@ export const deletePost = async (
   }
 };
 
-// 게시글 정보 가져오기 /v1/posts/{postId}
-export const getPostDetailData = async (
+// 게시글 타임라인 가져오기 /v1/posts/{postId}/timelines
+export const getTimelineData = async (
   postId: number,
-): Promise<PostDataResponse> => {
+): Promise<TimelineResponse> => {
   try {
-    const res = await GetAxiosInstance<{ result: PostDataResponse }>(
-      `/v1/posts/${postId}`,
+    const res = await GetAxiosInstance<TimelineResponse>(
+      `/v1/posts/${postId}/timelines`,
     );
+
     return res.data.result;
   } catch (error) {
-    console.log('게시글 가져오기 에러', error);
+    console.log('타임라인 가져오기 에러', error);
     throw error;
   }
 };

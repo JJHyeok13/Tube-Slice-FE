@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { SummarizeVideo } from '@server/api/text/text';
+import { ConvertVideo, SummarizeVideo } from '@server/api/text/text';
 
-import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
+import {
+  ConvertResultProps,
+  SubtitlesProps,
+} from 'types/convertResultPage/convertResultPage';
 import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
 
 import RecommendVideo from '@components/commonComponent/recommendVideo/recommendVideo';
 
 import styles from './styles';
+import { getScriptSubtitles } from '@server/api/script/script';
 
 const MainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -19,26 +23,60 @@ const MainPage: React.FC = () => {
 
   // 변환/요약을 진행하기 위한 옵션 state 정의
   const [selectedOption, setSelectedOption] = useState<string>('convert');
-  const row = '3';
+  const row = 3;
   const [youtubeUrl, setYoutubeUrl] = useState<string>('');
 
   // 변환하기 결과 state 정의
-  const [convertResult, setConvertResult] = useState<
-    ConvertResultProps['result']
-  >([]);
+  const [convertResult, setConvertResult] = useState<ConvertResultProps | null>(
+    null,
+  );
+
+  // 변환하기 소제목 state 정의
+  const [subtitles, setSubtitles] = useState<SubtitlesProps | null>(null);
 
   // 요약하기 결과 state 정의
-  const [summarizeResult, setSummarizeResult] = useState<
-    SummarizeResultProps['result']
-  >([]);
+  const [summarizeResult, setSummarizeResult] =
+    useState<SummarizeResultProps | null>(null);
 
   // 변환/요약 옵션 선택 함수
   const handleOptionChange = (optionId: string) => {
     setSelectedOption(optionId);
   };
 
+  const handleStart = (youtubeUrl: string) => {
+    if (selectedOption === 'convert') {
+      handleConvert(youtubeUrl);
+    } else if (selectedOption === 'summarize') {
+      handleSummarize(row, youtubeUrl);
+    }
+  };
+
+  // 변환하기 실행 API 호출 함수
+  const handleConvert = (youtubeUrl: string) => {
+    if (youtubeUrl.trim() === '') {
+      alert('유튜브 주소를 입력해주세요.');
+      return;
+    }
+    setIsProgressing(true);
+    getScriptSubtitles(youtubeUrl)
+      .then((res) => setSubtitles(res))
+      .finally(() => {
+        setIsComplete(true);
+        setIsProgressing(false);
+      });
+
+    ConvertVideo(youtubeUrl)
+      .then((res) => {
+        setConvertResult(res);
+      })
+      .finally(() => {
+        setIsComplete(true);
+        setIsProgressing(false);
+      });
+  };
+
   // 요약하기 실행 API 호출 함수
-  const handleSummarize = (youtubeUrl: string) => {
+  const handleSummarize = (row: number, youtubeUrl: string) => {
     if (youtubeUrl.trim() === '') {
       alert('유튜브 주소를 입력해주세요.');
       return;
@@ -46,7 +84,7 @@ const MainPage: React.FC = () => {
     setIsProgressing(true);
     SummarizeVideo(row, youtubeUrl)
       .then((res) => {
-        setSummarizeResult(Array.isArray(res.result) ? res.result : []);
+        setSummarizeResult(res);
       })
       .finally(() => {
         setIsComplete(true);
@@ -58,18 +96,15 @@ const MainPage: React.FC = () => {
   const handleCheckResult = (selectedOption: string, youtubeUrl: string) => {
     // 변환하기 결과 페이지 이동
     if (selectedOption === 'convert') {
+      console.log(convertResult);
       navigate(`/convertresult?youtubeUrl=${youtubeUrl}`, {
-        state: {
-          convertResult,
-        },
+        state: { convertResult, subtitles },
       });
     }
     // 요약하기 결과 페이지 이동
     else if (selectedOption === 'summarize') {
       navigate(`/summarizeresult?youtubeUrl=${youtubeUrl}`, {
-        state: {
-          summarizeResult,
-        },
+        state: summarizeResult,
       });
     }
   };
@@ -124,7 +159,7 @@ const MainPage: React.FC = () => {
         {!isProgressing && !isComplete && (
           <styles.Button
             $isComplete={isComplete}
-            onClick={() => handleSummarize(youtubeUrl)}
+            onClick={() => handleStart(youtubeUrl)}
           >
             시작하기
           </styles.Button>

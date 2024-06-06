@@ -10,7 +10,11 @@ import CommentData from '@components/postDetailPageComponent/commentDataContaine
 
 import styles from './styles';
 
-import { getPostCommentData, getPostDetailData } from '@server/api/post/post';
+import {
+  getPostCommentData,
+  getPostDetailData,
+  getTimelineData,
+} from '@server/api/post/post';
 import { postLike, postUnlike } from '@server/api/postLike/postLike';
 import { writeComment } from '@server/api/comment/comment';
 
@@ -23,7 +27,8 @@ import YoutubeVideo from '@components/postDetailPageComponent/youtubeVideo/youtu
 import TimelineContainer from '@components/postDetailPageComponent/timelineContainer/timelineContainer';
 
 const PostDetailPage: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<string>();
+  const parsedId = parseInt(id);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [postDetailData, setPostDetailData] = useState<
@@ -54,22 +59,31 @@ const PostDetailPage: React.FC = () => {
     },
   });
 
-  useEffect(() => {
-    if (id) {
-      const parsedId = parseInt(id);
-      if (!isNaN(parsedId)) {
-        setIsLoading(true);
+  const getPostData = async (parsedId: number) => {
+    await getPostDetailData(parsedId).then((res) => setPostDetailData(res));
+  };
 
-        getPostDetailData(parsedId)
-          .then((res) => {
-            setPostDetailData(res);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
-    }
-  }, [id]);
+  useEffect(() => {
+    setIsLoading(true);
+    getPostData(parsedId);
+    setIsLoading(false);
+  }, [postDetailData]);
+
+  const [postCommentData, setPostCommentData] = useState<
+    CommentDataProps['comments']
+  >([]);
+
+  const getCommentData = async (parsedId: number) => {
+    await getPostCommentData(parsedId).then((res) =>
+      setPostCommentData(res.comments),
+    );
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    getCommentData(parsedId);
+    setIsLoading(false);
+  }, [postCommentData]);
 
   // 게시글 좋아요
   const handleLike = (postId: number) => {
@@ -97,41 +111,16 @@ const PostDetailPage: React.FC = () => {
     postUnlike(postId);
   };
 
-  const [postCommentData, setPostCommentData] = useState<
-    CommentDataProps['comments']
-  >([]);
-
-  useEffect(() => {
-    if (id) {
-      const parsedId = parseInt(id);
-      if (!isNaN(parsedId)) {
-        setIsLoading(true);
-
-        getPostCommentData(parsedId)
-          .then((res) => {
-            setPostCommentData(res.comments);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
-    }
-  }, [id]);
-
   // 댓글 input state
   const [commentContent, setCommentContent] = useState<string>('');
 
   // 댓글 작성 API
   const handleWriteComment = async (postId: number) => {
-    try {
-      const requestData: WriteCommentRequest = {
-        content: commentContent,
-      };
-      await writeComment(postId, requestData);
-      setCommentContent('');
-    } catch (error) {
-      console.error('댓글 작성 에러', error);
-    }
+    const requestData: WriteCommentRequest = {
+      content: commentContent,
+    };
+    await writeComment(postId, requestData);
+    setCommentContent('');
   };
 
   // 데이터 로딩중
@@ -142,6 +131,16 @@ const PostDetailPage: React.FC = () => {
       </styles.SpinnerContainer>
     );
   }
+
+  // const [timelineData, setTimelineData] = useState();
+
+  // const getTimeline = async (postId: number) => {
+  //   await getTimelineData(postId).then((res) => setTimelineData(res));
+  // };
+
+  // useEffect(() => {
+  //   getTimeline(postDetailData.post.postId);
+  // }, [postDetailData]);
 
   return (
     <>
@@ -165,7 +164,7 @@ const PostDetailPage: React.FC = () => {
         </styles.CenterComponent>
         <styles.RightComponent>
           <YoutubeVideo postData={postDetailData} />
-          <TimelineContainer />
+          {/* <TimelineContainer timelineData={timelineData} /> */}
         </styles.RightComponent>
       </styles.Container>
     </>

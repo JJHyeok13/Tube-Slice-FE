@@ -17,6 +17,16 @@ export interface UpdatePostResponse {
   result: Result;
 }
 
+// 게시글 타임라인
+export interface TimelineResponse {
+  timelines: {
+    timelineId: number;
+    startTime: number;
+    endTime: number;
+    description: string;
+  }[];
+}
+
 // 게시글 상세 정보 조회
 export interface PostDataResponse {
   isMine: boolean;
