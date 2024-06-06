@@ -41,7 +41,7 @@ export interface GetScriptDataResponse {
 
 // 스크립트 목록 가져오기
 export interface GetScriptListResponse {
-  result: {
+  scriptList: {
     userScriptId: number;
     youtubeUrl: string;
     youtubeTitle: string;

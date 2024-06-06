@@ -1,18 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './styles';
 import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
-import { dummyData, keywords } from './dummyData';
+import { keywords } from './dummyData';
 import Script from '@components/myScriptPageComponent/script/Script';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { ScriptListProps } from 'types/myScriptPage/myScriptPage';
+import { getScriptList } from '@server/api/userScript/userScript';
+
+import { HashLoader } from 'react-spinners';
 
 const MyScriptPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const keywordData = keywords;
-  const scriptData = dummyData;
+  const [scriptList, setScriptList] = useState<ScriptListProps>({
+    scriptList: [
+      {
+        userScriptId: 0,
+        youtubeUrl: '',
+        youtubeTitle: '',
+        subtitles: [
+          {
+            timeline: 0,
+            sub: '',
+          },
+        ],
+        scriptId: 0,
+        scripts: [
+          {
+            timeline: 0,
+            text: '',
+          },
+        ],
+        scriptKeywords: [
+          {
+            keywordId: 0,
+            name: '',
+          },
+        ],
+      },
+    ],
+  });
+
+  useEffect(() => {
+    setIsLoading(true);
+    getScriptList()
+      .then((res) => setScriptList(res))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
   const options = [
     { label: '제목', value: 'TITLE' },
@@ -38,13 +80,21 @@ const MyScriptPage: React.FC = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <styles.SpinnerContainer>
+        <HashLoader size={120} color="#0075ff" loading={isLoading} />
+      </styles.SpinnerContainer>
+    );
+  }
+
   return (
     <styles.Container>
       <styles.UpperWrapper>
         <KeywordDropdown keywordData={keywordData} />
         <SearchBar options={options} onSearch={handleSearch} />
       </styles.UpperWrapper>
-      <Script scriptData={scriptData} />
+      <Script scriptList={scriptList} />
     </styles.Container>
   );
 };

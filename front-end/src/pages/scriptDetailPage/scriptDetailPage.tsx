@@ -13,7 +13,7 @@ import {
 import styles from './styles';
 import { saveScript } from '@server/api/userScript/userScript';
 
-const ConvertResultPage: React.FC = () => {
+const ScriptDetailPage: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const showModal = () => {
@@ -118,4 +118,4 @@ const ConvertResultPage: React.FC = () => {
   );
 };
 
-export default ConvertResultPage;
+export default ScriptDetailPage;

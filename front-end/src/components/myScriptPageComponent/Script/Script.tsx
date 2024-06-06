@@ -1,37 +1,56 @@
 import React from 'react';
 import styles from './styles';
 
-import { ScriptProps } from 'types/myScriptPage/myScriptPage';
+import { ScriptListProps } from 'types/myScriptPage/myScriptPage';
+import { getThumbnailUrl } from '@utils/getThumbnail';
 
-const Script: React.FC<ScriptProps> = ({ scriptData }) => {
+const Script: React.FC<ScriptListProps> = ({ scriptList }) => {
   const LinktoYoutube = (url: string) => {
     window.open(`${url}`, '_blank');
   };
 
-  const getThumbnailUrl = (url: string): string => {
-    const videoId = url.split('v=')[1];
-    return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+  const combineScripts = (
+    scripts: {
+      textId: number;
+      timeline: number;
+      text: string;
+      isHighlighted: boolean;
+    }[],
+  ) => {
+    let combinedText = ''; // 빈 문자열로 초기화
+
+    // scripts 배열의 각 요소에 대하여 반복
+    for (let i = 0; i < scripts.length; i++) {
+      const script = scripts[i]; // 현재 스크립트
+
+      // 현재 스크립트의 text를 합친 문자열에 추가
+      combinedText += script.text + ' ';
+    }
+
+    return combinedText.trim();
   };
 
   return (
     <styles.Container>
-      {scriptData.map((data) => (
-        <styles.MyScript key={data.id}>
+      {scriptList.scriptList.map((data) => (
+        <styles.MyScript key={data.userScriptId}>
           <styles.ThumbnailImage
-            src={getThumbnailUrl(data.url)}
+            src={getThumbnailUrl(data.youtubeUrl)}
             alt="썸네일 이미지"
-            onClick={() => LinktoYoutube(data.url)}
+            onClick={() => LinktoYoutube(data.youtubeUrl)}
           />
           <styles.ScriptInfo>
-            <styles.Title>{data.title}</styles.Title>
+            <styles.Title>{data.youtubeTitle}</styles.Title>
             <styles.Content>
-              {data.content.length > 400
-                ? data.content.substring(0, 400) + ' ...'
-                : data.content}
+              {combineScripts(data.scripts).length > 320
+                ? combineScripts(data.scripts).substring(0, 320) + ' ...'
+                : combineScripts(data.scripts)}
             </styles.Content>
             <styles.KeywordWrapper>
-              {data.keyword.map((word, index) => (
-                <styles.Keyword key={index}>{word}</styles.Keyword>
+              {data.scriptKeywords.map((word) => (
+                <styles.Keyword key={word.keywordId}>
+                  {word.name}
+                </styles.Keyword>
               ))}
             </styles.KeywordWrapper>
           </styles.ScriptInfo>

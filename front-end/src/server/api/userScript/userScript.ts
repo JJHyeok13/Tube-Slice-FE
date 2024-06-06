@@ -92,6 +92,7 @@ export const getScriptList = async (): Promise<GetScriptListResponse> => {
       `/v1/user-scripts`,
     );
 
+    console.log(res.data.result);
     return res.data.result;
   } catch (error) {
     console.log('게시글 목록 가져오기 에러', error);
