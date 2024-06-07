@@ -23,7 +23,7 @@ const MainPage: React.FC = () => {
 
   // 변환/요약을 진행하기 위한 옵션 state 정의
   const [selectedOption, setSelectedOption] = useState<string>('convert');
-  const row = 3;
+  const row = 5;
   const [youtubeUrl, setYoutubeUrl] = useState<string>('');
 
   // 변환하기 결과 state 정의
@@ -44,65 +44,52 @@ const MainPage: React.FC = () => {
   };
 
   const handleStart = (youtubeUrl: string) => {
+    if (youtubeUrl.trim() === '') {
+      alert('유튜브 주소를 입력해주세요.');
+      return;
+    }
+    setIsProgressing(true);
+    setIsComplete(false);
     if (selectedOption === 'convert') {
-      handleConvert(youtubeUrl);
+      handleConvertVideo(youtubeUrl);
     } else if (selectedOption === 'summarize') {
       handleSummarize(row, youtubeUrl);
     }
   };
 
-  // 변환하기 실행 API 호출 함수
-  const handleConvert = (youtubeUrl: string) => {
-    if (youtubeUrl.trim() === '') {
-      alert('유튜브 주소를 입력해주세요.');
-      return;
-    }
-    setIsProgressing(true);
-    getScriptSubtitles(youtubeUrl)
-      .then((res) => setSubtitles(res))
-      .finally(() => {
-        setIsComplete(true);
-        setIsProgressing(false);
-      });
+  const handleSubtitles = async (youtubeUrl: string) => {
+    const res = await getScriptSubtitles(youtubeUrl);
+    setSubtitles(res);
+  };
 
-    ConvertVideo(youtubeUrl)
-      .then((res) => {
-        setConvertResult(res);
-      })
-      .finally(() => {
-        setIsComplete(true);
-        setIsProgressing(false);
-      });
+  const handleConvert = async (youtubeUrl: string) => {
+    const res = await ConvertVideo(youtubeUrl);
+    setConvertResult(res);
+  };
+
+  // 변환하기 실행 API 호출 함수
+  const handleConvertVideo = async (youtubeUrl: string) => {
+    await handleSubtitles(youtubeUrl);
+    await handleConvert(youtubeUrl);
+    setIsComplete(true);
+    setIsProgressing(false);
   };
 
   // 요약하기 실행 API 호출 함수
-  const handleSummarize = (row: number, youtubeUrl: string) => {
-    if (youtubeUrl.trim() === '') {
-      alert('유튜브 주소를 입력해주세요.');
-      return;
-    }
-    setIsProgressing(true);
-    SummarizeVideo(row, youtubeUrl)
-      .then((res) => {
-        setSummarizeResult(res);
-      })
-      .finally(() => {
-        setIsComplete(true);
-        setIsProgressing(false);
-      });
+  const handleSummarize = async (row: number, youtubeUrl: string) => {
+    const res = await SummarizeVideo(row, youtubeUrl);
+    setSummarizeResult(res);
+    setIsComplete(true);
+    setIsProgressing(false);
   };
 
   // 선택된 옵션과 결과에 따른 결과 페이지 이동 함수
   const handleCheckResult = (selectedOption: string, youtubeUrl: string) => {
-    // 변환하기 결과 페이지 이동
     if (selectedOption === 'convert') {
-      console.log(convertResult);
       navigate(`/convertresult?youtubeUrl=${youtubeUrl}`, {
         state: { convertResult, subtitles },
       });
-    }
-    // 요약하기 결과 페이지 이동
-    else if (selectedOption === 'summarize') {
+    } else if (selectedOption === 'summarize') {
       navigate(`/summarizeresult?youtubeUrl=${youtubeUrl}`, {
         state: summarizeResult,
       });

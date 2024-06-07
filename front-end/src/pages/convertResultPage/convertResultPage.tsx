@@ -1,5 +1,5 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer/subTitleContainer';
 import YoutubeVideo from '@components/convertResultPageComponent/youtubeVideo/youtubeVideo';
@@ -53,7 +53,6 @@ const ConvertResultPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { youtubeUrl } = useParams<{ youtubeUrl: string }>();
   const scripts = location.state.convertResult as ConvertResultProps['scripts'];
   const subtitles = location.state.subtitles as SubtitlesProps['subtitles'];
 
@@ -68,8 +67,12 @@ const ConvertResultPage: React.FC = () => {
 
   const extractedYoutubeUrl = getYoutubeUrlFromQuery(location.search);
 
+  const data = { youtubeUrl: extractedYoutubeUrl, scriptKeywords: keywords };
+
   const SaveScript = async () => {
-    await saveScript({ youtubeUrl: youtubeUrl, scriptKeywords: keywords });
+    console.log(data);
+
+    await saveScript(data);
 
     navigate('/myscript');
   };

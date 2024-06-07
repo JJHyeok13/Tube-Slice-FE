@@ -5,12 +5,30 @@ import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultP
 import styles from './styles';
 
 const SummarizeContainer: React.FC<SummarizeResultProps> = ({ summaries }) => {
+  const numberIndex: string[] = [
+    '1️⃣',
+    '2️⃣',
+    '3️⃣',
+    '4️⃣',
+    '5️⃣',
+    '6️⃣',
+    '7️⃣',
+    '8️⃣',
+    '9️⃣',
+    '🔟',
+  ];
+
   return (
     <styles.Container>
-      <div>스크립트를 요약했어요...</div>
+      <styles.Title>스크립트를 요약했어요...</styles.Title>
       <styles.SummarizeContainer>
-        {summaries.summaries.map((summarize) => (
-          <div key={summarize.id}>{summarize.message}</div>
+        {summaries.summaries.map((summarize, index: number) => (
+          <styles.Summarize key={summarize.id}>
+            {numberIndex[index]}{' '}
+            {summarize.message.endsWith(',')
+              ? summarize.message.slice(0, -1)
+              : summarize.message}
+          </styles.Summarize>
         ))}
       </styles.SummarizeContainer>
     </styles.Container>
