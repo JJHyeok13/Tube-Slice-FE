@@ -25,7 +25,7 @@ const MainPage: React.FC = () => {
 
   // 변환/요약을 진행하기 위한 옵션 state 정의
   const [selectedOption, setSelectedOption] = useState<string>('convert');
-  const row = 5;
+  const [selectedRow, setSelectedRow] = useState<number>(3);
   const [youtubeUrl, setYoutubeUrl] = useState<string>('');
 
   // 변환하기 결과 state 정의
@@ -55,7 +55,7 @@ const MainPage: React.FC = () => {
     if (selectedOption === 'convert') {
       handleConvertVideo(youtubeUrl);
     } else if (selectedOption === 'summarize') {
-      handleSummarize(row, youtubeUrl);
+      handleSummarize(selectedRow, youtubeUrl);
     }
   };
 
@@ -133,7 +133,24 @@ const MainPage: React.FC = () => {
           ))}
         </styles.OptionContainer>
 
-        <h2>{selectedDescription}</h2>
+        <styles.RowDescriptionWrapper>
+          <h2>{selectedDescription}</h2>
+          {selectedOption === 'summarize' && (
+            <styles.RowWrapper>
+              <div>요약할 문장의 수 :</div>
+              <select
+                value={selectedRow}
+                onChange={(e) => setSelectedRow(Number(e.target.value))}
+              >
+                {[...Array(8).keys()].map((i) => (
+                  <option key={i} value={i + 3}>
+                    {i + 3}
+                  </option>
+                ))}
+              </select>
+            </styles.RowWrapper>
+          )}
+        </styles.RowDescriptionWrapper>
 
         <styles.InputWrapper>
           <styles.AddressInput

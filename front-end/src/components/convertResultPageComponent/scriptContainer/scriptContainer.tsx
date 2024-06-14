@@ -11,11 +11,13 @@ interface ScriptContainerProps extends ConvertResultProps {
     timeline: number;
     sub: string;
   }[];
+  onSeekTo: (time: number) => void;
 }
 
 const ScriptContainer: React.FC<ScriptContainerProps> = ({
   scripts,
   subtitles,
+  onSeekTo,
 }) => {
   const scriptsData = scripts.scripts;
   const subtitleData = subtitles.subtitles;
@@ -45,7 +47,12 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
       {Texts.map((script, index) => (
         <div key={index}>
           <styles.SubtitleWrapper>
-            <img src={PlayingIcon} /> &nbsp;{' '}
+            <img
+              src={PlayingIcon}
+              onClick={() => onSeekTo(subtitleData[index].timeline)}
+              alt="Play"
+            />
+            &nbsp;
             <styles.SubtitleText>
               {subtitleData[index].sub.endsWith(',')
                 ? subtitleData[index].sub.slice(0, -1)

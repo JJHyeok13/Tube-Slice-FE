@@ -20,7 +20,7 @@ const SummarizeContainer: React.FC<SummarizeResultProps> = ({ summaries }) => {
 
   return (
     <styles.Container>
-      <styles.Title>스크립트를 요약했어요...</styles.Title>
+      <styles.Title>👀 스크립트를 요약했어요...</styles.Title>
       <styles.SummarizeContainer>
         {summaries.summaries.map((summarize, index: number) => (
           <styles.Summarize key={summarize.id}>

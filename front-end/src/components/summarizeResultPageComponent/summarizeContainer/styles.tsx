@@ -10,6 +10,7 @@ const styles = {
     width: 100%;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     padding: 24px;
     background-color: #efefef;
     border-radius: 12px;
@@ -19,11 +20,7 @@ const styles = {
     }
     margin-bottom: 40px;
   `,
-  Title: styled.div`
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 16px;
-  `,
+  Title: styled.h2``,
   Summarize: styled.div`
     padding: 8px;
   `,

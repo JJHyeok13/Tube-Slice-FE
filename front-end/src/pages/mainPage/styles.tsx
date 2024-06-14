@@ -34,6 +34,15 @@ const styles = {
     color: #0075ff;
     margin-right: 16px;
   `,
+  RowDescriptionWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+  `,
+  RowWrapper: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
   InputWrapper: styled.div`
     background-color: #efefef;
     border-radius: 12px;

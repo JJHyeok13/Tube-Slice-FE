@@ -1,4 +1,10 @@
-import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import SubTitleContainer from '@components/convertResultPageComponent/subTitleContainer/subTitleContainer';
@@ -56,10 +62,6 @@ const ConvertResultPage: React.FC = () => {
   const scripts = location.state.convertResult as ConvertResultProps['scripts'];
   const subtitles = location.state.subtitles as SubtitlesProps['subtitles'];
 
-  // if (!youtubeUrl) {
-  //   navigate('/');
-  // }
-
   const getYoutubeUrlFromQuery = (query: string) => {
     const params = new URLSearchParams(query);
     return params.get('youtubeUrl') || '';
@@ -77,10 +79,18 @@ const ConvertResultPage: React.FC = () => {
     navigate('/myscript');
   };
 
+  const youtubeRef = useRef<any>(null);
+
+  const handleSeekTo = (time: number) => {
+    if (youtubeRef.current) {
+      youtubeRef.current.seekTo(time);
+    }
+  };
+
   return (
     <styles.Container>
       <styles.LeftWrapper>
-        <YoutubeVideo youtubeUrl={extractedYoutubeUrl} />
+        <YoutubeVideo ref={youtubeRef} youtubeUrl={extractedYoutubeUrl} />
         <SubTitleContainer subtitles={subtitles} />
       </styles.LeftWrapper>
 
@@ -115,7 +125,11 @@ const ConvertResultPage: React.FC = () => {
           </styles.KeywordContainer>
           <styles.SaveButton onClick={SaveScript}>저장하기</styles.SaveButton>
         </styles.MenuWrapper>
-        <ScriptContainer scripts={scripts} subtitles={subtitles} />
+        <ScriptContainer
+          scripts={scripts}
+          subtitles={subtitles}
+          onSeekTo={handleSeekTo}
+        />
       </styles.RightWrapper>
     </styles.Container>
   );
