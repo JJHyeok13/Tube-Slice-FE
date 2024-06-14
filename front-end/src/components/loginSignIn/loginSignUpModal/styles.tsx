@@ -33,12 +33,14 @@ const styles = {
     font-size: 32px;
     font-weight: 800;
     color: #0075ff;
-    margin-bottom: 20px;
   `,
   Description: styled.div`
+    font-size: 18px;
     height: 25%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
   `,
   ButtonWrapper: styled.div`
     height: 40%;

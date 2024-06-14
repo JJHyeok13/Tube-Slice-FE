@@ -12,7 +12,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from '@server/api/user/user';
-import { PatchAxiosInstance, PostAxiosInstance } from '@axios/axios.method';
+import { PostAxiosInstance } from '@axios/axios.method';
 import { UploadImageResponse } from '@server/responseType/image/image';
 
 const SettingPage: React.FC = () => {

@@ -14,6 +14,8 @@ import RecommendVideo from '@components/commonComponent/recommendVideo/recommend
 import styles from './styles';
 import { getScriptSubtitles } from '@server/api/script/script';
 
+import { HashLoader } from 'react-spinners';
+
 const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -69,8 +71,8 @@ const MainPage: React.FC = () => {
 
   // 변환하기 실행 API 호출 함수
   const handleConvertVideo = async (youtubeUrl: string) => {
-    await handleSubtitles(youtubeUrl);
     await handleConvert(youtubeUrl);
+    await handleSubtitles(youtubeUrl);
     setIsComplete(true);
     setIsProgressing(false);
   };
@@ -114,56 +116,64 @@ const MainPage: React.FC = () => {
     options.find((option) => option.id === selectedOption)?.description || '';
 
   return (
-    <styles.Container>
-      <styles.OptionContainer>
-        {options.map((option) => (
-          <React.Fragment key={option.id}>
-            <styles.Option
-              type="radio"
-              id={option.id}
-              name="option"
-              checked={selectedOption === option.id}
-              onChange={() => handleOptionChange(option.id)}
-            />
-            <styles.Label htmlFor={option.id}>{option.value}</styles.Label>
-          </React.Fragment>
-        ))}
-      </styles.OptionContainer>
+    <>
+      <styles.Container>
+        <styles.OptionContainer>
+          {options.map((option) => (
+            <React.Fragment key={option.id}>
+              <styles.Option
+                type="radio"
+                id={option.id}
+                name="option"
+                checked={selectedOption === option.id}
+                onChange={() => handleOptionChange(option.id)}
+              />
+              <styles.Label htmlFor={option.id}>{option.value}</styles.Label>
+            </React.Fragment>
+          ))}
+        </styles.OptionContainer>
 
-      <h2>{selectedDescription}</h2>
+        <h2>{selectedDescription}</h2>
 
-      <styles.InputWrapper>
-        <styles.AddressInput
-          type="url"
-          placeholder="https://www.youtube.com"
-          value={youtubeUrl}
-          onChange={(e) => setYoutubeUrl(e.target.value)}
-        />
+        <styles.InputWrapper>
+          <styles.AddressInput
+            type="url"
+            placeholder="https://www.youtube.com"
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+          />
 
-        {isProgressing && !isComplete && (
-          <styles.Button $isProgressing={isProgressing}>변환중</styles.Button>
-        )}
-        {!isProgressing && !isComplete && (
-          <styles.Button
-            $isComplete={isComplete}
-            onClick={() => handleStart(youtubeUrl)}
-          >
-            시작하기
-          </styles.Button>
-        )}
-        {isComplete && (
-          <styles.Button
-            $isProgressing={isProgressing}
-            $isComplete={isComplete}
-            onClick={() => handleCheckResult(selectedOption, youtubeUrl)}
-          >
-            확인하기
-          </styles.Button>
-        )}
-      </styles.InputWrapper>
+          {isProgressing && !isComplete && (
+            <styles.Button $isProgressing={isProgressing}>변환중</styles.Button>
+          )}
+          {!isProgressing && !isComplete && (
+            <styles.Button
+              $isComplete={isComplete}
+              onClick={() => handleStart(youtubeUrl)}
+            >
+              시작하기
+            </styles.Button>
+          )}
+          {isComplete && (
+            <styles.Button
+              $isProgressing={isProgressing}
+              $isComplete={isComplete}
+              onClick={() => handleCheckResult(selectedOption, youtubeUrl)}
+            >
+              확인하기
+            </styles.Button>
+          )}
+        </styles.InputWrapper>
 
-      <RecommendVideo />
-    </styles.Container>
+        <RecommendVideo />
+      </styles.Container>
+
+      {isProgressing && (
+        <styles.ModalBackdrop>
+          <HashLoader size={120} color="#0075ff" loading={isProgressing} />
+        </styles.ModalBackdrop>
+      )}
+    </>
   );
 };
 

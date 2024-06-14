@@ -45,7 +45,7 @@ const Script: React.FC<ScriptProps> = ({ scriptList, handleScriptClick }) => {
           />
           <styles.ScriptInfo>
             <styles.Title onClick={() => handleScriptClick(data.userScriptId)}>
-              {data.youtubeTitle}
+              {data.youtubeTitle.replace(/^'|\.webm'$/g, '')}
             </styles.Title>
             <styles.Content>
               {combineScripts(data.scripts).length > 320

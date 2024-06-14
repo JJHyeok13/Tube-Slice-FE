@@ -7,7 +7,7 @@ interface TimelineContainerProps {
     timelineId: 0;
     startTime: 0;
     endTime: 0;
-    description: 'string';
+    description: '';
   }[];
 }
 

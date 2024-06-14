@@ -11,7 +11,7 @@ const styles = {
   `,
   ProfileImage: styled.img`
     width: 90%;
-    height: auto;
+    height: 90%;
     border-radius: 100%;
     margin-bottom: 30px;
   `,

@@ -40,7 +40,10 @@ const LoginSignUpModal: React.FC<LoginSignUpModalProps> = ({
         <styles.ExitButton size={28} onClick={handleClose} />
 
         <styles.TubeSlice>Tube Slice</styles.TubeSlice>
-        <styles.Description>한줄로 웹페이지 소개</styles.Description>
+        <styles.Description>
+          <div>Youtube 영상을</div>
+          <div>스크립트로 활용해보세요!</div>
+        </styles.Description>
         <styles.ButtonWrapper>
           <a href={kakaoLoginURL}>
             <styles.SocialLoginButton
