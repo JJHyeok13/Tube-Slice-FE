@@ -26,7 +26,8 @@ const styles = {
   `,
   Label: styled.label`
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
     padding: 4px 16px;
     border-radius: 16px;
     border: 1px solid #0075ff;
