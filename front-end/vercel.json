@@ -1,0 +1,6 @@
+{
+  "routes": [
+    { "src": "/oauth2.0", "dest": "https://nid.naver.com" },
+    { "src": "/oauth", "dest": "https://kauth.kakao.com" }
+  ]
+}
