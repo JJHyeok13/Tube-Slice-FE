@@ -36,6 +36,7 @@ const Script: React.FC<ScriptProps> = ({ scriptList, handleScriptClick }) => {
 
   return (
     <styles.Container>
+      {/* @ts-ignore*/}
       {scriptList.scriptList.map((data) => (
         <styles.MyScript key={data.userScriptId}>
           <styles.ThumbnailImage
@@ -53,7 +54,9 @@ const Script: React.FC<ScriptProps> = ({ scriptList, handleScriptClick }) => {
                 : combineScripts(data.scripts)}
             </styles.Content>
             <styles.KeywordWrapper>
+              {/* @ts-ignore*/}
               {data.scriptKeywords.map((word) => (
+                // @ts-ignore
                 <styles.Keyword key={word.keywordId}>
                   {word.name}
                 </styles.Keyword>

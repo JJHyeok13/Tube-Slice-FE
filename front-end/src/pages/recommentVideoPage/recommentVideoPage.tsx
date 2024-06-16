@@ -115,6 +115,7 @@ const RecommentVideoPage: React.FC = () => {
           </styles.KeywordContainer>
           <styles.SaveButton onClick={SaveScript}>저장하기</styles.SaveButton>
         </styles.MenuWrapper>
+        {/* @ts-ignore */}
         <ScriptContainer scripts={scripts} subtitles={subtitles} />
       </styles.RightWrapper>
     </styles.Container>

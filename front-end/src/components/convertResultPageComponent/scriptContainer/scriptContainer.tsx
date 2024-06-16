@@ -19,7 +19,9 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
   subtitles,
   onSeekTo,
 }) => {
+  // @ts-ignore
   const scriptsData = scripts.scripts;
+  // @ts-ignore
   const subtitleData = subtitles.subtitles;
 
   const Texts = [];

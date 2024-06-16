@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -20,6 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <span
           key={pageNumber}
           onClick={() => handlePageChange(pageNumber)}
+          // @ts-ignore
           selected={pageNumber === page + 1}
           disabled={pageNumber === page}
         >

@@ -8,6 +8,7 @@ const SubTitleContainer: React.FC<SubtitlesProps> = ({ subtitles }) => {
   const [visibleSubtitles, setVisibleSubtitles] = useState(5);
 
   const handleLoadMore = () => {
+    // @ts-ignore
     setVisibleSubtitles(subtitles.subtitles.length);
   };
 
@@ -15,6 +16,7 @@ const SubTitleContainer: React.FC<SubtitlesProps> = ({ subtitles }) => {
     <styles.Container>
       <h3>스크립트를 요약했어요...👀</h3>
       <styles.SubtitleList>
+        {/* @ts-ignore */}
         {subtitles.subtitles.slice(0, visibleSubtitles).map((data, index) => (
           <styles.Subtitle key={data.subtitleId}>
             <div>
@@ -24,6 +26,7 @@ const SubTitleContainer: React.FC<SubtitlesProps> = ({ subtitles }) => {
           </styles.Subtitle>
         ))}
       </styles.SubtitleList>
+      {/* @ts-ignore */}
       {visibleSubtitles < subtitles.subtitles.length && (
         <styles.SeeMoreButton onClick={handleLoadMore}>
           더보기

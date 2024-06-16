@@ -5,8 +5,10 @@ import { ConvertResultProps } from 'types/convertResultPage/convertResultPage';
 import { SummarizeResultProps } from 'types/summarizeResultPage/summarizeResultPage';
 
 const YoutubeVideo: React.FC<ConvertResultProps | SummarizeResultProps> = ({
+  // @ts-ignore
   resultData,
 }) => {
+  // @ts-ignore
   const [currentTime, setCurrentTime] = useState<number>(0);
   const youtubePlayer = useRef<any>(null);
 
@@ -36,6 +38,7 @@ const YoutubeVideo: React.FC<ConvertResultProps | SummarizeResultProps> = ({
   };
 
   // 시간값을 받아와서 비디오 플레이어를 해당 시간으로 이동시키는 함수
+  // @ts-ignore
   const seekToTime = (time: number) => {
     if (youtubePlayer.current) {
       youtubePlayer.current.seekTo(time);

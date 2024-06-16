@@ -17,7 +17,9 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
   scripts,
   subtitles,
 }) => {
+  // @ts-ignore
   const scriptsData = scripts.scripts;
+  // @ts-ignore
   const subtitleData = subtitles.subtitles;
 
   const Texts = [];

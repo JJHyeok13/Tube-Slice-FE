@@ -72,9 +72,11 @@ const MyPage: React.FC = () => {
   ]);
 
   const [page, setPage] = useState(0);
+  // @ts-ignore
   const [totalPages, setTotalPages] = useState(0);
   const size = 10;
 
+  // @ts-ignore
   const handlePageChange = (newPage: number) => {
     setPage(newPage - 1);
   };

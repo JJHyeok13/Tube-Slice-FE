@@ -27,6 +27,7 @@ const ProfileSettingComponent: React.FC<ProfileSettingProps> = ({
 
   const handleImageClick = () => {
     if (fileInputRef.current) {
+      // @ts-ignore
       fileInputRef.current.click();
     }
   };

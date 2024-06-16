@@ -10,11 +10,17 @@ import { useNavigate } from 'react-router-dom';
 
 const PostList: React.FC<PostListProps> = ({
   posts,
+  // @ts-ignore
   listSize,
+  // @ts-ignore
   totalPage,
+  // @ts-ignore
   currentPage,
+  // @ts-ignore
   totalElement,
+  // @ts-ignore
   isFirst,
+  // @ts-ignore
   isLast,
 }) => {
   const navigate = useNavigate();

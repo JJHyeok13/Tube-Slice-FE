@@ -17,7 +17,6 @@ import {
 
 import ProfileBox from '@components/myPageComponent/profileBox/profileBox';
 import NavBar from '@components/followListPageComponent/navBar/navBar';
-import SearchBar from '@components/commonComponent/searchBar/searchBar';
 import FollowList from '@components/followListPageComponent/followList/followList';
 
 import styles from './styles';

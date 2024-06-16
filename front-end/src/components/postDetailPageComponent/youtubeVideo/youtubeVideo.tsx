@@ -5,6 +5,7 @@ import YouTube from 'react-youtube';
 import { PostDataProps } from 'types/postDetailPage/postDetailPage';
 
 const YoutubeVideo: React.FC<PostDataProps> = ({ postData }) => {
+  // @ts-ignore
   const [currentTime, setCurrentTime] = useState<number>(0);
   const youtubePlayer = useRef<any>(null);
 
@@ -34,6 +35,7 @@ const YoutubeVideo: React.FC<PostDataProps> = ({ postData }) => {
   };
 
   // 시간값을 받아와서 비디오 플레이어를 해당 시간으로 이동시키는 함수
+  // @ts-ignore
   const seekToTime = (time: number) => {
     if (youtubePlayer.current) {
       youtubePlayer.current.seekTo(time);

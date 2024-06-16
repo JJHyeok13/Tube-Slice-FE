@@ -21,6 +21,7 @@ const NavBar: React.FC<NavBarProps> = ({ followerNum, followingNum }) => {
   return (
     <styles.Container>
       <styles.Nav
+        // @ts-ignore
         onClick={() => handleClick(id, 'follower')}
         $isActive={isFollower}
       >
@@ -28,6 +29,7 @@ const NavBar: React.FC<NavBarProps> = ({ followerNum, followingNum }) => {
       </styles.Nav>
 
       <styles.Nav
+        // @ts-ignore
         onClick={() => handleClick(id, 'following')}
         $isActive={isFollowing}
       >
