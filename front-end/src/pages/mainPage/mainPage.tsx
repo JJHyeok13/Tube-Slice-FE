@@ -137,7 +137,7 @@ const MainPage: React.FC = () => {
           <h2>{selectedDescription}</h2>
           {selectedOption === 'summarize' && (
             <styles.RowWrapper>
-              <div>요약할 문장의 수 :</div>
+              <div>요약할 문장의 수 : </div>
               <select
                 value={selectedRow}
                 onChange={(e) => setSelectedRow(Number(e.target.value))}

@@ -94,7 +94,10 @@ const FollowListPage: React.FC = () => {
       </styles.LeftContainer>
       <styles.RightContainer>
         <styles.UpperContainer>
-          <NavBar />
+          <NavBar
+            followerNum={profileData.followerNum}
+            followingNum={profileData.followingNum}
+          />
           {/* <SearchBar /> */}
         </styles.UpperContainer>
         <FollowList followData={followData} />

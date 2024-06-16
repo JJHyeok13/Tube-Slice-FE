@@ -47,7 +47,7 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
       {Texts.map((script, index) => (
         <div key={index}>
           <styles.SubtitleWrapper>
-            <img
+            <styles.Playing
               src={PlayingIcon}
               onClick={() => onSeekTo(subtitleData[index].timeline)}
               alt="Play"
