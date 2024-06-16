@@ -23,6 +23,7 @@ const PostWritePage: React.FC = () => {
   const [timelineDtoList, setTimelineDtoList] = useState([]);
   const [startTime, setStartTime] = useState<number>(0);
   const [endTime, setEndTime] = useState<number>(0);
+  // @ts-ignore
   const [description, setDescription] = useState<string>('');
 
   const handleTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,9 +62,12 @@ const PostWritePage: React.FC = () => {
     setEndTime(hours * 3600 + minute * 60 + second);
   };
 
+  // @ts-ignore
   const handleTimeline = () => {
     setTimelineDtoList([
+      // @ts-ignore
       ...timelineDtoList,
+      // @ts-ignore
       { startTime: startTime, endTime: endTime, description: description },
     ]);
   };

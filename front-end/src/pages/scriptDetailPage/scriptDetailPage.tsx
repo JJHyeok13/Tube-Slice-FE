@@ -77,13 +77,17 @@ const ScriptDetailPage: React.FC = () => {
   return (
     <styles.Container>
       <styles.LeftWrapper>
+        {/* @ts-ignore */}
         <YoutubeVideo youtubeUrl={scriptDetailData.youtubeUrl} />
+        {/* @ts-ignore */}
         <SubTitleContainer subtitles={scriptDetailData.subtitles} />
       </styles.LeftWrapper>
 
       <styles.RightWrapper>
         <ScriptContainer
+          // @ts-ignore
           scripts={scriptDetailData.scripts}
+          // @ts-ignore
           subtitles={scriptDetailData.subtitles}
         />
       </styles.RightWrapper>

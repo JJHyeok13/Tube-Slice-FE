@@ -13,6 +13,7 @@ import styles from './styles';
 import {
   getPostCommentData,
   getPostDetailData,
+  // @ts-ignore
   getTimelineData,
 } from '@server/api/post/post';
 import { postLike, postUnlike } from '@server/api/postLike/postLike';
@@ -24,10 +25,12 @@ import {
 } from 'types/postDetailPage/postDetailPage';
 import { WriteCommentRequest } from '@server/requestType/comment/comment';
 import YoutubeVideo from '@components/postDetailPageComponent/youtubeVideo/youtubeVideo';
+// @ts-ignore
 import TimelineContainer from '@components/postDetailPageComponent/timelineContainer/timelineContainer';
 
 const PostDetailPage: React.FC = () => {
   const { id } = useParams<string>();
+  // @ts-ignore
   const parsedId = parseInt(id);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

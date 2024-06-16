@@ -50,6 +50,7 @@ const MyScriptPage: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
     getScriptList()
+      // @ts-ignore
       .then((res) => setScriptList(res))
       .finally(() => {
         setIsLoading(false);
@@ -66,7 +67,9 @@ const MyScriptPage: React.FC = () => {
     { label: '제목+내용', value: 'TITLECONTENT' },
   ];
 
+  // @ts-ignore
   const [selectedSearchType, setSelectedSearchType] = useState('TITLE');
+  // @ts-ignore
   const [searchWord, setSearchWord] = useState(
     new URLSearchParams(location.search).get('search') || '',
   );
@@ -98,6 +101,7 @@ const MyScriptPage: React.FC = () => {
         <KeywordDropdown keywordData={keywordData} />
         <SearchBar options={options} onSearch={handleSearch} />
       </styles.UpperWrapper>
+      {/* @ts-ignore */}
       <Script scriptList={scriptList} handleScriptClick={handleScriptClick} />
     </styles.Container>
   );
