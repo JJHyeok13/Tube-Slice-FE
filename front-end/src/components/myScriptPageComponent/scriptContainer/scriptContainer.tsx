@@ -8,7 +8,10 @@ interface ScriptProps extends ScriptListProps {
   handleScriptClick: (userScriptId: number) => void;
 }
 
-const Script: React.FC<ScriptProps> = ({ scriptList, handleScriptClick }) => {
+const ScriptContainer: React.FC<ScriptProps> = ({
+  scriptList,
+  handleScriptClick,
+}) => {
   const LinktoYoutube = (url: string) => {
     window.open(`${url}`, '_blank');
   };
@@ -69,4 +72,4 @@ const Script: React.FC<ScriptProps> = ({ scriptList, handleScriptClick }) => {
   );
 };
 
-export default Script;
+export default ScriptContainer;

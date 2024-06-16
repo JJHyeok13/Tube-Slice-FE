@@ -5,8 +5,7 @@ import styles from './styles';
 import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
 import { keywords } from './dummyData';
-// @ts-ignore
-import Script from '@components/myScriptPageComponent/script/Script';
+import ScriptContainer from '@components/myScriptPageComponent/scriptContainer/scriptContainer';
 import { ScriptListProps } from 'types/myScriptPage/myScriptPage';
 import { getScriptList } from '@server/api/userScript/userScript';
 
@@ -102,8 +101,11 @@ const MyScriptPage: React.FC = () => {
         <KeywordDropdown keywordData={keywordData} />
         <SearchBar options={options} onSearch={handleSearch} />
       </styles.UpperWrapper>
-      {/* @ts-ignore */}
-      <Script scriptList={scriptList} handleScriptClick={handleScriptClick} />
+      <ScriptContainer
+        // @ts-ignore
+        scriptList={scriptList}
+        handleScriptClick={handleScriptClick}
+      />
     </styles.Container>
   );
 };
