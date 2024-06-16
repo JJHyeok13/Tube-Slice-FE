@@ -54,6 +54,7 @@ const ScriptDetailPage: React.FC = () => {
         setIsLoading(true);
         getScriptData(parsedId)
           .then((res) => {
+            // @ts-ignore
             setScriptDetailData(res);
           })
           .finally(() => {
@@ -69,6 +70,10 @@ const ScriptDetailPage: React.FC = () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
+
+  const handleMenuButton = () => {
+    navigate(`/myscript`);
+  };
 
   const handleDelete = (userScriptId: number) => {
     deleteScript(userScriptId);
@@ -93,15 +98,19 @@ const ScriptDetailPage: React.FC = () => {
       </styles.LeftWrapper>
 
       <styles.RightWrapper>
-        <styles.ButtonContainer>
-          <styles.Button>강조하기</styles.Button>
-          <styles.Button>수정하기</styles.Button>
-          <styles.Button
-            onClick={() => handleDelete(scriptDetailData.userScriptId)}
-          >
-            삭제하기
-          </styles.Button>
-        </styles.ButtonContainer>
+        <styles.MenuWrapper>
+          <styles.BackToMenu onClick={handleMenuButton}>목록</styles.BackToMenu>
+          <styles.ButtonContainer>
+            <styles.Button>강조하기</styles.Button>
+            <styles.Button>수정하기</styles.Button>
+            <styles.Button
+              // @ts-ignore
+              onClick={() => handleDelete(scriptDetailData.userScriptId)}
+            >
+              삭제하기
+            </styles.Button>
+          </styles.ButtonContainer>
+        </styles.MenuWrapper>
         <ScriptContainer
           // @ts-ignore
           scripts={scriptDetailData.scripts}

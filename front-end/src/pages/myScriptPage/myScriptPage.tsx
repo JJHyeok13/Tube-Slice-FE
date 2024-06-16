@@ -70,16 +70,6 @@ const MyScriptPage: React.FC = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   console.log('실행');
-  //   getKeywordList()
-  //     .then((res) => setKeywordData(res))
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }, []);
-
   const handleScriptClick = (userScriptId: number) => {
     navigate(`/myscript/${userScriptId}`);
   };
@@ -121,6 +111,7 @@ const MyScriptPage: React.FC = () => {
   return (
     <styles.Container>
       <styles.UpperWrapper>
+        {/* @ts-ignore */}
         <KeywordDropdown script_keywords={keywordData} />
         <SearchBar options={options} onSearch={handleSearch} />
       </styles.UpperWrapper>

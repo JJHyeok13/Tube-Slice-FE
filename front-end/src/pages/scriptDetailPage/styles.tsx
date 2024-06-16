@@ -37,10 +37,21 @@ const styles = {
     align-items: center;
     margin-bottom: 48px;
   `,
+  BackToMenu: styled.div`
+    background-color: #0075ff;
+    color: #ffffff;
+    border-radius: 12px;
+
+    box-sizing: border-box;
+    padding: 10px 16px;
+    cursor: pointer;
+  `,
   ButtonContainer: styled.div`
     display: flex;
   `,
   Button: styled.div`
+    margin-left: 16px;
+
     background-color: #ffffff;
     color: #0075ff;
     border: 2px solid #0075ff;

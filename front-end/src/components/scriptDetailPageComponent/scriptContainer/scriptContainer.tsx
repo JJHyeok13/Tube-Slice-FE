@@ -33,9 +33,12 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
       if (script.timeline >= startTimeline && script.timeline < endTimeline) {
         mergedText.push(
           <span
+            // @ts-ignore
             key={script.textId}
             style={{
-              color: script.isHighlighted ? '#0075ff' : 'black', // Apply your styles here
+              // @ts-ignore
+              color: script.isHighlighted ? '#0075ff' : 'black',
+              // @ts-ignore
               fontWeight: script.isHighlighted ? '600' : '500',
             }}
           >

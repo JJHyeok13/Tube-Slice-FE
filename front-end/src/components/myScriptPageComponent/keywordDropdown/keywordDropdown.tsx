@@ -13,6 +13,7 @@ const KeywordDropdown: React.FC<KeywordListProps> = ({ script_keywords }) => {
   return (
     <styles.Dropdown value={selectedKeyword} onChange={handleChange}>
       <styles.Options disabled>키워드</styles.Options>
+      {/* @ts-ignore */}
       {script_keywords.script_keywords.map((word, index) => (
         <styles.Options key={index} value={word.keyword}>
           {word.keyword}
