@@ -95,6 +95,7 @@ const SettingPage: React.FC = () => {
           userProfile={userProfile}
           handleInput={handleInput}
           handleUpdateProfile={handleUpdateProfile}
+          // @ts-ignore
           handleImageChange={handleImageChange}
         />
       )}

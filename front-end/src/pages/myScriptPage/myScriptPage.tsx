@@ -5,6 +5,7 @@ import styles from './styles';
 import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
 import { keywords } from './dummyData';
+// @ts-ignore
 import Script from '@components/myScriptPageComponent/script/Script';
 import { ScriptListProps } from 'types/myScriptPage/myScriptPage';
 import { getScriptList } from '@server/api/userScript/userScript';
