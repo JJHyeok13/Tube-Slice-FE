@@ -1,7 +1,3 @@
-export interface KeywordDropdownProps {
-  keywordData: { id: number; keyword: string }[];
-}
-
 export interface ScriptListProps {
   scriptList: {
     userScriptId: number;
@@ -20,5 +16,11 @@ export interface ScriptListProps {
       keywordId: number;
       name: string;
     }[];
+  }[];
+}
+
+export interface KeywordListProps {
+  script_keywords: {
+    keyword: string;
   }[];
 }

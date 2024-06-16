@@ -26,15 +26,25 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
     const endTimeline =
       i + 1 < subtitles.length ? subtitles[i + 1].timeline : Infinity;
 
-    let mergedText = '';
+    let mergedText = [];
 
     for (let j = 0; j < scripts.length; j++) {
       const script = scripts[j];
       if (script.timeline >= startTimeline && script.timeline < endTimeline) {
-        mergedText += script.text + ' ';
+        mergedText.push(
+          <span
+            key={script.textId}
+            style={{
+              color: script.isHighlighted ? '#0075ff' : 'black', // Apply your styles here
+              fontWeight: script.isHighlighted ? '600' : '500',
+            }}
+          >
+            {script.text}{' '}
+          </span>,
+        );
       }
     }
-    Texts.push(mergedText.trim());
+    Texts.push(mergedText);
   }
 
   return (
@@ -42,7 +52,7 @@ const ScriptContainer: React.FC<ScriptContainerProps> = ({
       {Texts.map((script, index) => (
         <div key={index}>
           <styles.SubtitleWrapper>
-            <img src={PlayingIcon} /> &nbsp;{' '}
+            <img src={PlayingIcon} alt="Playing Icon" /> &nbsp;{' '}
             <styles.SubtitleText>
               {subtitles[index].sub.endsWith(',')
                 ? subtitles[index].sub.slice(0, -1)

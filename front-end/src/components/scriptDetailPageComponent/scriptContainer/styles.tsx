@@ -23,6 +23,9 @@ const styles = {
     padding: 12px 16px;
     margin-bottom: 48px;
   `,
+  HighlightedText: styled.div`
+    color: #0075ff;
+  `,
 };
 
 export default styles;

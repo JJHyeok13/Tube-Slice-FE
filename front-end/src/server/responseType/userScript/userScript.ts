@@ -17,6 +17,11 @@ export interface HighlightScriptResponse {
   result: Result;
 }
 
+// 스크립트 삭제하기
+export interface DeleteScriptResponse {
+  result: Result;
+}
+
 // 스크립트 정보 가져오기
 export interface GetScriptDataResponse {
   result: {
@@ -59,4 +64,10 @@ export interface GetScriptListResponse {
       name: string;
     }[];
   };
+}
+
+export interface GetKeywordListResponse {
+  script_keywords: {
+    keyword: string;
+  }[];
 }

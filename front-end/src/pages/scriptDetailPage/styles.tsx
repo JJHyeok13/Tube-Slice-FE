@@ -37,7 +37,10 @@ const styles = {
     align-items: center;
     margin-bottom: 48px;
   `,
-  SaveButton: styled.div`
+  ButtonContainer: styled.div`
+    display: flex;
+  `,
+  Button: styled.div`
     background-color: #ffffff;
     color: #0075ff;
     border: 2px solid #0075ff;

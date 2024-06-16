@@ -4,10 +4,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './styles';
 import KeywordDropdown from '@components/myScriptPageComponent/keywordDropdown/keywordDropdown';
 import SearchBar from '@components/commonComponent/searchBar/searchBar';
-import { keywords } from './dummyData';
 import ScriptContainer from '@components/myScriptPageComponent/scriptContainer/scriptContainer';
-import { ScriptListProps } from 'types/myScriptPage/myScriptPage';
-import { getScriptList } from '@server/api/userScript/userScript';
+import {
+  KeywordListProps,
+  ScriptListProps,
+} from 'types/myScriptPage/myScriptPage';
+import {
+  getKeywordList,
+  getScriptList,
+} from '@server/api/userScript/userScript';
 
 import { HashLoader } from 'react-spinners';
 
@@ -17,7 +22,10 @@ const MyScriptPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const keywordData = keywords;
+  const [keywordData, setKeywordData] = useState<KeywordListProps>({
+    script_keywords: [{ keyword: '' }],
+  });
+
   const [scriptList, setScriptList] = useState<ScriptListProps>({
     scriptList: [
       {
@@ -55,7 +63,22 @@ const MyScriptPage: React.FC = () => {
       .finally(() => {
         setIsLoading(false);
       });
+    getKeywordList()
+      .then((res) => setKeywordData(res))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   console.log('실행');
+  //   getKeywordList()
+  //     .then((res) => setKeywordData(res))
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }, []);
 
   const handleScriptClick = (userScriptId: number) => {
     navigate(`/myscript/${userScriptId}`);
@@ -98,7 +121,7 @@ const MyScriptPage: React.FC = () => {
   return (
     <styles.Container>
       <styles.UpperWrapper>
-        <KeywordDropdown keywordData={keywordData} />
+        <KeywordDropdown script_keywords={keywordData} />
         <SearchBar options={options} onSearch={handleSearch} />
       </styles.UpperWrapper>
       <ScriptContainer

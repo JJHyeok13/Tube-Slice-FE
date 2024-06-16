@@ -2,6 +2,7 @@ import {
   PostAxiosInstance,
   PatchAxiosInstance,
   GetAxiosInstance,
+  DeleteAxiosInstance,
 } from '@axios/axios.method';
 import {
   HighlightScriptRequest,
@@ -9,6 +10,8 @@ import {
   UpdateScriptRequest,
 } from '@server/requestType/userScript/userScript';
 import {
+  DeleteScriptResponse,
+  GetKeywordListResponse,
   GetScriptDataResponse,
   GetScriptListResponse,
   HighlightScriptResponse,
@@ -69,6 +72,22 @@ export const highlightScript = async (
   }
 };
 
+// 스크립트 삭제하기 /v1/user-scripts/{userScriptId}
+export const deleteScript = async (
+  userScriptId: number,
+): Promise<DeleteScriptResponse> => {
+  try {
+    const res = await DeleteAxiosInstance<DeleteScriptResponse>(
+      `/v1/user-scripts/${userScriptId}`,
+    );
+
+    return res.data.result;
+  } catch (error) {
+    console.log('스크립트 삭제하기 에러', error);
+    throw error;
+  }
+};
+
 // 스크립트 상세 정보 가져오기 /v1/user-scripts/{userScriptId}
 export const getScriptData = async (
   userScriptId: number,
@@ -96,6 +115,21 @@ export const getScriptList = async (): Promise<GetScriptListResponse> => {
     return res.data.result;
   } catch (error) {
     console.log('게시글 목록 가져오기 에러', error);
+    throw error;
+  }
+};
+
+// 스크립트 키워드 목록 가져오기 /v1/user-scripts/keywords
+export const getKeywordList = async (): Promise<GetKeywordListResponse> => {
+  try {
+    const res = await GetAxiosInstance<GetKeywordListResponse>(
+      `/v1/user-scripts/keywords`,
+    );
+
+    console.log(res.data.result);
+    return res.data.result;
+  } catch (error) {
+    console.log('키워드 목록 가져오기 에러', error);
     throw error;
   }
 };

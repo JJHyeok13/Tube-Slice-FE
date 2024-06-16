@@ -9,8 +9,10 @@ export interface ScriptDetailDataProps {
     }[];
     scriptId: number;
     scripts: {
+      textId: number;
       timeline: number;
       text: string;
+      isHighlighted: boolean;
     }[];
     scriptKeywords: {
       keywordId: number;

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import SubTitleContainer from '@components/scriptDetailPageComponent/subTitleContainer/subTitleContainer';
 import YoutubeVideo from '@components/scriptDetailPageComponent/youtubeVideo/youtubeVideo';
 import ScriptContainer from '@components/scriptDetailPageComponent/scriptContainer/scriptContainer';
 
 import styles from './styles';
-import { getScriptData } from '@server/api/userScript/userScript';
+import { deleteScript, getScriptData } from '@server/api/userScript/userScript';
 import { ScriptDetailDataProps } from 'types/scriptDetailPage/scriptDetailPage';
 
 import { HashLoader } from 'react-spinners';
 
 const ScriptDetailPage: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<string>();
 
   const [scriptDetailData, setScriptDetailData] =
@@ -29,8 +30,10 @@ const ScriptDetailPage: React.FC = () => {
         scriptId: 0,
         scripts: [
           {
+            textId: 0,
             timeline: 0,
             text: '',
+            isHighlighted: false,
           },
         ],
         scriptKeywords: [
@@ -41,6 +44,7 @@ const ScriptDetailPage: React.FC = () => {
         ],
       },
     });
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -66,6 +70,11 @@ const ScriptDetailPage: React.FC = () => {
     };
   }, []);
 
+  const handleDelete = (userScriptId: number) => {
+    deleteScript(userScriptId);
+    navigate(`/myscript`);
+  };
+
   if (isLoading) {
     return (
       <styles.SpinnerContainer>
@@ -84,6 +93,15 @@ const ScriptDetailPage: React.FC = () => {
       </styles.LeftWrapper>
 
       <styles.RightWrapper>
+        <styles.ButtonContainer>
+          <styles.Button>강조하기</styles.Button>
+          <styles.Button>수정하기</styles.Button>
+          <styles.Button
+            onClick={() => handleDelete(scriptDetailData.userScriptId)}
+          >
+            삭제하기
+          </styles.Button>
+        </styles.ButtonContainer>
         <ScriptContainer
           // @ts-ignore
           scripts={scriptDetailData.scripts}
