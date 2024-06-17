@@ -13,7 +13,6 @@ export const getKakaoToken = async (
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
       },
     },
-    { withCredentials: true },
   );
   return res.data;
 };
