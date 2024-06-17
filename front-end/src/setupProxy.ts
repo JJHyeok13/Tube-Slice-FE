@@ -4,9 +4,12 @@ export default function setupProxy(app: {
   use: (path: string, handler: RequestHandler) => void;
 }) {
   app.use(
-    '/oauth2.0',
+    '/naver',
     createProxyMiddleware({
       target: 'https://nid.naver.com',
+      pathRewrite: {
+        '^/naver': '',
+      },
       changeOrigin: true,
     }),
   );
