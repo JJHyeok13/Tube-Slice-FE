@@ -101,8 +101,8 @@ const ScriptDetailPage: React.FC = () => {
         <styles.MenuWrapper>
           <styles.BackToMenu onClick={handleMenuButton}>목록</styles.BackToMenu>
           <styles.ButtonContainer>
-            <styles.Button>강조하기</styles.Button>
-            <styles.Button>수정하기</styles.Button>
+            {/* <styles.Button>강조하기</styles.Button>
+            <styles.Button>수정하기</styles.Button> */}
             <styles.Button
               // @ts-ignore
               onClick={() => handleDelete(scriptDetailData.userScriptId)}

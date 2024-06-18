@@ -16,6 +16,6 @@ export interface UpdateScriptRequest {
 // 스크립트 강조하기
 export interface HighlightScriptRequest {
   scripts: {
-    timeline: 0;
+    textId: 0;
   }[];
 }
